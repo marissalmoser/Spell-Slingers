@@ -71,13 +71,14 @@ public class TileMapBuilder : EditorWindow
             for (int j = 0; j < _mapSize.y; j++)
             {
                 //Create tiles for map
-                GameObject go = Instantiate(_defaultTilePrefab, new Vector3(i, 0, j),
-                    Quaternion.identity, _tileParentObj.transform);
+                GameObject go = (GameObject)PrefabUtility.InstantiatePrefab(_defaultTilePrefab,
+                    _tileParentObj.transform);
 
                 //Set up tile's fields
+                go.transform.position = new Vector3(i, 0, j);
                 go.name = i + "," + j + " " + go.name;
                 Tile tile = go.GetComponent<Tile>();
-                tile.SetCoordinates(new Vector2(i, j));
+                tile.SetCoordinates(i, j);
             }
         }
     }
