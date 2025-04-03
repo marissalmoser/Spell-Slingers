@@ -4,10 +4,32 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    private Character[] controlledCharacters;
+    private List<Character> controlledCharacters = new List<Character>();
 
-    public Character[] GetControlledCharacters() 
+    /// <summary>
+    /// Returns the list of controlled characters managed by this controller.
+    /// </summary>
+    /// <returns></returns>
+    public List<Character> GetControlledCharacters() 
     {
         return controlledCharacters;
+    }
+
+    /// <summary>
+    /// Adds a character to be controlled by the controller.
+    /// </summary>
+    /// <param name="character"></param>
+    public void AddControlledCharacter(Character character)
+    {
+        controlledCharacters.Add(character);
+    }
+
+    /// <summary>
+    /// Removes a character from the characters this controller controls.
+    /// </summary>
+    /// <param name="character"></param>
+    public void RemoveControlledCharacter(Character character)
+    {
+        controlledCharacters.Remove(character);
     }
 }

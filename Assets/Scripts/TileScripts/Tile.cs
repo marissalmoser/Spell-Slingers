@@ -88,6 +88,8 @@ public class Tile : MonoBehaviour
 
         //temporary, this call should come from jacob's stuff
         TempPlayerMovement.PlayerSelected += UpdateTile;
+
+        Character.OnShouldUpdateTiles += UpdateTile;
     }
     private void OnDisable()
     {
@@ -95,6 +97,8 @@ public class Tile : MonoBehaviour
 
         //temporary, this call should come from jacob's stuff
         TempPlayerMovement.PlayerSelected -= UpdateTile;
+
+        Character.OnShouldUpdateTiles -= UpdateTile;
     }
 
     #endregion
