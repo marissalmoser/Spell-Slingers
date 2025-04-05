@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
 
     private void OnEnable()
     {
-        OnPlayerSelected += SelectCharacter;
+        //OnPlayerSelected += SelectCharacter;
 
         //player should not be listening to when a tile is selected but alas
         Tile.TileSelected += MoveOrAttack;
@@ -142,13 +142,14 @@ public class Character : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if(canAct == true)
-            OnPlayerSelected?.Invoke();
+        if (canAct == true)
+            SelectCharacter();
     }
 
     private void OnDestroy()
     {
-        PlayerController.instance.RemoveControlledCharacter(this);
+        if(PlayerController.instance.GetControlledCharacters().Contains(this))
+            PlayerController.instance.RemoveControlledCharacter(this);
     }
 
     #region Temp Functions Until UI is In
