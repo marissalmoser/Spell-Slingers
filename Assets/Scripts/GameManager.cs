@@ -3,59 +3,58 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
+    private Controller activeController;
+
+    private Queue<Controller> turnOrder = new Queue<Controller>();
+
+    [SerializeField] private GameObject startGameBtn; //Button for starting round, should be replaced if better way to initialize combat is found.
+
     private void Start()
     {
-        Queue<int> turnOrder = new Queue<int>();
+        turnOrder.Enqueue(PlayerController.instance);
 
-        turnOrder.Enqueue(1);
-        turnOrder.Enqueue(2);
-        turnOrder.Enqueue(3);
-
-        Debug.Log(turnOrder);
-
-        Debug.Log(turnOrder.Dequeue());
-        turnOrder.Enqueue(1);
-
-        //Debug.Log(turnOrder.Dequeue().Call Jacob's thing);
-        Debug.Log(turnOrder.Dequeue());
+        Character.OnCantAct += IncrementCounter;
     }
 
-
-
-
-    /*public static void main()
+    /// <summary>
+    /// Starts player turn. CHANGE LATER TO ACCEPT AI CONTROLLER
+    /// </summary>
+    private void StartTurn()
     {
-        Queue<string> Players = new Queue<string>();
-        Players.Enqueue("Player1");
-        Players.Enqueue("Player2");
-        Players.Enqueue("Player3");
+        activeController = turnOrder.Dequeue();
+        activeController.GetComponent<PlayerController>().StartTurn();
 
-        // A queue can be enumerated without disturbing its contents.
-        foreach( string number in Players)
-        {
-            Console.WriteLine(number);
-        }
+    }
 
-        Console.WriteLine("\nDequeing '{0}'", Players.Dequeue());
-        Console.WriteLine("Peek at next item to dequeue: {0}", Players.Peek());
-        Console.WriteLine("Dequeuing '{0}'", Players.Dequeue());
+    /// <summary>
+    /// Ends turn of the active controller. CHANGE LATER TO ACCEPT AI CONTROLLER
+    /// </summary>
+    private void EndTurn()
+    {
+        activeController.GetComponent<PlayerController>().EndTurn();
+        turnOrder.Enqueue(activeController);
+        
+        //Check end conditions.
 
-        //Creating a copy of the queue, using the To Array method and the
-        // constructor that accepts an IEnumerable<T>.
-        Queue<string> queueCopy = new Queue<string>(Players.ToArray());
+        //StartTurn() if end conditions not met.
+    }
 
-        Console.WriteLine("/nContents of the first copy:");
-        foreach( string number in queueCopy)
-        {
-            Console.WriteLine(number);
-        }
+    private void IncrementCounter()
+    {
+        Debug.Log("COUNTER INCREMENTED");
+    }
 
-        string[] array2 = new string[Players.Count * 2];
-        Players.CopyTo(array2, Players.Count);
+    /// <summary>
+    /// Starts game so that errors don't arise with Start execution order.
+    /// </summary>
+    public void StartGame()
+    {
+        StartTurn();
 
-        Console.WriteLine("\nContents of the second copy, with duplicates and nulls")
-    }*/
+        startGameBtn.SetActive(false); //References testing button.
+    }
 }

@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
 
     public static Action OnPlayerSelected;
     public static Action<int, Vector2Int> OnShouldUpdateTiles;
+    public static Action OnCantAct;
 
     public controller ControllerType { get => controllerType; }
 
@@ -108,6 +109,8 @@ public class Character : MonoBehaviour
     {
         canAct = false;
         isSelected = false;
+
+        OnCantAct?.Invoke();
     }
 
     /// <summary>
@@ -148,8 +151,7 @@ public class Character : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(PlayerController.instance.GetControlledCharacters().Contains(this))
-            PlayerController.instance.RemoveControlledCharacter(this);
+        
     }
 
     #region Temp Functions Until UI is In
