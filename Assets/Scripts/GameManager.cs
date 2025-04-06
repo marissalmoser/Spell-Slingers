@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         turnOrder.Enqueue(1);
 
         //Debug.Log(turnOrder.Dequeue().Call Jacob's thing);
-        Debug.Log(turnOrder);
+        Debug.Log(turnOrder.Dequeue());
     }
 
 
