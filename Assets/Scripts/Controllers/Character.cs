@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 
     public enum controller { none, player, ai}
 
-    public static Action OnPlayerSelected;
+    //public static Action OnPlayerSelected;
     public static Action<int, Vector2Int> OnShouldUpdateTiles;
 
     public controller ControllerType { get => controllerType; }
@@ -40,7 +40,8 @@ public class Character : MonoBehaviour
 
     private void OnDisable()
     {
-        OnPlayerSelected -= SelectCharacter;
+        //OnPlayerSelected -= SelectCharacter;
+        Tile.TileSelected -= MoveOrAttack;
     }
 
     #endregion
@@ -133,6 +134,18 @@ public class Character : MonoBehaviour
     }
 
     /// <summary>
+    /// Moves the actor to a new tile and updates the fields on old and new tile
+    /// </summary>
+    /// <param name="input"></param>
+    private void MoveActor(Tile input)
+    {
+        curTile.SetIsOccupied(false);
+        transform.position = input.GetTileActorAnchor().position;
+        input.SetIsOccupied(true);
+        curTile = input;
+    }
+
+    /// <summary>
     /// Checks whether a combo should be executed or if an affliction should be applied.
     /// </summary>
     public void CheckCombo()
@@ -178,18 +191,6 @@ public class Character : MonoBehaviour
 
         Tile.ResetTiles?.Invoke();
         DeactivateCharacter();
-    }
-
-    /// <summary>
-    /// Moves the actor to a new tile and updates the fields on old and new tile
-    /// </summary>
-    /// <param name="input"></param>
-    private void MoveActor(Tile input)
-    {
-        curTile.SetIsOccupied(false);
-        transform.position = input.GetTileActorAnchor().position;
-        input.SetIsOccupied(true);
-        curTile = input;
     }
 
     #endregion
