@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     private Queue<Controller> turnOrder = new Queue<Controller>();
 
+    private Character CharacterScript;
+
     [SerializeField] private GameObject startGameBtn; //Button for starting round, should be replaced if better way to initialize combat is found.
 
     private void Start()
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
         turnOrder.Enqueue(activeController);
         
         //Check end conditions.
+
+        
 
         //StartTurn() if end conditions not met.
     }
