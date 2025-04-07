@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoulderThrow : MonoBehaviour
+public class BoulderThrow : Combo
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        TriggerCombo();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TriggerCombo()
     {
-        
+        //call knockback function, knock enemy back in general direction 3 tiles
+
+        Destroy(this);
     }
 }

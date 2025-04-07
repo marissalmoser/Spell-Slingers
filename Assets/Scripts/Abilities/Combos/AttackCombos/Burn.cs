@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Burn : MonoBehaviour
+public class Burn : Combo
 {
-    // Start is called before the first frame update
-    void Start()
+    private int turnDuration = 3;
+    private int turnCount = 0;
+    void Awake()
     {
-        
+        TriggerCombo();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TriggerCombo()
     {
-        
+        //deal damage every turn
+
+        turnCount++;
+
+        if (turnCount == turnDuration)
+        {
+            Destroy(this);
+        }
     }
 }
