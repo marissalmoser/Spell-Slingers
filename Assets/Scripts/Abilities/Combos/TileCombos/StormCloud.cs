@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StormCloud : MonoBehaviour
+public class StormCloud : Combo
 {
-    // Start is called before the first frame update
-    void Start()
+    int turnDuration = 3;
+    int turnCount = 0;
+
+    int damageAmount = 10;
+
+    void Awake()
     {
-        
+        TriggerCombo();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TriggerCombo()
     {
-        
+        //TODO: Get Character this sctipt is on and call damage function.
+
+        turnCount++;
+
+        if (turnCount == turnDuration)
+        {
+            Destroy(this);
+        }
     }
 }
