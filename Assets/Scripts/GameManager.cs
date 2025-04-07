@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         turnOrder.Enqueue(PlayerController.instance);
+        turnOrder.Enqueue(AIController.instance);
 
         Character.OnCantAct += IncrementCounter;
     }
@@ -33,8 +34,7 @@ public class GameManager : MonoBehaviour
     private void StartTurn()
     {
         activeController = turnOrder.Dequeue();
-        activeController.GetComponent<PlayerController>().StartTurn();
-
+        activeController.GetComponent<Controller>().StartTurn();
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void EndTurn()
     {
-        activeController.GetComponent<PlayerController>().EndTurn();
+        activeController.GetComponent<Controller>().EndTurn();
         turnOrder.Enqueue(activeController);
         counter = 0;
 
@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("COUNTER INCREMENTED");
         
-        counter = counter + 1;
+        counter++;
 
-        if (counter == PlayerController.instance.GetControlledCharacters().Count)
+        if (counter == activeController.GetControlledCharacters().Count)
         {
             EndTurn();
         }
