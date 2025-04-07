@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
 
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
+    [SerializeField] private int attackRange;
 
     [Header("Programming Values")]
     public bool canAct = false;
@@ -24,6 +25,7 @@ public class Character : MonoBehaviour
     public static Action OnPlayerSelected;
     public static Action<int, Vector2Int> OnShouldUpdateTiles;
     public static Action OnCantAct;
+    public static Action<int, Vector2Int> OnAttackPressed;
 
     public controller ControllerType { get => controllerType; }
 
@@ -37,6 +39,7 @@ public class Character : MonoBehaviour
         Tile.TileSelected += MoveOrAttack;
 
         curTile.SetIsOccupied(true);
+        curTile.SetOccupyingCharacter(this);
     }
 
     private void OnDisable()
@@ -56,7 +59,7 @@ public class Character : MonoBehaviour
         }
         else if(controllerType == controller.ai)
         {
-            throw new NotImplementedException();
+            AIController.instance.AddControlledCharacter(this);
         }
         else
         {
@@ -110,6 +113,7 @@ public class Character : MonoBehaviour
         canAct = false;
         isSelected = false;
 
+        PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
     }
 
@@ -133,6 +137,69 @@ public class Character : MonoBehaviour
         Tile.ResetTiles?.Invoke();
         OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
         isSelected = true;
+
+        UISetup();
+    }
+
+    /// <summary>
+    /// Sets up player action UI;
+    /// </summary>
+    private void UISetup()
+    {
+        PlayerController.instance.GetAttackButton().onClick.RemoveAllListeners();
+        PlayerController.instance.GetWaitButton().onClick.RemoveAllListeners();
+
+        PlayerController.instance.GetActionUI().SetActive(true);
+        PlayerController.instance.GetAttackButton().onClick.AddListener(OpenAttackSelection);
+        PlayerController.instance.GetWaitButton().onClick.AddListener(Wait);
+    }
+
+    /// <summary>
+    /// Moves the actor to a new tile and updates the fields on old and new tile
+    /// </summary>
+    /// <param name="input"></param>
+    private void MoveCharacter(Tile input)
+    {
+        curTile.SetIsOccupied(false);
+        curTile.SetOccupyingCharacter(null);
+        transform.position = input.GetTileActorAnchor().position;
+        input.SetIsOccupied(true);
+        input.SetOccupyingCharacter(this);
+        curTile = input;
+    }
+
+    /// <summary>
+    /// Activates attack highlights and sets tile states to be attackable.
+    /// </summary>
+    /// <param name="range"></param>
+    /// <param name="originTile"></param>
+    public void OpenAttackSelection()
+    {
+        OnAttackPressed?.Invoke(attackRange, curTile.GetCoordinates());
+    }
+
+    /// <summary>
+    /// Performs attack action.
+    /// </summary>
+    private void Attack(Tile input)
+    {
+        if(input.GetTileState() == Tile.TileState.attackable)
+        {
+            Debug.Log("ATTACKING");
+            DeactivateCharacter();
+        }
+        else
+        {
+            Debug.Log("NOT AN ATTACKABLE CHARACTER");
+        }
+    }
+
+    /// <summary>
+    /// Tells a character to wait without performing any actions.
+    /// </summary>
+    public void Wait()
+    {
+        DeactivateCharacter();
     }
 
     /// <summary>
@@ -170,28 +237,14 @@ public class Character : MonoBehaviour
         if (input.GetTileState() == Tile.TileState.moveable)
         {
             //move actor to tile
-            MoveActor(input);
+            MoveCharacter(input);
         }
         else if (input.GetTileState() == Tile.TileState.attackable)
         {
-            //call attack here
-            print("Attack!");
+            Attack(input);
         }
 
         Tile.ResetTiles?.Invoke();
-        DeactivateCharacter();
-    }
-
-    /// <summary>
-    /// Moves the actor to a new tile and updates the fields on old and new tile
-    /// </summary>
-    /// <param name="input"></param>
-    private void MoveActor(Tile input)
-    {
-        curTile.SetIsOccupied(false);
-        transform.position = input.GetTileActorAnchor().position;
-        input.SetIsOccupied(true);
-        curTile = input;
     }
 
     #endregion
