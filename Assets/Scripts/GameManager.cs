@@ -44,21 +44,9 @@ public class GameManager : MonoBehaviour
     {
         activeController.GetComponent<PlayerController>().EndTurn();
         turnOrder.Enqueue(activeController);
+        counter = 0;
 
-        /*if ( == 0)
-        {
-            StartTurn();
-        }*/
-
-        if (counter == PlayerController.instance.GetControlledCharacters().Count)
-        {
-            StartTurn();
-        }
-        //Check end conditions.
-
-        
-
-        //StartTurn() if end conditions not met.
+        StartTurn();
     }
 
     private void Update()
@@ -70,6 +58,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("COUNTER INCREMENTED");
         
         counter = counter + 1;
+
+        if (counter == PlayerController.instance.GetControlledCharacters().Count)
+        {
+            EndTurn();
+        }
 
         Debug.Log("The Counter is at " + counter);
 }
