@@ -27,13 +27,13 @@ public class ComboCodex : MonoBehaviour
                 switch (a2)
                 {
                     case Ability.AbilityType.FireAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Burn>();
                         return;
                     case Ability.AbilityType.WaterAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Scold>();
                         return;
                     case Ability.AbilityType.EarthAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<RockTrap>();
                         return;
                 }
                 break;
@@ -41,13 +41,13 @@ public class ComboCodex : MonoBehaviour
                 switch (a2)
                 {
                     case Ability.AbilityType.FireAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Scold>();
                         return;
                     case Ability.AbilityType.WaterAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Freeze>();
                         return;
                     case Ability.AbilityType.EarthAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<VampireSeed>();
                         return;
                 }
                 break;
@@ -55,13 +55,13 @@ public class ComboCodex : MonoBehaviour
                 switch (a2)
                 {
                     case Ability.AbilityType.FireAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<RockTrap>();
                         return;
                     case Ability.AbilityType.WaterAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<VampireSeed>();
                         return;
                     case Ability.AbilityType.EarthAttack:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<BoulderThrow>();
                         return;
                 }
                 break;
@@ -70,13 +70,13 @@ public class ComboCodex : MonoBehaviour
                 switch (a2)
                 {
                     case Ability.AbilityType.FireTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Explosion>();
                         return;
                     case Ability.AbilityType.WaterTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Steam>();
                         return;
                     case Ability.AbilityType.EarthTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Lava>();
                         return;
                 }
                 break;
@@ -84,13 +84,13 @@ public class ComboCodex : MonoBehaviour
                 switch (a2)
                 {
                     case Ability.AbilityType.FireTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Steam>();
                         return;
                     case Ability.AbilityType.WaterTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<StormCloud>();
                         return;
                     case Ability.AbilityType.EarthTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<MudSlide>();
                         return;
                 }
                 break;
@@ -98,13 +98,13 @@ public class ComboCodex : MonoBehaviour
                 switch (a2)
                 {
                     case Ability.AbilityType.FireTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<Lava>();
                         return;
                     case Ability.AbilityType.WaterTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<MudSlide>();
                         return;
                     case Ability.AbilityType.EarthTile:
-                        target.AddComponent<Tile>();
+                        target.AddComponent<StoneWall>();
                         return;
                 }
                 break;
