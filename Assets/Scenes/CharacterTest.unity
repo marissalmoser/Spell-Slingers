@@ -776,6 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18417d37ee5d62f469c12a0566f42aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipTurn: 0
   moveRange: 5
   attackRange: 3
   canAct: 0
@@ -4135,6 +4136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18417d37ee5d62f469c12a0566f42aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipTurn: 0
   moveRange: 5
   attackRange: 3
   canAct: 0
@@ -6504,6 +6506,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1029988808}
     - target: {fileID: 481284017780938559, guid: 4e4b43d8314460a4daffd754fbf8b10a, type: 3}
+      propertyPath: moveRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 481284017780938559, guid: 4e4b43d8314460a4daffd754fbf8b10a, type: 3}
       propertyPath: aiControlled
       value: 1
       objectReference: {fileID: 0}
@@ -7023,6 +7029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18417d37ee5d62f469c12a0566f42aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipTurn: 0
   moveRange: 5
   attackRange: 3
   canAct: 0

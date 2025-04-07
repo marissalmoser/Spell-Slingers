@@ -46,7 +46,7 @@ public class AIController : Controller
     /// <summary>
     /// Activate characters and start turns.
     /// </summary>
-    public void StartTurn()
+    public override void StartTurn()
     {
         foreach (Character c in GetControlledCharacters())
         {
@@ -54,7 +54,7 @@ public class AIController : Controller
         }
     }
 
-    public void EndTurn()
+    public override void EndTurn()
     {
         foreach (Character c in GetControlledCharacters())
         {

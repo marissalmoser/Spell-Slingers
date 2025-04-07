@@ -32,4 +32,14 @@ public class Controller : MonoBehaviour
     {
         controlledCharacters.Remove(character);
     }
+
+    public virtual void StartTurn()
+    {
+        Debug.Log("STARTING TURN");
+    }
+
+    public virtual void EndTurn()
+    {
+        Debug.Log("ENDING TURN");
+    }
 }

@@ -6,6 +6,7 @@ using System;
 public class Character : MonoBehaviour
 {
     private bool isSelected = false;
+    public bool skipTurn;
 
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
@@ -93,7 +94,7 @@ public class Character : MonoBehaviour
         if (controllerType == controller.player)
             return PlayerController.instance;
         else if (controllerType == controller.ai)
-            throw new NotImplementedException();
+            return AIController.instance;
         else
             throw new Exception("No controller assigned to this character.");
     }
@@ -135,7 +136,12 @@ public class Character : MonoBehaviour
             PlayerController.instance.SetSelectedCharacter(this);
         }
         else if (controllerType == controller.ai)
-            throw new NotImplementedException();
+        {
+            if (AIController.instance.GetSelectedCharacter() != null)
+                AIController.instance.GetSelectedCharacter().isSelected = false;
+
+            AIController.instance.SetSelectedCharacter(this);
+        }    
         else
             throw new Exception("No controller assigned to this character.");
 
@@ -198,6 +204,9 @@ public class Character : MonoBehaviour
         input.SetIsOccupied(true);
         input.SetOccupyingCharacter(this);
         curTile = input;
+
+        if (controllerType == controller.ai)
+            DeactivateCharacter();
     }
 
     /// <summary>
