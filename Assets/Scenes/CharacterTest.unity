@@ -780,6 +780,7 @@ MonoBehaviour:
   attackRange: 3
   canAct: 0
   curTile: {fileID: 525591436}
+  aiControlled: 0
   controllerType: 1
 --- !u!135 &266713168
 SphereCollider:
@@ -4138,6 +4139,7 @@ MonoBehaviour:
   attackRange: 3
   canAct: 0
   curTile: {fileID: 912649824}
+  aiControlled: 0
   controllerType: 1
 --- !u!135 &1155974904
 SphereCollider:
@@ -6501,6 +6503,10 @@ PrefabInstance:
       propertyPath: curTile
       value: 
       objectReference: {fileID: 1029988808}
+    - target: {fileID: 481284017780938559, guid: 4e4b43d8314460a4daffd754fbf8b10a, type: 3}
+      propertyPath: aiControlled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1618186387797619069, guid: 4e4b43d8314460a4daffd754fbf8b10a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -7021,6 +7027,7 @@ MonoBehaviour:
   attackRange: 3
   canAct: 0
   curTile: {fileID: 1587975450}
+  aiControlled: 0
   controllerType: 1
 --- !u!135 &1957045484
 SphereCollider:

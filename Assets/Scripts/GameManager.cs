@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     {
         activeController = turnOrder.Dequeue();
         activeController.GetComponent<PlayerController>().StartTurn();
-
     }
 
     /// <summary>
