@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using System.Threading.Tasks;
+using System.Threading;
+using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +14,16 @@ public class GameManager : MonoBehaviour
 
     private Queue<Controller> turnOrder = new Queue<Controller>();
 
+    private Character CharacterScript;
+
+    private int counter = 0;
+
     [SerializeField] private GameObject startGameBtn; //Button for starting round, should be replaced if better way to initialize combat is found.
 
     private void Start()
     {
         turnOrder.Enqueue(PlayerController.instance);
+        turnOrder.Enqueue(AIController.instance);
 
         Character.OnCantAct += IncrementCounter;
     }
@@ -26,8 +34,7 @@ public class GameManager : MonoBehaviour
     private void StartTurn()
     {
         activeController = turnOrder.Dequeue();
-        activeController.GetComponent<PlayerController>().StartTurn();
-
+        activeController.GetComponent<Controller>().StartTurn();
     }
 
     /// <summary>
@@ -35,18 +42,30 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void EndTurn()
     {
-        activeController.GetComponent<PlayerController>().EndTurn();
+        activeController.GetComponent<Controller>().EndTurn();
         turnOrder.Enqueue(activeController);
-        
-        //Check end conditions.
+        counter = 0;
 
-        //StartTurn() if end conditions not met.
+        StartTurn();
+    }
+
+    private void Update()
+    {
     }
 
     private void IncrementCounter()
     {
         Debug.Log("COUNTER INCREMENTED");
-    }
+        
+        counter++;
+
+        if (counter == activeController.GetControlledCharacters().Count)
+        {
+            EndTurn();
+        }
+
+        Debug.Log("The Counter is at " + counter);
+}
 
     /// <summary>
     /// Starts game so that errors don't arise with Start execution order.

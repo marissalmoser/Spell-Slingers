@@ -776,10 +776,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18417d37ee5d62f469c12a0566f42aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipTurn: 0
   moveRange: 5
   attackRange: 3
   canAct: 0
   curTile: {fileID: 525591436}
+  aiControlled: 0
   controllerType: 1
 --- !u!135 &266713168
 SphereCollider:
@@ -4134,10 +4136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18417d37ee5d62f469c12a0566f42aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipTurn: 0
   moveRange: 5
   attackRange: 3
   canAct: 0
   curTile: {fileID: 912649824}
+  aiControlled: 0
   controllerType: 1
 --- !u!135 &1155974904
 SphereCollider:
@@ -5630,7 +5634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -223}
+  m_AnchoredPosition: {x: 0, y: -171}
   m_SizeDelta: {x: 528.1326, y: 70.6973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1546539170
@@ -6501,6 +6505,14 @@ PrefabInstance:
       propertyPath: curTile
       value: 
       objectReference: {fileID: 1029988808}
+    - target: {fileID: 481284017780938559, guid: 4e4b43d8314460a4daffd754fbf8b10a, type: 3}
+      propertyPath: moveRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 481284017780938559, guid: 4e4b43d8314460a4daffd754fbf8b10a, type: 3}
+      propertyPath: aiControlled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1618186387797619069, guid: 4e4b43d8314460a4daffd754fbf8b10a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -7017,10 +7029,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18417d37ee5d62f469c12a0566f42aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipTurn: 0
   moveRange: 5
   attackRange: 3
   canAct: 0
   curTile: {fileID: 1587975450}
+  aiControlled: 0
   controllerType: 1
 --- !u!135 &1957045484
 SphereCollider:
