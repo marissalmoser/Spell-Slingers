@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PlayerController : Controller
+public class AIController : Controller
 {
-    public static PlayerController instance;
+    public static AIController instance;
 
     private Character selectedCharacter;
-
-    [SerializeField] private GameObject actionUI;
-    [SerializeField] private Button attackBtn;
-    [SerializeField] private Button waitBtn;
 
     #region Instance Var Setup
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
@@ -46,21 +41,6 @@ public class PlayerController : Controller
         selectedCharacter = character;
     }
 
-    public GameObject GetActionUI()
-    {
-        return actionUI;
-    }
-
-    public Button GetAttackButton()
-    {
-        return attackBtn;
-    }
-
-    public Button GetWaitButton()
-    {
-        return waitBtn;
-    }
-
     #endregion
 
     /// <summary>
@@ -68,7 +48,7 @@ public class PlayerController : Controller
     /// </summary>
     public void StartTurn()
     {
-        foreach(Character c in GetControlledCharacters())
+        foreach (Character c in GetControlledCharacters())
         {
             c.ActivateCharacter();
         }

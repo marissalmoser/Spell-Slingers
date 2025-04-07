@@ -22,6 +22,8 @@ public class Tile : MonoBehaviour
     [SerializeField] GameObject attackableStatus;
     [SerializeField] bool isOccupied;
 
+    private Character occupyingCharacter;
+
     ///tile state
     public enum TileState { idle, moveable, attackable };
     private TileState currentState = TileState.idle;
@@ -78,6 +80,16 @@ public class Tile : MonoBehaviour
         return isOccupied;
     }
 
+    public Character GetOccupyingCharacter()
+    {
+        return occupyingCharacter;
+    }
+
+    public void SetOccupyingCharacter(Character character)
+    {
+        occupyingCharacter = character;
+    }
+
     #endregion
 
     #region OnEnable and Disable
@@ -90,6 +102,7 @@ public class Tile : MonoBehaviour
         TempPlayerMovement.PlayerSelected += UpdateTile;
 
         Character.OnShouldUpdateTiles += UpdateTile;
+        Character.OnAttackPressed += SetAttackableState;
     }
     private void OnDisable()
     {
@@ -143,10 +156,33 @@ public class Tile : MonoBehaviour
                 currentState = TileState.moveable;
                 break;
 
-            case TileState.attackable:
+            /*case TileState.attackable:
                 attackableStatus.SetActive(true);
                 currentState = TileState.attackable;
-                break;
+                break;*/
+        }
+    }
+
+    /// <summary>
+    /// Sets a tile to the attackable state.
+    /// </summary>
+    /// <param name="range"></param>
+    /// <param name="originTile"></param>
+    public void SetAttackableState(int range, Vector2Int originTile)
+    {
+        if (originTile == coordinates)
+            return;
+
+        moveableStatus.SetActive(false);
+        attackableStatus.SetActive(false);
+
+        Vector2 distance = coordinates - originTile;
+        float magnitude = distance.magnitude;
+
+        if(magnitude <= range + 1 && isOccupied && occupyingCharacter.ControllerType == Character.controller.ai)
+        {
+            attackableStatus.SetActive(true);
+            currentState = TileState.attackable;
         }
     }
 
