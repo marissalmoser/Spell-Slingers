@@ -6,8 +6,13 @@ public class Burn : Combo
 {
     private int turnDuration = 3;
     private int turnCount = 0;
+
+    Character enemy;
+
     void Awake()
     {
+        enemy = GetComponent<Character>();
+
         TriggerCombo();
     }
 

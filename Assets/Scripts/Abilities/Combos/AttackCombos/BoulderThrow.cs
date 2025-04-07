@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BoulderThrow : Combo
 {
+    Character enemy;
+
     private void Awake()
     {
+        enemy = GetComponent<Character>();
+
         TriggerCombo();
     }
 
