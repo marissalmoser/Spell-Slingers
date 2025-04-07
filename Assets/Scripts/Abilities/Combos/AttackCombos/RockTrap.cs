@@ -15,20 +15,20 @@ public class RockTrap : Combo
     {
         enemy = GetComponent<Character>();
 
-        //savedMovementRange = enemy.GetMovementRange();
+        savedMovementRange = enemy.GetMovementRange();
 
         TriggerCombo();
     }
 
     public override void TriggerCombo()
     {
-        //enemy.SetMovementRange(0);
+        enemy.SetMovementRange(0);
 
         turnCount++;
 
         if (turnCount == turnDuration)
         {
-            //enemy.SetMovementRange(savedMovementRange);
+            enemy.SetMovementRange(savedMovementRange);
             Destroy(this);
         }
     }

@@ -14,7 +14,6 @@ public class Freeze : Combo
 
     public override void TriggerCombo()
     {
-        //skip target enemy character turn
         enemy.Wait();
 
         Destroy(this);

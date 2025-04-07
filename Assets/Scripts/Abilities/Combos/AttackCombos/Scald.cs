@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Burn : Combo
+public class Scald : Combo
 {
     public int Damage;
-
-    private int turnDuration = 3;
-    private int turnCount = 0;
-
+    
     Character enemy;
 
     void Awake()
@@ -22,11 +19,7 @@ public class Burn : Combo
     {
         enemy.DamageCharacter(Damage);
 
-        turnCount++;
-
-        if (turnCount == turnDuration)
-        {
-            Destroy(this);
-        }
+        Destroy(this);
     }
 }
+

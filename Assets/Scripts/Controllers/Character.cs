@@ -271,7 +271,15 @@ public class Character : MonoBehaviour
         
     }
 
-    #endregion
+    public int GetMovementRange()
+    {
+        return moveRange;
+    }
+
+    public void SetMovementRange(int range)
+    {
+        moveRange = range;
+    }
 
 }
 
