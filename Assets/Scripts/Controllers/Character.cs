@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class Character : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Character : MonoBehaviour
     public static Action<int, Vector2Int> OnAttackPressed;
 
     public controller ControllerType { get => controllerType; }
+
+    [SerializeField] private GameObject damageTextPrefab;
 
     #region OnEnableOnDisable
 
@@ -216,6 +219,12 @@ public class Character : MonoBehaviour
             SelectCharacter();
     }
 
+    public void DamageCharacter(int damage)
+    {
+        var text = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
+        text.GetComponent<TextRise>().StartRise(damage);
+    }
+
     private void OnDestroy()
     {
         
@@ -248,4 +257,6 @@ public class Character : MonoBehaviour
     }
 
     #endregion
+
 }
+
