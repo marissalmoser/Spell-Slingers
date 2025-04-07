@@ -7,24 +7,28 @@ public class RockTrap : Combo
     private int turnDuration = 3;
     private int turnCount = 0;
 
+    private int savedMovementRange;
+
     Character enemy;
 
     private void Awake()
     {
         enemy = GetComponent<Character>();
 
+        //savedMovementRange = enemy.GetMovementRange();
+
         TriggerCombo();
     }
 
     public override void TriggerCombo()
     {
-        //set enemy movement to 0 for three turns
+        //enemy.SetMovementRange(0);
 
         turnCount++;
 
         if (turnCount == turnDuration)
         {
-            //Set movement back to saved int
+            //enemy.SetMovementRange(savedMovementRange);
             Destroy(this);
         }
     }
