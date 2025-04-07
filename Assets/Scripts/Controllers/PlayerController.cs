@@ -66,15 +66,29 @@ public class PlayerController : Controller
     /// <summary>
     /// Activate characters and start turns.
     /// </summary>
-    public void StartTurn()
+    public override void StartTurn()
     {
+        List<Character> skippedCharacters = new List<Character>();
+
         foreach(Character c in GetControlledCharacters())
         {
+            if (c.skipTurn == true)
+            {
+                c.skipTurn = false;
+                skippedCharacters.Add(c);
+                continue;
+            }
+
             c.ActivateCharacter();
+        }
+
+        foreach(Character c in skippedCharacters)
+        {
+            GetControlledCharacters().Remove(c);
         }
     }
 
-    public void EndTurn()
+    public override void EndTurn()
     {
         foreach (Character c in GetControlledCharacters())
         {
