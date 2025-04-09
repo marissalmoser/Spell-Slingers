@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Freeze : MonoBehaviour
+public class Freeze : Combo
 {
-    // Start is called before the first frame update
-    void Start()
+    Character enemy;
+    void Awake()
     {
+        enemy = GetComponent<Character>();
         
+        TriggerCombo();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TriggerCombo()
     {
-        
+        enemy.Wait();
+
+        Destroy(this);
     }
 }

@@ -30,7 +30,7 @@ public class ComboCodex : MonoBehaviour
                         target.AddComponent<Burn>();
                         return;
                     case Ability.AbilityType.WaterAttack:
-                        target.AddComponent<Scold>();
+                        target.AddComponent<Scald>();
                         return;
                     case Ability.AbilityType.EarthAttack:
                         target.AddComponent<RockTrap>();
@@ -41,7 +41,7 @@ public class ComboCodex : MonoBehaviour
                 switch (a2)
                 {
                     case Ability.AbilityType.FireAttack:
-                        target.AddComponent<Scold>();
+                        target.AddComponent<Scald>();
                         return;
                     case Ability.AbilityType.WaterAttack:
                         target.AddComponent<Freeze>();

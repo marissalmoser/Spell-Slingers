@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockTrap : MonoBehaviour
+public class RockTrap : Combo
 {
-    // Start is called before the first frame update
-    void Start()
+    private int turnDuration = 3;
+    private int turnCount = 0;
+
+    private int savedMovementRange;
+
+    Character enemy;
+
+    private void Awake()
     {
-        
+        enemy = GetComponent<Character>();
+
+        savedMovementRange = enemy.GetMovementRange();
+
+        TriggerCombo();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TriggerCombo()
     {
-        
+        enemy.SetMovementRange(0);
+
+        turnCount++;
+
+        if (turnCount == turnDuration)
+        {
+            enemy.SetMovementRange(savedMovementRange);
+            Destroy(this);
+        }
     }
 }

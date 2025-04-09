@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class Character : MonoBehaviour
 {
     private bool isSelected = false;
+    public bool skipTurn;
 
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
+    [SerializeField] private int attackRange;
 
     [Header("Programming Values")]
     public bool canAct = false;
     public Tile curTile;
+    [SerializeField] private bool aiControlled;
 
     //Ability[] attacks;
 
@@ -24,8 +28,11 @@ public class Character : MonoBehaviour
     public static Action OnPlayerSelected;
     public static Action<int, Vector2Int> OnShouldUpdateTiles;
     public static Action OnCantAct;
+    public static Action<int, Vector2Int> OnAttackPressed;
 
     public controller ControllerType { get => controllerType; }
+
+    [SerializeField] private GameObject damageTextPrefab;
 
     #region OnEnableOnDisable
 
@@ -37,6 +44,7 @@ public class Character : MonoBehaviour
         Tile.TileSelected += MoveOrAttack;
 
         curTile.SetIsOccupied(true);
+        curTile.SetOccupyingCharacter(this);
     }
 
     private void OnDisable()
@@ -56,7 +64,7 @@ public class Character : MonoBehaviour
         }
         else if(controllerType == controller.ai)
         {
-            throw new NotImplementedException();
+            AIController.instance.AddControlledCharacter(this);
         }
         else
         {
@@ -89,10 +97,12 @@ public class Character : MonoBehaviour
         if (controllerType == controller.player)
             return PlayerController.instance;
         else if (controllerType == controller.ai)
-            throw new NotImplementedException();
+            return AIController.instance;
         else
             throw new Exception("No controller assigned to this character.");
     }
+
+    #region Activate and Deactivate Character
 
     /// <summary>
     /// Activates a character.
@@ -110,8 +120,11 @@ public class Character : MonoBehaviour
         canAct = false;
         isSelected = false;
 
+        PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
     }
+
+    #endregion
 
     /// <summary>
     /// Selects a character updates map + UI state.
@@ -126,13 +139,111 @@ public class Character : MonoBehaviour
             PlayerController.instance.SetSelectedCharacter(this);
         }
         else if (controllerType == controller.ai)
-            throw new NotImplementedException();
+        {
+            if (AIController.instance.GetSelectedCharacter() != null)
+                AIController.instance.GetSelectedCharacter().isSelected = false;
+
+            AIController.instance.SetSelectedCharacter(this);
+        }    
         else
             throw new Exception("No controller assigned to this character.");
 
         Tile.ResetTiles?.Invoke();
         OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
         isSelected = true;
+
+        UISetup();
+    }
+
+    /// <summary>
+    /// Sets up player action UI;
+    /// </summary>
+    private void UISetup()
+    {
+        if (aiControlled == true)
+            return;
+
+        PlayerController.instance.GetAttackButton().onClick.RemoveAllListeners();
+        PlayerController.instance.GetWaitButton().onClick.RemoveAllListeners();
+
+        PlayerController.instance.GetActionUI().SetActive(true);
+        PlayerController.instance.GetAttackButton().onClick.AddListener(OpenAttackSelection);
+        PlayerController.instance.GetWaitButton().onClick.AddListener(Wait);
+    }
+
+    /// <summary>
+    /// Listen to the tile selected action to know when to move. This function should
+    /// only run when the game is in the state to let it. Based on UI imput and turns
+    /// and such thats not implemented yet.
+    /// </summary>
+    /// <param name="input"></param>
+    private void MoveOrAttack(Tile input)
+    {
+        if (isSelected == false)
+            return;
+
+        if (input.GetTileState() == Tile.TileState.moveable)
+        {
+            //move actor to tile
+            MoveCharacter(input);
+        }
+        else if (input.GetTileState() == Tile.TileState.attackable)
+        {
+            Attack(input);
+        }
+
+        Tile.ResetTiles?.Invoke();
+    }
+
+    /// <summary>
+    /// Moves the actor to a new tile and updates the fields on old and new tile
+    /// </summary>
+    /// <param name="input"></param>
+    private void MoveCharacter(Tile input)
+    {
+        curTile.SetIsOccupied(false);
+        curTile.SetOccupyingCharacter(null);
+        transform.position = input.GetTileActorAnchor().position;
+        input.SetIsOccupied(true);
+        input.SetOccupyingCharacter(this);
+        curTile = input;
+
+        if (controllerType == controller.ai)
+            DeactivateCharacter();
+    }
+
+    /// <summary>
+    /// Activates attack highlights and sets tile states to be attackable.
+    /// </summary>
+    /// <param name="range"></param>
+    /// <param name="originTile"></param>
+    public void OpenAttackSelection()
+    {
+        OnAttackPressed?.Invoke(attackRange, curTile.GetCoordinates());
+    }
+
+    /// <summary>
+    /// Performs attack action.
+    /// </summary>
+    private void Attack(Tile input)
+    {
+        if(input.GetTileState() == Tile.TileState.attackable)
+        {
+            Debug.Log("ATTACKING");
+            DeactivateCharacter();
+        }
+        else
+        {
+            Debug.Log("NOT AN ATTACKABLE CHARACTER");
+        }
+    }
+
+    /// <summary>
+    /// Tells a character to wait without performing any actions.
+    /// </summary>
+    public void Wait()
+    {
+        DeactivateCharacter();
     }
 
     /// <summary>
@@ -149,50 +260,26 @@ public class Character : MonoBehaviour
             SelectCharacter();
     }
 
+    public void DamageCharacter(int damage)
+    {
+        var text = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
+        text.GetComponent<TextRise>().StartRise(damage);
+    }
+
     private void OnDestroy()
     {
         
     }
 
-    #region Temp Functions Until UI is In
-
-    /// <summary>
-    /// Listen to the tile selected action to know when to move. This function should
-    /// only run when the game is in the state to let it. Based on UI imput and turns
-    /// and such thats not implemented yet.
-    /// </summary>
-    /// <param name="input"></param>
-    private void MoveOrAttack(Tile input)
+    public int GetMovementRange()
     {
-        if (isSelected == false)
-            return;
-
-        if (input.GetTileState() == Tile.TileState.moveable)
-        {
-            //move actor to tile
-            MoveActor(input);
-        }
-        else if (input.GetTileState() == Tile.TileState.attackable)
-        {
-            //call attack here
-            print("Attack!");
-        }
-
-        Tile.ResetTiles?.Invoke();
-        DeactivateCharacter();
+        return moveRange;
     }
 
-    /// <summary>
-    /// Moves the actor to a new tile and updates the fields on old and new tile
-    /// </summary>
-    /// <param name="input"></param>
-    private void MoveActor(Tile input)
+    public void SetMovementRange(int range)
     {
-        curTile.SetIsOccupied(false);
-        transform.position = input.GetTileActorAnchor().position;
-        input.SetIsOccupied(true);
-        curTile = input;
+        moveRange = range;
     }
 
-    #endregion
 }
+
