@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
     [SerializeField] private int attackRange;
+    public int damageMultiplier;
 
     [Header("Programming Values")]
     public bool canAct = false;
