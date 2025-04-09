@@ -6,8 +6,6 @@
 *       enemies Attack and movement
         (Lasts 3 turns, Blocks enemy)
 
-        if a tile is occupied, nothing happens to the tile
-
 *******************************************************************/
 
 using System.Collections;
@@ -17,27 +15,53 @@ using UnityEngine;
 
 public class StoneWall : Combo
 {
+    int turnDuration = 3;
+    int turnCount = 0;
 
     Tile tile;
-    //List<Tile> = new Tile
+    List<Tile> affectedTiles = new();
 
     private void Awake()
     {
         tile = GetComponent<Tile>();
 
         //find all tiles in range
-        Tile[] tiles = tile.GetTilesInRadius(1);
+        List<Tile> tiles = tile.GetTilesInRadius(1);
 
-        //loop thru tiles and if has an enemy occupying character on it, damage
+        //loop thru tiles in radius
         foreach (Tile tile in tiles)
         {
-            //if tile is not occupied and is in line with this tile
+            //if tile is not occupied and is in line with this tile, add to affected list
             if (tile.GetOccupyingCharacter() != null
                 && this.tile.GetCoordinates().x == tile.GetCoordinates().x)
             {
-                
+                affectedTiles.Add(tile);
             }
+        }
+
+        //disable affected tiles
+        foreach(Tile tile in affectedTiles)
+        {
+            tile.gameObject.SetActive(false);
+        }
+
+        //Advance turn
+        TriggerCombo();
+    }
+
+    public override void TriggerCombo()
+    {
+        turnCount++;
+
+        if (turnCount >= turnDuration)
+        {
+            //enable affected tiles
+            foreach (Tile tile in affectedTiles)
+            {
+                tile.gameObject.SetActive(true);
+            }
+
+            Destroy(this);
         }
     }
 }
-//if x corrdinate is the same
