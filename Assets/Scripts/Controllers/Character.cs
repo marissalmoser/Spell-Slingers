@@ -7,6 +7,7 @@ using TMPro;
 public class Character : MonoBehaviour
 {
     private bool isSelected = false;
+    private bool attacking = false;
     public bool skipTurn;
 
     [Header("Gameplay Values")]
@@ -18,7 +19,8 @@ public class Character : MonoBehaviour
     public Tile curTile;
     [SerializeField] private bool aiControlled;
 
-    //Ability[] attacks;
+    [SerializeField] private Ability[] attacks;
+    private Ability curAbility;
 
     [SerializeField] private controller controllerType;
     //Set an enum for elemental afflictions to check against combos
@@ -100,6 +102,11 @@ public class Character : MonoBehaviour
             return AIController.instance;
         else
             throw new Exception("No controller assigned to this character.");
+    }
+
+    public void SetCurrentAttack(int attackIndex)
+    {
+        curAbility = attacks[attackIndex];
     }
 
     #region Activate and Deactivate Character
@@ -219,7 +226,28 @@ public class Character : MonoBehaviour
     /// <param name="originTile"></param>
     public void OpenAttackSelection()
     {
+        attacking = true;
+        PlayerController.instance.ConstructUI(attacks);
+    }
+
+    /// <summary>
+    /// Selects an active attack.
+    /// </summary>
+    public void SelectAttack()
+    {
         OnAttackPressed?.Invoke(attackRange, curTile.GetCoordinates());
+    }
+
+    /// <summary>
+    /// Exits attacking state.
+    /// </summary>
+    public void CloseAttackSelection()
+    {
+        attacking = false;
+        curAbility = null;
+
+        OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
+        PlayerController.instance.DestroyUI();
     }
 
     /// <summary>
@@ -227,10 +255,12 @@ public class Character : MonoBehaviour
     /// </summary>
     private void Attack(Tile input)
     {
-        if(input.GetTileState() == Tile.TileState.attackable)
+        if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
             Debug.Log("ATTACKING");
+            curAbility.TriggerAbility();
             DeactivateCharacter();
+            PlayerController.instance.DestroyUI();
         }
         else
         {

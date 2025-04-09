@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6c41971748d4e4f97e9c3e3eb61dc5, type: 3}
   m_Name: WaterTile
   m_EditorClassIdentifier: 
-  ThisAbility: 0
+  abilityName: Water Tile
+  ThisAbility: 4
