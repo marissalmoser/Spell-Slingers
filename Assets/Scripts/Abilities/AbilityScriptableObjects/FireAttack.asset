@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f37e1705c8f7dd409aba9cdb83a0c36, type: 3}
   m_Name: FireAttack
   m_EditorClassIdentifier: 
+  abilityName: Fire Attack
   ThisAbility: 0

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c57f626cb70de489fc69361525f41b, type: 3}
   m_Name: WaterAttack
   m_EditorClassIdentifier: 
-  ThisAbility: 0
+  abilityName: Water Attack
+  ThisAbility: 1

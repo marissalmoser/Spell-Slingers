@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ability", menuName = "ScriptableObjects/Ability")]
 public class Ability : ScriptableObject
 {
+    public string abilityName;
+
     public enum AbilityType{
         FireAttack,
         WaterAttack,
