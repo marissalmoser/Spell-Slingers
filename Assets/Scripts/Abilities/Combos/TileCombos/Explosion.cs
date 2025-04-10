@@ -22,7 +22,7 @@ public class Explosion : Combo
         tile = GetComponent<Tile>();
 
         //find all tiles in range
-        Tile[] tiles = tile.GetTilesInRadius(aoeRange);
+        List<Tile> tiles = tile.GetTilesInRadius(aoeRange);
 
         //loop thru tiles and if has an enemy occupying character on it, damage
         foreach(Tile tile in tiles)

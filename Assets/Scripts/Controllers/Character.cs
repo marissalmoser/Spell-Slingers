@@ -12,7 +12,8 @@ public class Character : MonoBehaviour
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
     [SerializeField] private int attackRange;
-    public int damageMultiplier;
+    public float DamageMultiplier = 1;
+    public float RangeMultiplier = 1;
 
     [Header("Programming Values")]
     public bool canAct = false;
@@ -200,7 +201,7 @@ public class Character : MonoBehaviour
     /// Moves the actor to a new tile and updates the fields on old and new tile
     /// </summary>
     /// <param name="input"></param>
-    private void MoveCharacter(Tile input)
+    public void MoveCharacter(Tile input)
     {
         curTile.SetIsOccupied(false);
         curTile.SetOccupyingCharacter(null);

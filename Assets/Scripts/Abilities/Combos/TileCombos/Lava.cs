@@ -26,18 +26,22 @@ public class Lava : Combo
 
     public override void TriggerCombo()
     {
+        //gets character on tile that turn 
         Character character = null;
         if (tile != null)
         {
             character = tile.GetOccupyingCharacter();
         }
+        //sets damage multiplier
         if (character != null && character.ControllerType == Character.controller.ai)
         {
-            character.damageMultiplier = 2;
+            character.DamageMultiplier = 2;
         }
 
+        //advance turn
         turnCount++;
 
+        //check duration
         if (turnCount >= turnDuration)
         {
             Destroy(this);
