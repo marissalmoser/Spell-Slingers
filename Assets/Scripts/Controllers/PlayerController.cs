@@ -119,6 +119,7 @@ public class PlayerController : Controller
             temp.GetComponentInChildren<TextMeshProUGUI>().text = a.abilityName;
             temp.GetComponent<AttackButton>().attackIndex = index;
             temp.GetComponent<Button>().onClick.AddListener(temp.GetComponent<AttackButton>().SetAttackOnCharacter);
+            index++;
         }
 
         cancelAttackBtn.onClick.AddListener(selectedCharacter.CloseAttackSelection);
@@ -136,5 +137,6 @@ public class PlayerController : Controller
         }
 
         cancelAttackBtn.onClick.RemoveAllListeners();
+        attacksMenu.SetActive(false);
     }
 }

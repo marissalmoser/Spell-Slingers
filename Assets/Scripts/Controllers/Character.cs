@@ -37,6 +37,7 @@ public class Character : MonoBehaviour
     public controller ControllerType { get => controllerType; }
 
     [SerializeField] private GameObject damageTextPrefab;
+    public GameObject currentlyAttacking;
 
     #region OnEnableOnDisable
 
@@ -260,6 +261,7 @@ public class Character : MonoBehaviour
         if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
             Debug.Log("ATTACKING");
+            currentlyAttacking = input.GetOccupyingCharacter().gameObject;
             curAbility.TriggerAbility();
             DeactivateCharacter();
             PlayerController.instance.DestroyUI();
