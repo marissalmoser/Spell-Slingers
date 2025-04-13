@@ -31,7 +31,7 @@ public class Explosion : Combo
 
             if(ch != null && ch.ControllerType == Character.controller.ai)
             {
-                ch.DamageCharacter(damageAmount);
+                ch.DamageCharacter(damageAmount, Ability.AbilityType.None);
             }
         }
     }

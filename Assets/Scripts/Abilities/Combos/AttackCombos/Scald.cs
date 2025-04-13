@@ -17,7 +17,7 @@ public class Scald : Combo
 
     public override void TriggerCombo()
     {
-        enemy.DamageCharacter(Damage);
+        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
 
         Destroy(this);
     }
