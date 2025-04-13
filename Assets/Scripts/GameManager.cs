@@ -75,6 +75,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+
+    }
+
+    public void FixStart()
+    {
         StartTurn();
 
         startGameBtn.SetActive(false); //References testing button.

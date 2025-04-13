@@ -359,10 +359,6 @@ public class Character : MonoBehaviour
         {
             affectedAbility = type;
         }
-        else if (affectedAbility == Ability.AbilityType.None)
-        {
-            affectedAbility = type;
-        }
     }
 
     /// <summary>
