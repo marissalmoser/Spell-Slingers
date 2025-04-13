@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FireTile
   m_EditorClassIdentifier: 
   abilityName: Fire Tile
-  ThisAbility: 3
+  ThisAbility: 4

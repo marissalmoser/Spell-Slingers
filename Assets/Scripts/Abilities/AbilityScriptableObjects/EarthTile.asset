@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EarthTile
   m_EditorClassIdentifier: 
   abilityName: Earth Tile
-  ThisAbility: 5
+  ThisAbility: 6

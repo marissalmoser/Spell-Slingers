@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WaterTile
   m_EditorClassIdentifier: 
   abilityName: Water Tile
-  ThisAbility: 4
+  ThisAbility: 5

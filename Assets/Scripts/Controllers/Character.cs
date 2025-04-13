@@ -40,7 +40,7 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject damageTextPrefab;
     public GameObject currentlyAttacking;
 
-    private Ability.AbilityType affectedAbility;
+    [SerializeField] private Ability.AbilityType affectedAbility;
 
     #region OnEnableOnDisable
 
@@ -352,6 +352,10 @@ public class Character : MonoBehaviour
             affectedAbility = Ability.AbilityType.None;
         }
         else
+        {
+            affectedAbility = type;
+        }
+        else if (affectedAbility == Ability.AbilityType.None)
         {
             affectedAbility = type;
         }

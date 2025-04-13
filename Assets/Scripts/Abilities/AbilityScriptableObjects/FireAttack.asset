@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FireAttack
   m_EditorClassIdentifier: 
   abilityName: Fire Attack
-  ThisAbility: 0
+  ThisAbility: 1
