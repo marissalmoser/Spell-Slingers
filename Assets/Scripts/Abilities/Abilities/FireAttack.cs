@@ -9,5 +9,10 @@ public class FireAttack : Ability
     {
         Debug.Log("FIRE ATTACK");
         base.TriggerAbility(input);
+
+        if(input.TryGetComponent(out Character ch))
+        {
+            ch.DamageCharacter(10, AbilityType.FireAttack);
+        }
     }
 }
