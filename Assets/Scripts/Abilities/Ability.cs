@@ -8,6 +8,7 @@ public class Ability : ScriptableObject
     public string abilityName;
 
     public enum AbilityType{
+        None,
         FireAttack,
         WaterAttack,
         EarthAttack,

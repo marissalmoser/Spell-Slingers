@@ -20,7 +20,7 @@ public class Burn : Combo
 
     public override void TriggerCombo()
     {
-        enemy.DamageCharacter(Damage);
+        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
 
         turnCount++;
 

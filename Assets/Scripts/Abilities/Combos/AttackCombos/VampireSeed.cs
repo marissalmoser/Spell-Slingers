@@ -33,10 +33,10 @@ public class VampireSeed : Combo
 
     public override void TriggerCombo()
     {
-        enemy.DamageCharacter(Damage);
+        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
         for (int i = 0; i < ally.Length; i++)
         {
-            ally[i].DamageCharacter(-Damage / 4);
+            ally[i].DamageCharacter(-Damage / 4, Ability.AbilityType.None);
         }
 
         turnCount++;
