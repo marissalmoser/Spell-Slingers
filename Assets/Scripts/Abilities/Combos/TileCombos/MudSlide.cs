@@ -60,3 +60,5 @@ public class MudSlide : Combo
         }
     }
 }
+
+//make sure charcter range multiplier is reset at the end of every character's turn
