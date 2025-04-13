@@ -40,6 +40,8 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject damageTextPrefab;
     public GameObject currentlyAttacking;
 
+    private Ability.AbilityType affectedAbility;
+
     #region OnEnableOnDisable
 
     private void OnEnable()
@@ -116,6 +118,16 @@ public class Character : MonoBehaviour
     public void SetIsTileAttack(bool value)
     {
         isTileAttack = value;
+    }
+
+    public int GetMovementRange()
+    {
+        return moveRange;
+    }
+
+    public void SetMovementRange(int range)
+    {
+        moveRange = range;
     }
 
     #region Activate and Deactivate Character
@@ -321,26 +333,28 @@ public class Character : MonoBehaviour
             SelectCharacter();
     }
 
-    public void DamageCharacter(int damage)
+    public void DamageCharacter(int damage, Ability.AbilityType type)
     {
         var text = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
         text.GetComponent<TextRise>().StartRise(damage);
+        AddEffect(type);
+    }
+
+    /// <summary>
+    /// Adds an effect to this character.
+    /// </summary>
+    /// <param name="type"></param>
+    public void AddEffect(Ability.AbilityType type)
+    {
+        if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
+        {
+            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+        }
     }
 
     private void OnDestroy()
     {
         
     }
-
-    public int GetMovementRange()
-    {
-        return moveRange;
-    }
-
-    public void SetMovementRange(int range)
-    {
-        moveRange = range;
-    }
-
 }
 
