@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EarthAttack
   m_EditorClassIdentifier: 
   abilityName: Earth Attack
-  ThisAbility: 2
+  ThisAbility: 3
