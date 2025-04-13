@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject startGameBtn; //Button for starting round, should be replaced if better way to initialize combat is found.
 
+    public static Action OnTurnStart;
+
     private void Start()
     {
         turnOrder.Enqueue(PlayerController.instance);

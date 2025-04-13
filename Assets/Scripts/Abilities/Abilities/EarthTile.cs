@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class EarthTile : Ability
 {
-    public override void TriggerAbility()
+    public override void TriggerAbility(Tile input)
     {
-        base.TriggerAbility();
+        base.TriggerAbility(input);
     }
 }
