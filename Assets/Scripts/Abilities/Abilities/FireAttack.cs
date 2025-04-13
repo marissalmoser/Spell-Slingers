@@ -7,12 +7,12 @@ public class FireAttack : Ability
 {
     public override void TriggerAbility(Tile input)
     {
-        Debug.Log("FIRE ATTACK");
         base.TriggerAbility(input);
 
-        if(input.TryGetComponent(out Character ch))
+        if(input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
         {
-            ch.DamageCharacter(10, AbilityType.FireAttack);
+            ch.DamageCharacter(-10, AbilityType.FireAttack);
+            Debug.Log("FIRE ATTACK");
         }
     }
 }
