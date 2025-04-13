@@ -8,6 +8,6 @@ public class EarthTile : Ability
 {
     public override void TriggerAbility(Tile input)
     {
-        base.TriggerAbility(input);
+        input.AddEffect(ThisAbility);
     }
 }
