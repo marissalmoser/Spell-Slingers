@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : Controller
 {
@@ -12,6 +13,12 @@ public class PlayerController : Controller
     [SerializeField] private GameObject actionUI;
     [SerializeField] private Button attackBtn;
     [SerializeField] private Button waitBtn;
+    [SerializeField] private GameObject attacksMenu;
+    [SerializeField] private VerticalLayoutGroup attackGroup;
+    [SerializeField] private GameObject abilityBtnPrefab;
+
+    [SerializeField] private GameObject[] attackButtons;
+    [SerializeField] private Button cancelAttackBtn;
 
     #region Instance Var Setup
 
@@ -94,5 +101,42 @@ public class PlayerController : Controller
         {
             c.DeactivateCharacter();
         }
+    }
+
+    /// <summary>
+    /// Constructs Attack Choice UI.
+    /// </summary>
+    /// <param name="abilities"></param>
+    public void ConstructUI(Ability[] abilities)
+    {
+        int index = 0;
+        attacksMenu.SetActive(true);
+
+        foreach(Ability a in abilities)
+        {
+            GameObject temp = attackButtons[index];
+            temp.SetActive(true);
+            temp.GetComponentInChildren<TextMeshProUGUI>().text = a.abilityName;
+            temp.GetComponent<AttackButton>().attackIndex = index;
+            temp.GetComponent<Button>().onClick.AddListener(temp.GetComponent<AttackButton>().SetAttackOnCharacter);
+            index++;
+        }
+
+        cancelAttackBtn.onClick.AddListener(selectedCharacter.CloseAttackSelection);
+    }
+
+    /// <summary>
+    /// Destroys Attack Choice UI.
+    /// </summary>
+    public void DestroyUI()
+    {
+        foreach(GameObject btn in attackButtons)
+        {
+            btn.GetComponent<Button>().onClick.RemoveAllListeners();
+            btn.SetActive(false);
+        }
+
+        cancelAttackBtn.onClick.RemoveAllListeners();
+        attacksMenu.SetActive(false);
     }
 }

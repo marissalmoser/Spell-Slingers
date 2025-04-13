@@ -27,18 +27,22 @@ public class StormCloud : Combo
 
     public override void TriggerCombo()
     {
+        //gets current character on tile
         Character character = null;
         if(tile != null)
         {
             character = tile.GetOccupyingCharacter();
         }
+        //damages character
         if(character != null && character.ControllerType == Character.controller.ai)
         {
             character.DamageCharacter(damageAmount);
         }
 
+        //advance turn
         turnCount++;
 
+        //check duration
         if (turnCount >= turnDuration)
         {
             Destroy(this);

@@ -221,19 +221,17 @@ public class Tile : MonoBehaviour
     /// <summary>
     /// Returns tiles in range of this tile in a square area at the input range.
     /// </summary>
-    public Tile[] GetTilesInRadius(int range)
+    public List<Tile> GetTilesInRadius(int range)
     {
         Vector3 rangeVec = new Vector3(range, range, range);
         Collider[] colliders =  Physics.OverlapBox(transform.position, rangeVec, Quaternion.identity, 1 << 3);
-        Tile[] tiles = new Tile[colliders.Length];
+        List<Tile> tiles = new();
         
-        for(int i = 0; i < colliders.Length; i ++)
+        foreach(Collider col in colliders)
         {
-            tiles[i] = colliders[i].gameObject.GetComponent<Tile>();
+            tiles.Add(col.gameObject.GetComponent<Tile>());
         }
 
         return tiles;
     }
-
-
 }

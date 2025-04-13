@@ -7,6 +7,7 @@ public class FireAttack : Ability
 {
     public override void TriggerAbility()
     {
+        Debug.Log("FIRE ATTACK");
         base.TriggerAbility();
     }
 }

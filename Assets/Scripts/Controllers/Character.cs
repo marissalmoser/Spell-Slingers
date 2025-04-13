@@ -7,19 +7,22 @@ using TMPro;
 public class Character : MonoBehaviour
 {
     private bool isSelected = false;
+    private bool attacking = false;
     public bool skipTurn;
 
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
     [SerializeField] private int attackRange;
-    public int damageMultiplier;
+    public float DamageMultiplier = 1;
+    public float RangeMultiplier = 1;
 
     [Header("Programming Values")]
     public bool canAct = false;
     public Tile curTile;
     [SerializeField] private bool aiControlled;
 
-    //Ability[] attacks;
+    [SerializeField] private Ability[] attacks;
+    private Ability curAbility;
 
     [SerializeField] private controller controllerType;
     //Set an enum for elemental afflictions to check against combos
@@ -34,6 +37,7 @@ public class Character : MonoBehaviour
     public controller ControllerType { get => controllerType; }
 
     [SerializeField] private GameObject damageTextPrefab;
+    public GameObject currentlyAttacking;
 
     #region OnEnableOnDisable
 
@@ -101,6 +105,11 @@ public class Character : MonoBehaviour
             return AIController.instance;
         else
             throw new Exception("No controller assigned to this character.");
+    }
+
+    public void SetCurrentAttack(int attackIndex)
+    {
+        curAbility = attacks[attackIndex];
     }
 
     #region Activate and Deactivate Character
@@ -200,7 +209,7 @@ public class Character : MonoBehaviour
     /// Moves the actor to a new tile and updates the fields on old and new tile
     /// </summary>
     /// <param name="input"></param>
-    private void MoveCharacter(Tile input)
+    public void MoveCharacter(Tile input)
     {
         curTile.SetIsOccupied(false);
         curTile.SetOccupyingCharacter(null);
@@ -220,7 +229,28 @@ public class Character : MonoBehaviour
     /// <param name="originTile"></param>
     public void OpenAttackSelection()
     {
+        attacking = true;
+        PlayerController.instance.ConstructUI(attacks);
+    }
+
+    /// <summary>
+    /// Selects an active attack.
+    /// </summary>
+    public void SelectAttack()
+    {
         OnAttackPressed?.Invoke(attackRange, curTile.GetCoordinates());
+    }
+
+    /// <summary>
+    /// Exits attacking state.
+    /// </summary>
+    public void CloseAttackSelection()
+    {
+        attacking = false;
+        curAbility = null;
+
+        OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
+        PlayerController.instance.DestroyUI();
     }
 
     /// <summary>
@@ -228,10 +258,13 @@ public class Character : MonoBehaviour
     /// </summary>
     private void Attack(Tile input)
     {
-        if(input.GetTileState() == Tile.TileState.attackable)
+        if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
             Debug.Log("ATTACKING");
+            currentlyAttacking = input.GetOccupyingCharacter().gameObject;
+            curAbility.TriggerAbility();
             DeactivateCharacter();
+            PlayerController.instance.DestroyUI();
         }
         else
         {
