@@ -118,6 +118,9 @@ public class Tile : MonoBehaviour
         TempPlayerMovement.PlayerSelected -= UpdateTile;
 
         Character.OnShouldUpdateTiles -= UpdateTile;
+        Character.OnAttackPressed -= SetAttackableState;
+
+        GameManager.OnTurnStart -= TryTriggerCombo;
     }
 
     #endregion

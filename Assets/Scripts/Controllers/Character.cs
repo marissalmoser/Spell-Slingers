@@ -51,6 +51,8 @@ public class Character : MonoBehaviour
         //player should not be listening to when a tile is selected but alas
         Tile.TileSelected += MoveOrAttack;
 
+        GameManager.OnTurnStart += TryTriggerCombo;
+
         curTile.SetIsOccupied(true);
         curTile.SetOccupyingCharacter(this);
     }
@@ -58,6 +60,8 @@ public class Character : MonoBehaviour
     private void OnDisable()
     {
         OnPlayerSelected -= SelectCharacter;
+
+        GameManager.OnTurnStart -= TryTriggerCombo;
     }
 
     #endregion
@@ -354,6 +358,18 @@ public class Character : MonoBehaviour
         else
         {
             affectedAbility = type;
+        }
+    }
+
+    /// <summary>
+    /// Checks if tile has a combo component, and triggers the combo.
+    /// </summary>
+    private void TryTriggerCombo()
+    {
+        if (TryGetComponent(out Combo combo))
+        {
+            combo.TriggerCombo();
+            Debug.Log("Combo Triggered");
         }
     }
 
