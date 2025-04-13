@@ -40,7 +40,7 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject damageTextPrefab;
     public GameObject currentlyAttacking;
 
-    private Ability.AbilityType affectedAbility;
+    [SerializeField] private Ability.AbilityType affectedAbility;
 
     #region OnEnableOnDisable
 
@@ -349,6 +349,10 @@ public class Character : MonoBehaviour
         if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
         {
             ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+        }
+        else if (affectedAbility == Ability.AbilityType.None)
+        {
+            affectedAbility = type;
         }
     }
 
