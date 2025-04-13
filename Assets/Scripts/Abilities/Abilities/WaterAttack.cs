@@ -9,9 +9,9 @@ public class WaterAttack : Ability
     {
         base.TriggerAbility(input);
 
-        if (input.TryGetComponent(out Character ch))
+        if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
         {
-            ch.DamageCharacter(10, AbilityType.WaterAttack);
+            ch.DamageCharacter(-10, AbilityType.WaterAttack);
         }
     }
 }
