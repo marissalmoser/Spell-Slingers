@@ -105,7 +105,11 @@ public class Tile : MonoBehaviour
 
         Character.OnShouldUpdateTiles += UpdateTile;
         Character.OnAttackPressed += SetAttackableState;
+
+        GameManager.OnTurnStart += TryTriggerCombo;
     }
+
+
     private void OnDisable()
     {
         ResetTiles -= SetToIdle;
@@ -243,4 +247,19 @@ public class Tile : MonoBehaviour
 
         return tiles;
     }
+
+    /// <summary>
+    /// Checks if tile has a combo component, and triggers the combo.
+    /// </summary>
+    private void TryTriggerCombo()
+    {
+        if(TryGetComponent(out Combo combo))
+        {
+            combo.TriggerCombo();
+            Debug.Log("Combo Triggered");
+        }
+    }
+
 }
+
+
