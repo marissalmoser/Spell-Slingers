@@ -33,6 +33,8 @@ public class Tile : MonoBehaviour
     public static Action<Tile> TileSelected;
     public static Action ResetTiles;
 
+    private Ability.AbilityType affectedAbility;
+
     #region Getters and Setters
 
     /// <summary>
@@ -128,10 +130,17 @@ public class Tile : MonoBehaviour
     /// Call this function to add an effect to this tile. This function will evaluate 
     /// if it should call the ability attack or combo and set the visuals accordingly.
     /// </summary>
-    public void AddEffect()
+    public void AddEffect(Ability.AbilityType type)
     {
-        //TODO: Add ability parameter
-        //TODO: Add ability evaluation and functionality
+        if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
+        {
+            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+            affectedAbility = Ability.AbilityType.None;
+        }
+        else if(type != Ability.AbilityType.None)
+        {
+            affectedAbility = type;
+        }
     }
 
     /// <summary>

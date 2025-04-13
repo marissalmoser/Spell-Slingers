@@ -8,6 +8,6 @@ public class FireTile : Ability
 {
     public override void TriggerAbility(Tile input)
     {
-        base.TriggerAbility(input);
+        input.AddEffect(ThisAbility);
     }
 }

@@ -349,6 +349,11 @@ public class Character : MonoBehaviour
         if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
         {
             ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+            affectedAbility = Ability.AbilityType.None;
+        }
+        else
+        {
+            affectedAbility = type;
         }
     }
 
