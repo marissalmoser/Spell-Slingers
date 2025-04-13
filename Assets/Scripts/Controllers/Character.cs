@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
 {
     private bool isSelected = false;
     private bool attacking = false;
+    [SerializeField] private bool isTileAttack = false;
     public bool skipTurn;
 
     [Header("Gameplay Values")]
@@ -112,6 +113,11 @@ public class Character : MonoBehaviour
         curAbility = attacks[attackIndex];
     }
 
+    public void SetIsTileAttack(bool value)
+    {
+        isTileAttack = value;
+    }
+
     #region Activate and Deactivate Character
 
     /// <summary>
@@ -129,6 +135,7 @@ public class Character : MonoBehaviour
     {
         canAct = false;
         isSelected = false;
+        isTileAttack = false;
 
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
@@ -192,7 +199,7 @@ public class Character : MonoBehaviour
         if (isSelected == false)
             return;
 
-        if (input.GetTileState() == Tile.TileState.moveable)
+        if (input.GetTileState() == Tile.TileState.moveable && isTileAttack == false)
         {
             //move actor to tile
             MoveCharacter(input);
@@ -200,6 +207,10 @@ public class Character : MonoBehaviour
         else if (input.GetTileState() == Tile.TileState.attackable)
         {
             Attack(input);
+        }
+        else
+        {
+            AttackTile(input);
         }
 
         Tile.ResetTiles?.Invoke();
@@ -261,8 +272,24 @@ public class Character : MonoBehaviour
         if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
             Debug.Log("ATTACKING");
-            currentlyAttacking = input.GetOccupyingCharacter().gameObject;
-            curAbility.TriggerAbility();
+            curAbility.TriggerAbility(input);
+            DeactivateCharacter();
+            PlayerController.instance.DestroyUI();
+        }
+        else
+        {
+            Debug.Log("NOT AN ATTACKABLE CHARACTER");
+        }
+    }
+
+    private void AttackTile(Tile input)
+    {
+        if (isTileAttack == true)
+        {
+            Debug.Log("ATTACKING");
+            //CALL TILE ATTACK FUNCTIONALITY
+            curAbility.TriggerAbility(input);
+            isTileAttack = false;
             DeactivateCharacter();
             PlayerController.instance.DestroyUI();
         }

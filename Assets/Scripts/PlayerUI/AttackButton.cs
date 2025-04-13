@@ -5,10 +5,14 @@ using UnityEngine;
 public class AttackButton : MonoBehaviour
 {
     public int attackIndex = 0;
+    public bool isTileAttack = false;
 
     public void SetAttackOnCharacter()
     {
-        PlayerController.instance.GetSelectedCharacter().SetCurrentAttack(attackIndex);
-        PlayerController.instance.GetSelectedCharacter().SelectAttack();
+        Character cur = PlayerController.instance.GetSelectedCharacter();
+
+        cur.SetCurrentAttack(attackIndex);
+        cur.SelectAttack();
+        cur.SetIsTileAttack(isTileAttack);
     }
 }
