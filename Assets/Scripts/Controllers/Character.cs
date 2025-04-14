@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour
 {
@@ -337,6 +338,7 @@ public class Character : MonoBehaviour
     public void Wait()
     {
         DeactivateCharacter();
+        Tile.ResetTiles?.Invoke();
     }
 
     /// <summary>
@@ -349,7 +351,7 @@ public class Character : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (canAct == true)
+        if (canAct == true && !EventSystem.current.IsPointerOverGameObject())
             SelectCharacter();
     }
 
