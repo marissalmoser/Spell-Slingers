@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WaterAttack
   m_EditorClassIdentifier: 
   abilityName: Water Attack
-  ThisAbility: 1
+  ThisAbility: 2

@@ -8,6 +8,7 @@ public class Ability : ScriptableObject
     public string abilityName;
 
     public enum AbilityType{
+        None,
         FireAttack,
         WaterAttack,
         EarthAttack,
@@ -18,7 +19,7 @@ public class Ability : ScriptableObject
 
     public AbilityType ThisAbility;
 
-    public virtual void TriggerAbility()
+    public virtual void TriggerAbility(Tile input)
     {
         //TODO: a little bit of damage
     }

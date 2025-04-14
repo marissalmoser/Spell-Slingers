@@ -36,7 +36,7 @@ public class StormCloud : Combo
         //damages character
         if(character != null && character.ControllerType == Character.controller.ai)
         {
-            character.DamageCharacter(damageAmount);
+            character.DamageCharacter(damageAmount, Ability.AbilityType.None);
         }
 
         //advance turn

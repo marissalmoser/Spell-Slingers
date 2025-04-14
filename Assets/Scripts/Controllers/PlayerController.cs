@@ -118,6 +118,10 @@ public class PlayerController : Controller
             temp.SetActive(true);
             temp.GetComponentInChildren<TextMeshProUGUI>().text = a.abilityName;
             temp.GetComponent<AttackButton>().attackIndex = index;
+
+            if (a.abilityName.ToLower().Contains("tile"))
+                temp.GetComponent<AttackButton>().isTileAttack = true;
+
             temp.GetComponent<Button>().onClick.AddListener(temp.GetComponent<AttackButton>().SetAttackOnCharacter);
             index++;
         }

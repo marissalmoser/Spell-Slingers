@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
 {
     private bool isSelected = false;
     private bool attacking = false;
+    [SerializeField] private bool isTileAttack = false;
     public bool skipTurn;
 
     [Header("Gameplay Values")]
@@ -39,6 +40,8 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject damageTextPrefab;
     public GameObject currentlyAttacking;
 
+    [SerializeField] private Ability.AbilityType affectedAbility;
+
     #region OnEnableOnDisable
 
     private void OnEnable()
@@ -48,6 +51,8 @@ public class Character : MonoBehaviour
         //player should not be listening to when a tile is selected but alas
         Tile.TileSelected += MoveOrAttack;
 
+        GameManager.OnTurnStart += TryTriggerCombo;
+
         curTile.SetIsOccupied(true);
         curTile.SetOccupyingCharacter(this);
     }
@@ -55,6 +60,8 @@ public class Character : MonoBehaviour
     private void OnDisable()
     {
         OnPlayerSelected -= SelectCharacter;
+
+        GameManager.OnTurnStart -= TryTriggerCombo;
     }
 
     #endregion
@@ -112,6 +119,21 @@ public class Character : MonoBehaviour
         curAbility = attacks[attackIndex];
     }
 
+    public void SetIsTileAttack(bool value)
+    {
+        isTileAttack = value;
+    }
+
+    public int GetMovementRange()
+    {
+        return moveRange;
+    }
+
+    public void SetMovementRange(int range)
+    {
+        moveRange = range;
+    }
+
     #region Activate and Deactivate Character
 
     /// <summary>
@@ -129,6 +151,7 @@ public class Character : MonoBehaviour
     {
         canAct = false;
         isSelected = false;
+        isTileAttack = false;
 
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
@@ -192,7 +215,7 @@ public class Character : MonoBehaviour
         if (isSelected == false)
             return;
 
-        if (input.GetTileState() == Tile.TileState.moveable)
+        if (input.GetTileState() == Tile.TileState.moveable && isTileAttack == false)
         {
             //move actor to tile
             MoveCharacter(input);
@@ -200,6 +223,10 @@ public class Character : MonoBehaviour
         else if (input.GetTileState() == Tile.TileState.attackable)
         {
             Attack(input);
+        }
+        else
+        {
+            AttackTile(input);
         }
 
         Tile.ResetTiles?.Invoke();
@@ -261,8 +288,24 @@ public class Character : MonoBehaviour
         if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
             Debug.Log("ATTACKING");
-            currentlyAttacking = input.GetOccupyingCharacter().gameObject;
-            curAbility.TriggerAbility();
+            curAbility.TriggerAbility(input);
+            DeactivateCharacter();
+            PlayerController.instance.DestroyUI();
+        }
+        else
+        {
+            Debug.Log("NOT AN ATTACKABLE CHARACTER");
+        }
+    }
+
+    private void AttackTile(Tile input)
+    {
+        if (isTileAttack == true)
+        {
+            Debug.Log("ATTACKING");
+            //CALL TILE ATTACK FUNCTIONALITY
+            curAbility.TriggerAbility(input);
+            isTileAttack = false;
             DeactivateCharacter();
             PlayerController.instance.DestroyUI();
         }
@@ -294,26 +337,45 @@ public class Character : MonoBehaviour
             SelectCharacter();
     }
 
-    public void DamageCharacter(int damage)
+    public void DamageCharacter(int damage, Ability.AbilityType type)
     {
         var text = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
         text.GetComponent<TextRise>().StartRise(damage);
+        AddEffect(type);
+    }
+
+    /// <summary>
+    /// Adds an effect to this character.
+    /// </summary>
+    /// <param name="type"></param>
+    public void AddEffect(Ability.AbilityType type)
+    {
+        if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
+        {
+            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+            affectedAbility = Ability.AbilityType.None;
+        }
+        else
+        {
+            affectedAbility = type;
+        }
+    }
+
+    /// <summary>
+    /// Checks if tile has a combo component, and triggers the combo.
+    /// </summary>
+    private void TryTriggerCombo()
+    {
+        if (TryGetComponent(out Combo combo))
+        {
+            combo.TriggerCombo();
+            Debug.Log("Combo Triggered");
+        }
     }
 
     private void OnDestroy()
     {
         
     }
-
-    public int GetMovementRange()
-    {
-        return moveRange;
-    }
-
-    public void SetMovementRange(int range)
-    {
-        moveRange = range;
-    }
-
 }
 

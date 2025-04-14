@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject startGameBtn; //Button for starting round, should be replaced if better way to initialize combat is found.
 
+    public static Action OnTurnStart;
+
     private void Start()
     {
         turnOrder.Enqueue(PlayerController.instance);
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         activeController = turnOrder.Dequeue();
         activeController.GetComponent<Controller>().StartTurn();
+        OnTurnStart?.Invoke();
     }
 
     /// <summary>
@@ -71,6 +74,11 @@ public class GameManager : MonoBehaviour
     /// Starts game so that errors don't arise with Start execution order.
     /// </summary>
     public void StartGame()
+    {
+
+    }
+
+    public void FixStart()
     {
         StartTurn();
 

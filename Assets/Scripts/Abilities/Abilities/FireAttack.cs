@@ -5,9 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FireAttack", menuName = "ScriptableObjects/FireAttack")]
 public class FireAttack : Ability
 {
-    public override void TriggerAbility()
+    public override void TriggerAbility(Tile input)
     {
-        Debug.Log("FIRE ATTACK");
-        base.TriggerAbility();
+        base.TriggerAbility(input);
+
+        if(input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
+        {
+            ch.DamageCharacter(-10, AbilityType.FireAttack);
+            Debug.Log("FIRE ATTACK");
+        }
     }
 }

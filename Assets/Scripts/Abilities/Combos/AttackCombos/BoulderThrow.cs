@@ -55,7 +55,7 @@ public class BoulderThrow : Combo
                 enemy.curTile.SetCoordinates(enemy.curTile.GetCoordinates().x + newDif.x, enemy.curTile.GetCoordinates().y + newDif.y);
             }
         }
-        enemy.DamageCharacter(Damage);
+        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
 
         Destroy(this);
     }
