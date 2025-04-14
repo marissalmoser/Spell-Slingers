@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject startGameBtn; //Button for starting round, should be replaced if better way to initialize combat is found.
 
     public static Action OnTurnStart;
+    public static Action OnTurnEnd;
+    public static Action OnPlayerTurnEnd;
+    public static Action OnEnemyTurnEnd;
 
     private void Start()
     {
@@ -46,6 +49,18 @@ public class GameManager : MonoBehaviour
     private void EndTurn()
     {
         activeController.GetComponent<Controller>().EndTurn();
+
+        if(activeController.TryGetComponent<AIController>(out AIController aiCont))
+        {
+            OnEnemyTurnEnd?.Invoke();
+        }
+        else if(activeController.TryGetComponent<PlayerController>(out PlayerController pCont))
+        {
+            OnPlayerTurnEnd?.Invoke();
+        }
+
+        OnTurnEnd?.Invoke();
+
         turnOrder.Enqueue(activeController);
         counter = 0;
 

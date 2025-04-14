@@ -34,5 +34,7 @@ public class Explosion : Combo
                 ch.DamageCharacter(damageAmount, Ability.AbilityType.None);
             }
         }
+
+        Destroy(this);
     }
 }

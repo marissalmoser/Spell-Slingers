@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
     [SerializeField] private int attackRange;
-    public float DamageMultiplier = 1;
+    public int DamageMultiplier = 1;
     public float RangeMultiplier = 1;
 
     [Header("Programming Values")]
@@ -308,7 +308,7 @@ public class Character : MonoBehaviour
         if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
             Debug.Log("ATTACKING");
-            curAbility.TriggerAbility(input);
+            curAbility.TriggerAbility(input, DamageMultiplier);
             DeactivateCharacter();
             PlayerController.instance.DestroyUI();
         }

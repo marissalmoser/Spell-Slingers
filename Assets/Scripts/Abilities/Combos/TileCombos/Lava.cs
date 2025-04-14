@@ -22,6 +22,13 @@ public class Lava : Combo
     {
         tile = GetComponent<Tile>();
         TriggerCombo();
+
+        GameManager.OnEnemyTurnEnd += IncrementCounter;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnEnemyTurnEnd -= IncrementCounter;
     }
 
     public override void TriggerCombo()
@@ -33,11 +40,14 @@ public class Lava : Combo
             character = tile.GetOccupyingCharacter();
         }
         //sets damage multiplier
-        if (character != null && character.ControllerType == Character.controller.ai)
+        if (character != null && character.ControllerType == Character.controller.player)
         {
             character.DamageMultiplier = 2;
         }
+    }
 
+    public void IncrementCounter()
+    {
         //advance turn
         turnCount++;
 
