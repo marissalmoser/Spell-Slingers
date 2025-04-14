@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [SelectionBase]
 public class Tile : MonoBehaviour
@@ -128,7 +129,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if(currentState != TileState.idle)
+        if(currentState != TileState.idle && !EventSystem.current.IsPointerOverGameObject())
         {
             TileSelected?.Invoke(this);
         }
