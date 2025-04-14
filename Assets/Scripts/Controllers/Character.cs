@@ -26,6 +26,8 @@ public class Character : MonoBehaviour
     [SerializeField] private Ability[] attacks;
     private Ability curAbility;
 
+    private Vector2Int startCoordinates;
+
     [SerializeField] private controller controllerType;
     //Set an enum for elemental afflictions to check against combos
 
@@ -53,6 +55,7 @@ public class Character : MonoBehaviour
         Tile.TileSelected += MoveOrAttack;
 
         GameManager.OnTurnStart += TryTriggerCombo;
+        GameManager.OnTurnStart += SetStartCoordinates;
 
         curTile.SetIsOccupied(true);
         curTile.SetOccupyingCharacter(this);
@@ -63,6 +66,7 @@ public class Character : MonoBehaviour
         OnPlayerSelected -= SelectCharacter;
 
         GameManager.OnTurnStart -= TryTriggerCombo;
+        GameManager.OnTurnStart -= SetStartCoordinates;
     }
 
     #endregion
@@ -197,7 +201,7 @@ public class Character : MonoBehaviour
             throw new Exception("No controller assigned to this character.");
 
         Tile.ResetTiles?.Invoke();
-        OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
+        OnShouldUpdateTiles?.Invoke(moveRange, startCoordinates);
         isSelected = true;
 
         UISetup();
@@ -389,6 +393,11 @@ public class Character : MonoBehaviour
             combo.TriggerCombo();
             Debug.Log("Combo Triggered");
         }
+    }
+
+    private void SetStartCoordinates()
+    {
+        startCoordinates = curTile.GetCoordinates();
     }
 
     private void OnDestroy()

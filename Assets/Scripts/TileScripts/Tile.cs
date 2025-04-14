@@ -235,10 +235,10 @@ public class Tile : MonoBehaviour
         SetState(TileState.idle);
 
         //prevent's actor's tile from changing state
-        if (originTile == coordinates)
+        /*if (originTile == coordinates)
         {
             return;
-        }
+        }*/
 
         Vector2 distance = coordinates - originTile;
         float magnitude = distance.magnitude;
