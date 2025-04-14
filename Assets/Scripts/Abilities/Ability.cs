@@ -23,4 +23,9 @@ public class Ability : ScriptableObject
     {
         //TODO: a little bit of damage
     }
+
+    public virtual void TriggerAbility(Tile input, int damageMultiplier)
+    {
+        //TODO: a little bit of damage
+    }
 }
