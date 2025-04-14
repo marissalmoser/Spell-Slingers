@@ -19,6 +19,7 @@ public class Steam : Combo
 
     public override void TriggerCombo()
     {
+        Debug.Log("Steam Triggered");
         //if there is not a charcter on the tile, return
         tile = GetComponent<Tile>();
         if(tile == null || tile.GetOccupyingCharacter() == null)
@@ -33,13 +34,19 @@ public class Steam : Combo
         List<Tile> tiles = tile.GetTilesInRadius(1);
 
         //loop thru tiles and check if occupied
-        foreach (Tile tile in tiles)
+        for(int j = 0; j < tiles.Count; j++)
         {
+            int index = 0;
+
             //if tile is occupied, remove from list of avaliable tiles
             //can check coordinates to make sure its in the immediate range
-            if(tile.GetIsOccupied())
+            if (tiles[j].GetIsOccupied())
             {
-                tiles.Remove(tile);
+                tiles.Remove(tiles[j]);
+            }
+            else
+            {
+                index++;
             }
         }
 

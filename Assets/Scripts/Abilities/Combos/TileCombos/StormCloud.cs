@@ -36,6 +36,7 @@ public class StormCloud : Combo
         //damages character
         if(character != null && character.ControllerType == Character.controller.ai)
         {
+            Debug.Log("Storm Cloud Triggered");
             character.DamageCharacter(damageAmount, Ability.AbilityType.None);
         }
 

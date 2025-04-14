@@ -35,6 +35,7 @@ public class MudSlide : Combo
 
             if (ch != null && ch.ControllerType == Character.controller.ai)
             {
+                Debug.Log("Awake");
                 ch.RangeMultiplier = 0.5f;
                 affectedCharacters.Add(ch);
             }

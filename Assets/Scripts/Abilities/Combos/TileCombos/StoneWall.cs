@@ -53,6 +53,8 @@ public class StoneWall : Combo
     {
         turnCount++;
 
+        Debug.Log("StoneWall Triggered");
+
         if (turnCount >= turnDuration)
         {
             //enable affected tiles

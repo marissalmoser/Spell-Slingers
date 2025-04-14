@@ -30,6 +30,7 @@ public class Lava : Combo
         Character character = null;
         if (tile != null)
         {
+            Debug.Log("Lava Triggered");
             character = tile.GetOccupyingCharacter();
         }
         //sets damage multiplier
