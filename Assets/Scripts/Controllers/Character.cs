@@ -100,6 +100,8 @@ public class Character : MonoBehaviour
 
     #endregion
 
+    #region Getters and Setters
+
     /// <summary>
     /// Returns the controller controlling this character.
     /// </summary>
@@ -112,6 +114,16 @@ public class Character : MonoBehaviour
             return AIController.instance;
         else
             throw new Exception("No controller assigned to this character.");
+    }
+
+    public Ability GetCurrentAttack()
+    {
+        return curAbility;
+    }
+
+    public Ability.AbilityType GetCurrentAttackType()
+    {
+        return curAbility.ThisAbility;
     }
 
     public void SetCurrentAttack(int attackIndex)
@@ -133,6 +145,8 @@ public class Character : MonoBehaviour
     {
         moveRange = range;
     }
+
+    #endregion
 
     #region Activate and Deactivate Character
 
@@ -275,6 +289,7 @@ public class Character : MonoBehaviour
     {
         attacking = false;
         curAbility = null;
+        isTileAttack = false;
 
         OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
         PlayerController.instance.DestroyUI();
@@ -292,7 +307,7 @@ public class Character : MonoBehaviour
             DeactivateCharacter();
             PlayerController.instance.DestroyUI();
         }
-        else
+        else if(curAbility != null)
         {
             Debug.Log("NOT AN ATTACKABLE CHARACTER");
         }
@@ -300,7 +315,7 @@ public class Character : MonoBehaviour
 
     private void AttackTile(Tile input)
     {
-        if (isTileAttack == true)
+        if (isTileAttack == true && curAbility != null)
         {
             Debug.Log("ATTACKING");
             //CALL TILE ATTACK FUNCTIONALITY
@@ -312,6 +327,7 @@ public class Character : MonoBehaviour
         else
         {
             Debug.Log("NOT AN ATTACKABLE CHARACTER");
+            attacking = false;
         }
     }
 
