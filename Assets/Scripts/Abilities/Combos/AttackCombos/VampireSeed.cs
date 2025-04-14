@@ -11,23 +11,33 @@ public class VampireSeed : Combo
     private int turnCount = 0;
 
     Character enemy;
-    Character ally1, ally2, ally3;
+    Character[] allController;
+    Character[] ally;
 
     // Start is called before the first frame update
     void Awake()
     {
         enemy = GetComponent<Character>();
-        //set ally Characters
-
+        allController = FindObjectsOfType<Character>();
+        foreach (Character c in allController)
+        {
+            int nextFree = 0;
+            if (c.ControllerType == Character.controller.player)
+            {
+                ally[nextFree] = c;
+                nextFree++;
+            }
+        }
         TriggerCombo();
     }
 
     public override void TriggerCombo()
     {
-        enemy.DamageCharacter(Damage);
-        //ally1.DamageCharacter(-.3 * Damage);
-        //ally2.DamageCharacter(-.3 * Damage);
-        //ally3.DamageCharacter(-.3 * Damage);
+        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
+        for (int i = 0; i < ally.Length; i++)
+        {
+            ally[i].DamageCharacter(-Damage / 4, Ability.AbilityType.None);
+        }
 
         turnCount++;
 

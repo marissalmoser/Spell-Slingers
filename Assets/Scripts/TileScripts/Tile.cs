@@ -33,6 +33,8 @@ public class Tile : MonoBehaviour
     public static Action<Tile> TileSelected;
     public static Action ResetTiles;
 
+    private Ability.AbilityType affectedAbility;
+
     #region Getters and Setters
 
     /// <summary>
@@ -103,7 +105,11 @@ public class Tile : MonoBehaviour
 
         Character.OnShouldUpdateTiles += UpdateTile;
         Character.OnAttackPressed += SetAttackableState;
+
+        GameManager.OnTurnStart += TryTriggerCombo;
     }
+
+
     private void OnDisable()
     {
         ResetTiles -= SetToIdle;
@@ -112,6 +118,9 @@ public class Tile : MonoBehaviour
         TempPlayerMovement.PlayerSelected -= UpdateTile;
 
         Character.OnShouldUpdateTiles -= UpdateTile;
+        Character.OnAttackPressed -= SetAttackableState;
+
+        GameManager.OnTurnStart -= TryTriggerCombo;
     }
 
     #endregion
@@ -128,10 +137,17 @@ public class Tile : MonoBehaviour
     /// Call this function to add an effect to this tile. This function will evaluate 
     /// if it should call the ability attack or combo and set the visuals accordingly.
     /// </summary>
-    public void AddEffect()
+    public void AddEffect(Ability.AbilityType type)
     {
-        //TODO: Add ability parameter
-        //TODO: Add ability evaluation and functionality
+        if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
+        {
+            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+            affectedAbility = Ability.AbilityType.None;
+        }
+        else if(type != Ability.AbilityType.None)
+        {
+            affectedAbility = type;
+        }
     }
 
     /// <summary>
@@ -217,4 +233,36 @@ public class Tile : MonoBehaviour
             SetState(TileState.attackable);
         }
     }
+
+    /// <summary>
+    /// Returns tiles in range of this tile in a square area at the input range.
+    /// </summary>
+    public List<Tile> GetTilesInRadius(int range)
+    {
+        Vector3 rangeVec = new Vector3(range, range, range);
+        Collider[] colliders =  Physics.OverlapBox(transform.position, rangeVec, Quaternion.identity, 1 << 3);
+        List<Tile> tiles = new();
+        
+        foreach(Collider col in colliders)
+        {
+            tiles.Add(col.gameObject.GetComponent<Tile>());
+        }
+
+        return tiles;
+    }
+
+    /// <summary>
+    /// Checks if tile has a combo component, and triggers the combo.
+    /// </summary>
+    private void TryTriggerCombo()
+    {
+        if(TryGetComponent(out Combo combo))
+        {
+            combo.TriggerCombo();
+            Debug.Log("Combo Triggered");
+        }
+    }
+
 }
+
+

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016bdf67a345e784b9d705721563d40a, type: 3}
   m_Name: FireTile
   m_EditorClassIdentifier: 
-  ThisAbility: 0
+  abilityName: Fire Tile
+  ThisAbility: 4

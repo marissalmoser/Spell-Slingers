@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b4759670ac4394e838372093ae1e56, type: 3}
   m_Name: EarthAttack
   m_EditorClassIdentifier: 
-  ThisAbility: 0
+  abilityName: Earth Attack
+  ThisAbility: 3
