@@ -16,6 +16,6 @@ public class Freeze : Combo
     {
         enemy.Wait();
 
-        Destroy(this);
+        EndCombo();
     }
 }

@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: attacks.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 0d263e8a7f18e554ba710fb883142087, type: 2}
+    - target: {fileID: 1668451325155693272, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9da0077bfbb12d7499ad81de65679ea0, type: 2}
     - target: {fileID: 2763946948050921600, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: m_Name
       value: Earth Character Variant

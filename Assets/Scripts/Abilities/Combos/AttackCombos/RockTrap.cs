@@ -29,7 +29,7 @@ public class RockTrap : Combo
         if (turnCount == turnDuration)
         {
             enemy.SetMovementRange(savedMovementRange);
-            Destroy(this);
+            EndCombo();
         }
     }
 }
