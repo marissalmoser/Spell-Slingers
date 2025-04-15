@@ -28,11 +28,13 @@ public class StoneWall : Combo
         //find all tiles in range
         List<Tile> tiles = tile.GetTilesInRadius(1);
 
+        GameManager.OnEnemyTurnEnd += IncrementCounter;
+
         //loop thru tiles in radius
         foreach (Tile tile in tiles)
         {
             //if tile is not occupied and is in line with this tile, add to affected list
-            if (tile.GetOccupyingCharacter() != null
+            if (tile.GetOccupyingCharacter() == null
                 && this.tile.GetCoordinates().x == tile.GetCoordinates().x)
             {
                 affectedTiles.Add(tile);
@@ -49,11 +51,22 @@ public class StoneWall : Combo
         TriggerCombo();
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnEnemyTurnEnd -= IncrementCounter;
+    }
+
     public override void TriggerCombo()
     {
-        turnCount++;
         GetComponent<ParticleSystem>().Play();
+    }
 
+    public void IncrementCounter()
+    {
+        //advance turn
+        turnCount++;
+
+        //check duration
         if (turnCount >= turnDuration)
         {
             //enable affected tiles

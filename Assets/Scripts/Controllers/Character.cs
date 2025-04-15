@@ -201,7 +201,7 @@ public class Character : MonoBehaviour
             throw new Exception("No controller assigned to this character.");
 
         Tile.ResetTiles?.Invoke();
-        OnShouldUpdateTiles?.Invoke(moveRange, startCoordinates);
+        OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), startCoordinates);
         isSelected = true;
 
         UISetup();
@@ -296,7 +296,7 @@ public class Character : MonoBehaviour
         curAbility = null;
         isTileAttack = false;
 
-        OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
+        OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), curTile.GetCoordinates());
         PlayerController.instance.DestroyUI();
     }
 

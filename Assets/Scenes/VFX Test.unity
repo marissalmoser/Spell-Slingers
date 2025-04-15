@@ -4820,6 +4820,14 @@ PrefabInstance:
       propertyPath: curTile
       value: 
       objectReference: {fileID: 525591436}
+    - target: {fileID: 1465432972706154574, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
+      propertyPath: attacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465432972706154574, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
+      propertyPath: attacks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d263e8a7f18e554ba710fb883142087, type: 2}
     - target: {fileID: 2763946948050921600, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: m_Name
       value: Water Character Variant
@@ -8468,6 +8476,14 @@ PrefabInstance:
       propertyPath: curTile
       value: 
       objectReference: {fileID: 1587975450}
+    - target: {fileID: 7420083034042329339, guid: b117624623d14c141965e3803ca7161b, type: 3}
+      propertyPath: attacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420083034042329339, guid: b117624623d14c141965e3803ca7161b, type: 3}
+      propertyPath: attacks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 699103a083e1b474897578333d16e427, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
