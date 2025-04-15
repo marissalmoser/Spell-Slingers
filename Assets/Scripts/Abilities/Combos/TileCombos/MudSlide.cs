@@ -46,6 +46,7 @@ public class MudSlide : Combo
 
     public override void TriggerCombo()
     {
+        GetComponent<ParticleSystem>().Play();
         turnCount++;
 
         if (turnCount >= turnDuration)
@@ -56,7 +57,7 @@ public class MudSlide : Combo
                 ch.RangeMultiplier = 1;
             }
 
-            Destroy(this);
+            EndCombo();
         }
     }
 }

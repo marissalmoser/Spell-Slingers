@@ -33,6 +33,8 @@ public class Lava : Combo
 
     public override void TriggerCombo()
     {
+        GetComponent<ParticleSystem>().Play();
+
         //gets character on tile that turn 
         Character character = null;
         if (tile != null)
@@ -54,7 +56,7 @@ public class Lava : Combo
         //check duration
         if (turnCount >= turnDuration)
         {
-            Destroy(this);
+            EndCombo();
         }
     }
 }

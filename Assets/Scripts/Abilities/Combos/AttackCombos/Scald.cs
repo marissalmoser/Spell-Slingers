@@ -19,7 +19,7 @@ public class Scald : Combo
     {
         enemy.DamageCharacter(Damage, Ability.AbilityType.None);
 
-        Destroy(this);
+        EndCombo();
     }
 }
 

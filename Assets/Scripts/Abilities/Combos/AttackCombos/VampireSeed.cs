@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class VampireSeed : Combo
@@ -43,7 +42,7 @@ public class VampireSeed : Combo
 
         if (turnCount == turnDuration)
         {
-            Destroy(this);
+            EndCombo();
         }
     }
 }

@@ -26,7 +26,7 @@ public class Burn : Combo
 
         if (turnCount == turnDuration)
         {
-            Destroy(this);
+            EndCombo();
         }
     }
 }

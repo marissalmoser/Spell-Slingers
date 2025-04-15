@@ -11,7 +11,7 @@ public class EarthAttack : Ability
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
         {
-            ch.DamageCharacter(-10, AbilityType.FireAttack);
+            ch.DamageCharacter(-10, AbilityType.EarthAttack);
         }
     }
 
@@ -21,7 +21,7 @@ public class EarthAttack : Ability
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
         {
-            ch.DamageCharacter(-10 * damageMultiplier, AbilityType.WaterAttack);
+            ch.DamageCharacter(-10 * damageMultiplier, AbilityType.EarthAttack);
         }
     }
 }

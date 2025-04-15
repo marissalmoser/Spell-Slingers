@@ -6,6 +6,12 @@ public class ComboCodex : MonoBehaviour
 {
     public static ComboCodex Instance;
 
+    public Sprite AffectedByFire;
+    public Sprite AffectedByWater;
+    public Sprite AffectedByEarth;
+
+    [SerializeField] List<ComboVFX> ComboVFXRefs = new();
+
     private void Awake()
     {
         if (Instance != null)
@@ -28,12 +34,15 @@ public class ComboCodex : MonoBehaviour
                 {
                     case Ability.AbilityType.FireAttack:
                         target.AddComponent<Burn>();
+                        SpawnComboEffects(6, target);
                         return;
                     case Ability.AbilityType.WaterAttack:
                         target.AddComponent<Scald>();
+                        SpawnComboEffects(7, target);
                         return;
                     case Ability.AbilityType.EarthAttack:
                         target.AddComponent<RockTrap>();
+                        SpawnComboEffects(8, target);
                         return;
                 }
                 break;
@@ -42,12 +51,15 @@ public class ComboCodex : MonoBehaviour
                 {
                     case Ability.AbilityType.FireAttack:
                         target.AddComponent<Scald>();
+                        SpawnComboEffects(7, target);
                         return;
                     case Ability.AbilityType.WaterAttack:
                         target.AddComponent<Freeze>();
+                        SpawnComboEffects(9, target);
                         return;
                     case Ability.AbilityType.EarthAttack:
                         target.AddComponent<VampireSeed>();
+                        SpawnComboEffects(10, target);
                         return;
                 }
                 break;
@@ -56,12 +68,15 @@ public class ComboCodex : MonoBehaviour
                 {
                     case Ability.AbilityType.FireAttack:
                         target.AddComponent<RockTrap>();
+                        SpawnComboEffects(8, target);
                         return;
                     case Ability.AbilityType.WaterAttack:
                         target.AddComponent<VampireSeed>();
+                        SpawnComboEffects(10, target);
                         return;
                     case Ability.AbilityType.EarthAttack:
                         target.AddComponent<BoulderThrow>();
+                        SpawnComboEffects(11, target);
                         return;
                 }
                 break;
@@ -71,12 +86,15 @@ public class ComboCodex : MonoBehaviour
                 {
                     case Ability.AbilityType.FireTile:
                         target.AddComponent<Explosion>();
+                        SpawnComboEffects(0, target);
                         return;
                     case Ability.AbilityType.WaterTile:
                         target.AddComponent<Steam>();
+                        SpawnComboEffects(1, target);
                         return;
                     case Ability.AbilityType.EarthTile:
                         target.AddComponent<Lava>();
+                        SpawnComboEffects(2, target);
                         return;
                 }
                 break;
@@ -85,12 +103,15 @@ public class ComboCodex : MonoBehaviour
                 {
                     case Ability.AbilityType.FireTile:
                         target.AddComponent<Steam>();
+                        SpawnComboEffects(1, target);
                         return;
                     case Ability.AbilityType.WaterTile:
                         target.AddComponent<StormCloud>();
+                        SpawnComboEffects(3, target);
                         return;
                     case Ability.AbilityType.EarthTile:
                         target.AddComponent<MudSlide>();
+                        SpawnComboEffects(4, target);
                         return;
                 }
                 break;
@@ -99,15 +120,29 @@ public class ComboCodex : MonoBehaviour
                 {
                     case Ability.AbilityType.FireTile:
                         target.AddComponent<Lava>();
+                        SpawnComboEffects(2, target);
                         return;
                     case Ability.AbilityType.WaterTile:
                         target.AddComponent<MudSlide>();
+                        SpawnComboEffects(4, target);
                         return;
                     case Ability.AbilityType.EarthTile:
                         target.AddComponent<StoneWall>();
+                        SpawnComboEffects(5, target);
                         return;
                 }
                 break;
         }
+    }
+
+    /// <summary>
+    /// Sets the combo partical effect and spawns the VFX prefab as a child to the target obj
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="target"></param>
+    private void SpawnComboEffects(int index, GameObject target)
+    {
+        target.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(0, ComboVFXRefs[index].ComboUISprite);
+        Instantiate(ComboVFXRefs[index].VFXPrefab, target.transform);
     }
 }

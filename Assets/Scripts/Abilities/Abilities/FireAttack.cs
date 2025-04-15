@@ -22,7 +22,7 @@ public class FireAttack : Ability
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
         {
-            ch.DamageCharacter(-10 * damageMultiplier, AbilityType.WaterAttack);
+            ch.DamageCharacter(-10 * damageMultiplier, AbilityType.FireAttack);
         }
     }
 }
