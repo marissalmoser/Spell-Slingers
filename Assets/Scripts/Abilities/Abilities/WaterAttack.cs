@@ -14,4 +14,14 @@ public class WaterAttack : Ability
             ch.DamageCharacter(-10, AbilityType.WaterAttack);
         }
     }
+
+    public override void TriggerAbility(Tile input, int damageMultiplier)
+    {
+        base.TriggerAbility(input);
+
+        if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
+        {
+            ch.DamageCharacter(-10 * damageMultiplier, AbilityType.WaterAttack);
+        }
+    }
 }
