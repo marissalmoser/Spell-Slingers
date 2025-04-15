@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [SelectionBase]
 public class Tile : MonoBehaviour
@@ -20,12 +21,13 @@ public class Tile : MonoBehaviour
     [SerializeField] Transform actorAnchor;
     [SerializeField] GameObject moveableStatus;
     [SerializeField] GameObject attackableStatus;
+    [SerializeField] GameObject targetableStatus;
     [SerializeField] bool isOccupied;
 
     private Character occupyingCharacter;
 
     ///tile state
-    public enum TileState { idle, moveable, attackable };
+    public enum TileState { idle, moveable, attackable, targetable };
     private TileState currentState = TileState.idle;
     //TODO: add tile effect field
 
@@ -127,7 +129,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if(currentState != TileState.idle)
+        if(currentState != TileState.idle && !EventSystem.current.IsPointerOverGameObject())
         {
             TileSelected?.Invoke(this);
         }
@@ -159,6 +161,7 @@ public class Tile : MonoBehaviour
         //remove all visuals
         moveableStatus.SetActive(false);
         attackableStatus.SetActive(false);
+        targetableStatus.SetActive(false);
 
         //set state and needed visuals
         switch (newState)
@@ -191,6 +194,7 @@ public class Tile : MonoBehaviour
 
         moveableStatus.SetActive(false);
         attackableStatus.SetActive(false);
+        targetableStatus.SetActive(false);
 
         Vector2 distance = coordinates - originTile;
         float magnitude = distance.magnitude;
@@ -199,6 +203,21 @@ public class Tile : MonoBehaviour
         {
             attackableStatus.SetActive(true);
             currentState = TileState.attackable;
+        }
+        else if(magnitude <= range + 1)
+        {
+            switch(PlayerController.instance.GetSelectedCharacter().GetCurrentAttackType())
+            {
+                case Ability.AbilityType.FireTile:
+                case Ability.AbilityType.WaterTile:
+                case Ability.AbilityType.EarthTile:
+                    targetableStatus.SetActive(true);
+                    currentState = TileState.targetable;
+                    break;
+                default:
+
+                    break;
+            }
         }
     }
 
@@ -213,11 +232,13 @@ public class Tile : MonoBehaviour
     /// <param name="oroginTile"></param>
     public void UpdateTile(int range, Vector2Int originTile)
     {
+        SetState(TileState.idle);
+
         //prevent's actor's tile from changing state
-        if (originTile == coordinates)
+        /*if (originTile == coordinates)
         {
             return;
-        }
+        }*/
 
         Vector2 distance = coordinates - originTile;
         float magnitude = distance.magnitude;

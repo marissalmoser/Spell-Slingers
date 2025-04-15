@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{42707705-f687-41bc-b5fb-d58935121c81}">
+		<property name="assetPath">
+			<value>Attacks/Rock fallingV1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.3399773242630384</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e506247d-460c-48ad-bf91-37a3155a6e40}</destination>
+		</relationship>
+	</object>
+</objects>

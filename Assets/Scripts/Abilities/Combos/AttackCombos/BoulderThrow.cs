@@ -11,10 +11,7 @@ public class BoulderThrow : Combo
 
     private void Awake()
     {
-        
-        //current selected tile has an enemy character on it, set the 'enemy' to the current character on the tile
-        
-
+        enemy = GetComponent<Character>();
 
         ally = PlayerController.instance.GetSelectedCharacter();
 

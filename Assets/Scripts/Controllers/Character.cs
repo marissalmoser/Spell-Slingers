@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Character : MonoBehaviour
     [Header("Gameplay Values")]
     [SerializeField] private int moveRange;
     [SerializeField] private int attackRange;
-    public float DamageMultiplier = 1;
+    public int DamageMultiplier = 1;
     public float RangeMultiplier = 1;
 
     [Header("Programming Values")]
@@ -24,6 +25,8 @@ public class Character : MonoBehaviour
 
     [SerializeField] private Ability[] attacks;
     private Ability curAbility;
+
+    private Vector2Int startCoordinates;
 
     [SerializeField] private controller controllerType;
     //Set an enum for elemental afflictions to check against combos
@@ -52,6 +55,7 @@ public class Character : MonoBehaviour
         Tile.TileSelected += MoveOrAttack;
 
         GameManager.OnTurnStart += TryTriggerCombo;
+        GameManager.OnTurnStart += SetStartCoordinates;
 
         curTile.SetIsOccupied(true);
         curTile.SetOccupyingCharacter(this);
@@ -62,6 +66,7 @@ public class Character : MonoBehaviour
         OnPlayerSelected -= SelectCharacter;
 
         GameManager.OnTurnStart -= TryTriggerCombo;
+        GameManager.OnTurnStart -= SetStartCoordinates;
     }
 
     #endregion
@@ -100,6 +105,8 @@ public class Character : MonoBehaviour
 
     #endregion
 
+    #region Getters and Setters
+
     /// <summary>
     /// Returns the controller controlling this character.
     /// </summary>
@@ -112,6 +119,16 @@ public class Character : MonoBehaviour
             return AIController.instance;
         else
             throw new Exception("No controller assigned to this character.");
+    }
+
+    public Ability GetCurrentAttack()
+    {
+        return curAbility;
+    }
+
+    public Ability.AbilityType GetCurrentAttackType()
+    {
+        return curAbility.ThisAbility;
     }
 
     public void SetCurrentAttack(int attackIndex)
@@ -133,6 +150,8 @@ public class Character : MonoBehaviour
     {
         moveRange = range;
     }
+
+    #endregion
 
     #region Activate and Deactivate Character
 
@@ -182,7 +201,7 @@ public class Character : MonoBehaviour
             throw new Exception("No controller assigned to this character.");
 
         Tile.ResetTiles?.Invoke();
-        OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
+        OnShouldUpdateTiles?.Invoke(moveRange, startCoordinates);
         isSelected = true;
 
         UISetup();
@@ -275,6 +294,7 @@ public class Character : MonoBehaviour
     {
         attacking = false;
         curAbility = null;
+        isTileAttack = false;
 
         OnShouldUpdateTiles?.Invoke(moveRange, curTile.GetCoordinates());
         PlayerController.instance.DestroyUI();
@@ -288,11 +308,11 @@ public class Character : MonoBehaviour
         if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
             Debug.Log("ATTACKING");
-            curAbility.TriggerAbility(input);
+            curAbility.TriggerAbility(input, DamageMultiplier);
             DeactivateCharacter();
             PlayerController.instance.DestroyUI();
         }
-        else
+        else if(curAbility != null)
         {
             Debug.Log("NOT AN ATTACKABLE CHARACTER");
         }
@@ -300,7 +320,7 @@ public class Character : MonoBehaviour
 
     private void AttackTile(Tile input)
     {
-        if (isTileAttack == true)
+        if (isTileAttack == true && curAbility != null)
         {
             Debug.Log("ATTACKING");
             //CALL TILE ATTACK FUNCTIONALITY
@@ -312,6 +332,7 @@ public class Character : MonoBehaviour
         else
         {
             Debug.Log("NOT AN ATTACKABLE CHARACTER");
+            attacking = false;
         }
     }
 
@@ -321,6 +342,7 @@ public class Character : MonoBehaviour
     public void Wait()
     {
         DeactivateCharacter();
+        Tile.ResetTiles?.Invoke();
     }
 
     /// <summary>
@@ -333,7 +355,7 @@ public class Character : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (canAct == true)
+        if (canAct == true && !EventSystem.current.IsPointerOverGameObject())
             SelectCharacter();
     }
 
@@ -371,6 +393,11 @@ public class Character : MonoBehaviour
             combo.TriggerCombo();
             Debug.Log("Combo Triggered");
         }
+    }
+
+    private void SetStartCoordinates()
+    {
+        startCoordinates = curTile.GetCoordinates();
     }
 
     private void OnDestroy()
