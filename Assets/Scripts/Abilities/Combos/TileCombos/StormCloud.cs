@@ -27,6 +27,8 @@ public class StormCloud : Combo
 
     public override void TriggerCombo()
     {
+        GetComponent<ParticleSystem>().Play();
+
         //gets current character on tile
         Character character = null;
         if(tile != null)
@@ -45,7 +47,7 @@ public class StormCloud : Combo
         //check duration
         if (turnCount >= turnDuration)
         {
-            Destroy(this);
+            EndCombo();
         }
     }
 }

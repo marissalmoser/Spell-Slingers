@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5215730158639861425}
   - component: {fileID: 4943470484362150446}
   m_Layer: 0
-  m_Name: SteamCloud
+  m_Name: SteamCloud VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -52,6 +52,7 @@ public class StoneWall : Combo
     public override void TriggerCombo()
     {
         turnCount++;
+        GetComponent<ParticleSystem>().Play();
 
         if (turnCount >= turnDuration)
         {
@@ -61,7 +62,7 @@ public class StoneWall : Combo
                 tile.gameObject.SetActive(true);
             }
 
-            Destroy(this);
+            EndCombo();
         }
     }
 }

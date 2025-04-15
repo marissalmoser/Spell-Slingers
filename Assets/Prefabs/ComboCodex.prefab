@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1482694594090774586
+--- !u!1 &5368911379691849231
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5921738350119694225}
-  - component: {fileID: 1377413818182713640}
+  - component: {fileID: 2210470664326364936}
+  - component: {fileID: 6224708453238573606}
   m_Layer: 0
   m_Name: ComboCodex
   m_TagString: Untagged
@@ -17,30 +17,70 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5921738350119694225
+--- !u!4 &2210470664326364936
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482694594090774586}
+  m_GameObject: {fileID: 5368911379691849231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9376135, y: -4.654284, z: 10.279307}
+  m_LocalPosition: {x: 4.521858, y: -0.26823235, z: 3.0613055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1377413818182713640
+--- !u!114 &6224708453238573606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482694594090774586}
+  m_GameObject: {fileID: 5368911379691849231}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09bb5c617feecd044b5cf8f23817c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AffectedByFire: {fileID: 21300000, guid: c76e4370b44fcf042acfd2c4e7643d73, type: 3}
+  AffectedByWater: {fileID: 21300000, guid: bf2eb95bb39969e419dae3e29ce9cb7f, type: 3}
+  AffectedByEarth: {fileID: 21300000, guid: f1eb9c664708fa543ab97b0d9cf2bf21, type: 3}
+  ComboVFXRefs:
+  - ComboName: Explosion
+    ComboUISprite: {fileID: 21300000, guid: b2a812740ab80e44db1e6de0c912756b, type: 3}
+    VFXPrefab: {fileID: 1000011797152326, guid: a6cb66494138c8b489382d46ee249d23, type: 3}
+  - ComboName: Steam
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 5135795666253191983, guid: dfc5e752642b3c343bffe6860ccaf2c0, type: 3}
+  - ComboName: Lava
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+  - ComboName: Stormcloud
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 1000014264868206, guid: ff37a3ce5125683459787d55384ed113, type: 3}
+  - ComboName: MudSlide
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+  - ComboName: StoneWall
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+  - ComboName: Burn
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 7569748353520111345, guid: cf6d8198f8672a243803abb3fb115345, type: 3}
+  - ComboName: Scald
+    ComboUISprite: {fileID: 21300000, guid: fc6f3e2d6689e5145bc8753418f86eec, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+  - ComboName: MetalTrap
+    ComboUISprite: {fileID: 21300000, guid: 07321d84cd83e5f48a84161bc90981bc, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+  - ComboName: Freeze
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+  - ComboName: VampireSeed
+    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+  - ComboName: BoulderThrow
+    ComboUISprite: {fileID: 21300000, guid: 67b0c843aade9fc41b9815a932b306f9, type: 3}
+    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}

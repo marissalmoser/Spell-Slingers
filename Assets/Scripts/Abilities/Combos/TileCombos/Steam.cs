@@ -19,6 +19,8 @@ public class Steam : Combo
 
     public override void TriggerCombo()
     {
+        GetComponent<ParticleSystem>().Play();
+
         //if there is not a charcter on the tile, return
         tile = GetComponent<Tile>();
         if(tile == null || tile.GetOccupyingCharacter() == null)
@@ -47,6 +49,6 @@ public class Steam : Combo
         int i = Random.Range(0, tiles.Count);
         ch.MoveCharacter(tiles[i]);
 
-        Destroy(this);
+        EndCombo();
     }
 }
