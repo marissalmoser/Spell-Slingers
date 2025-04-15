@@ -20,6 +20,7 @@ public class Explosion : Combo
     private void Awake()
     {
         tile = GetComponent<Tile>();
+        GetComponent<ParticleSystem>().Play();
 
         //find all tiles in range
         List<Tile> tiles = tile.GetTilesInRadius(aoeRange);

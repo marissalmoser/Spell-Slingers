@@ -6,6 +6,12 @@ public class ComboCodex : MonoBehaviour
 {
     public static ComboCodex Instance;
 
+    public Sprite AffectedByFire;
+    public Sprite AffectedByWater;
+    public Sprite AffectedByEarth;
+
+    [SerializeField] List<ComboVFX> ComboVFXRefs = new();
+
     private void Awake()
     {
         if (Instance != null)
@@ -71,6 +77,8 @@ public class ComboCodex : MonoBehaviour
                 {
                     case Ability.AbilityType.FireTile:
                         target.AddComponent<Explosion>();
+                        target.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(0, ComboVFXRefs[0].ComboUISprite);
+                        //spawn vfx GO at target go position
                         return;
                     case Ability.AbilityType.WaterTile:
                         target.AddComponent<Steam>();
