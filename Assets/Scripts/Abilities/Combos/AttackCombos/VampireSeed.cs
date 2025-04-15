@@ -11,7 +11,8 @@ public class VampireSeed : Combo
 
     Character enemy;
     Character[] allController;
-    Character[] ally;
+
+    List<Character> ally = new();
 
     // Start is called before the first frame update
     void Awake()
@@ -23,24 +24,36 @@ public class VampireSeed : Combo
             int nextFree = 0;
             if (c.ControllerType == Character.controller.player)
             {
-                ally[nextFree] = c;
+                ally.Add(c);
                 nextFree++;
             }
         }
+
+        GameManager.OnEnemyTurnEnd += IncrementCounter;
         TriggerCombo();
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnEnemyTurnEnd -= IncrementCounter;
     }
 
     public override void TriggerCombo()
     {
-        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
-        for (int i = 0; i < ally.Length; i++)
+        enemy.DamageCharacter(-Damage, Ability.AbilityType.None);
+        for (int i = 0; i < ally.Count; i++)
         {
-            ally[i].DamageCharacter(-Damage / 4, Ability.AbilityType.None);
+            ally[i].DamageCharacter(Damage / 4, Ability.AbilityType.None);
         }
+    }
 
+    public void IncrementCounter()
+    {
+        //advance turn
         turnCount++;
 
-        if (turnCount == turnDuration)
+        //check duration
+        if (turnCount >= turnDuration)
         {
             EndCombo();
         }

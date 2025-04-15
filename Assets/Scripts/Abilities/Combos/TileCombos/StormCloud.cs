@@ -22,7 +22,13 @@ public class StormCloud : Combo
     void Awake()
     {
         tile = GetComponent<Tile>();
+        GameManager.OnEnemyTurnEnd += IncrementCounter;
         TriggerCombo();
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnEnemyTurnEnd -= IncrementCounter;
     }
 
     public override void TriggerCombo()
@@ -40,7 +46,10 @@ public class StormCloud : Combo
         {
             character.DamageCharacter(damageAmount, Ability.AbilityType.None);
         }
+    }
 
+    public void IncrementCounter()
+    {
         //advance turn
         turnCount++;
 
