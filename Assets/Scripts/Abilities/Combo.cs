@@ -9,7 +9,7 @@ public abstract class Combo : MonoBehaviour
     /// <summary>
     /// destroys the childed VFX objects and the combo component
     /// </summary>
-    protected void EndCombo()
+    protected virtual void EndCombo()
     {
         //destroy childed vfxs
         Transform[] children = GetComponentsInChildren<Transform>();
