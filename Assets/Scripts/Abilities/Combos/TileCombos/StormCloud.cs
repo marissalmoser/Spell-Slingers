@@ -23,6 +23,7 @@ public class StormCloud : Combo
     {
         tile = GetComponent<Tile>();
         GameManager.OnEnemyTurnEnd += IncrementCounter;
+        SoundManager.instance.PlayUniversalOneShotSound("thundertile");
         TriggerCombo();
     }
 
