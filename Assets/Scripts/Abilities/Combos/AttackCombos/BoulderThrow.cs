@@ -7,19 +7,33 @@ public class BoulderThrow : Combo
     public int Damage;
 
     Character enemy;
-    Character ally;
+    //Character ally;
 
     private void Awake()
     {
         enemy = GetComponent<Character>();
-
-        ally = PlayerController.instance.GetSelectedCharacter();
 
         TriggerCombo();
     }
 
     public override void TriggerCombo()
     {
+        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
+
+        EndCombo();
+    }
+
+    #region Old Behavior
+
+    /*
+        private void Awake()
+        {
+            enemy = GetComponent<Character>();
+
+            ally = PlayerController.instance.GetSelectedCharacter();
+
+        }
+     
         //call knockback function, knock enemy back in general direction 3 tiles
         Vector2Int tileDif = ally.curTile.GetCoordinates() - enemy.curTile.GetCoordinates();
         Vector2Int range = new Vector2Int(3, 3);
@@ -71,5 +85,7 @@ public class BoulderThrow : Combo
         enemy.DamageCharacter(Damage, Ability.AbilityType.None);
 
         EndCombo();
-    }
+     */
+
+    #endregion
 }
