@@ -13,21 +13,34 @@ public class RockTrap : Combo
 
     private void Awake()
     {
-        enemy = GetComponent<Character>();
+        enemy = gameObject.GetComponent<Character>();
 
         savedMovementRange = enemy.GetMovementRange();
 
+        GameManager.OnEnemyTurnEnd += IncrementCounter;
+
         TriggerCombo();
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnEnemyTurnEnd -= IncrementCounter;
     }
 
     public override void TriggerCombo()
     {
         enemy.SetMovementRange(0);
+    }
 
+    public void IncrementCounter()
+    {
+        //advance turn
         turnCount++;
 
-        if (turnCount == turnDuration)
+        //check duration
+        if (turnCount >= turnDuration)
         {
+            //Fix this order.
             enemy.SetMovementRange(savedMovementRange);
             EndCombo();
         }
