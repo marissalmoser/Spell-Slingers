@@ -31,13 +31,13 @@ public class BoulderThrow : Combo
             if (ally.curTile.GetCoordinates().y >= enemy.curTile.GetCoordinates().y)
             {
                 // - -
-                enemy.transform.Translate(enemy.curTile.GetCoordinates().x - newDif.x, 1, enemy.curTile.GetCoordinates().y - newDif.y);
+                enemy.transform.Translate(enemy.curTile.GetCoordinates().x - newDif.x, 0, enemy.curTile.GetCoordinates().y - newDif.y);
 
                 //enemy.curTile.SetCoordinates(enemy.curTile.GetCoordinates().x - newDif.x, enemy.curTile.GetCoordinates().y - newDif.y);
             }
             else
             {
-                enemy.transform.Translate(enemy.curTile.GetCoordinates().x - newDif.x, 1, enemy.curTile.GetCoordinates().y + newDif.y);
+                enemy.transform.Translate(enemy.curTile.GetCoordinates().x - newDif.x, 0, enemy.curTile.GetCoordinates().y + newDif.y);
 
                 // - +
                 //enemy.curTile.SetCoordinates(enemy.curTile.GetCoordinates().x - newDif.x, enemy.curTile.GetCoordinates().y + newDif.y);
@@ -47,20 +47,20 @@ public class BoulderThrow : Combo
         {
             if (ally.curTile.GetCoordinates().y >= enemy.curTile.GetCoordinates().y)
             {
-                enemy.transform.Translate(enemy.curTile.GetCoordinates().x + newDif.x, 1, enemy.curTile.GetCoordinates().y - newDif.y);
+                enemy.transform.Translate(enemy.curTile.GetCoordinates().x + newDif.x, 0, enemy.curTile.GetCoordinates().y - newDif.y);
                 // + -
                 //enemy.curTile.SetCoordinates(enemy.curTile.GetCoordinates().x + newDif.x, enemy.curTile.GetCoordinates().y - newDif.y);
             }
             else
             {
-                enemy.transform.Translate(enemy.curTile.GetCoordinates().x + newDif.x, 1, enemy.curTile.GetCoordinates().y + newDif.y);
+                enemy.transform.Translate(enemy.curTile.GetCoordinates().x + newDif.x, 0, enemy.curTile.GetCoordinates().y + newDif.y);
                 // + +
                 //enemy.curTile.SetCoordinates(enemy.curTile.GetCoordinates().x + newDif.x, enemy.curTile.GetCoordinates().y + newDif.y);
             }
         }
 
         //Moves character onto tile properly in order to set relevant information.
-        if(Physics.BoxCast(enemy.transform.position, new Vector3(0.5f, 15, 0.5f), Vector3.down, out RaycastHit data, Quaternion.identity, 15, 3))
+        if(Physics.BoxCast(enemy.transform.position, new Vector3(0.5f, 15, 0.5f), Vector3.down, out RaycastHit data, Quaternion.identity, Mathf.Infinity, 3))
         {
             if(data.collider.gameObject.TryGetComponent<Tile>(out Tile tile))
             {

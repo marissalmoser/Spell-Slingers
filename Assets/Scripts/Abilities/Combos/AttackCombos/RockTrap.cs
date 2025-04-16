@@ -24,6 +24,7 @@ public class RockTrap : Combo
 
     private void OnDestroy()
     {
+        enemy.SetMovementRange(savedMovementRange);
         GameManager.OnEnemyTurnEnd -= IncrementCounter;
     }
 
@@ -41,7 +42,7 @@ public class RockTrap : Combo
         if (turnCount >= turnDuration)
         {
             //Fix this order.
-            enemy.SetMovementRange(savedMovementRange);
+
             EndCombo();
         }
     }
