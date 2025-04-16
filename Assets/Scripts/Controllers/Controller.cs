@@ -5,6 +5,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     private List<Character> controlledCharacters = new List<Character>();
+    private List<Character> skippedCharacters = new List<Character>();
 
     /// <summary>
     /// Returns the list of controlled characters managed by this controller.
@@ -31,6 +32,41 @@ public class Controller : MonoBehaviour
     public void RemoveControlledCharacter(Character character)
     {
         controlledCharacters.Remove(character);
+    }
+
+    /// <summary>
+    /// Gets the list of skipped characters.
+    /// </summary>
+    /// <returns></returns>
+    public List<Character> GetSkippedCharacters()
+    {
+        return skippedCharacters;
+    }
+
+    /// <summary>
+    /// Adds a skipped character to the list of skipped characters.
+    /// </summary>
+    /// <param name="character"></param>
+    public void AddSkippedCharacter(Character character)
+    {
+        skippedCharacters.Add(character);
+    }
+
+    /// <summary>
+    /// Removes a skipped character from the list of skipped characters.
+    /// </summary>
+    /// <param name="character"></param>
+    public void RemoveSkippedCharacter(Character character)
+    {
+        skippedCharacters.Remove(character);
+    }
+
+    /// <summary>
+    /// Clears list of skipped characters.
+    /// </summary>
+    public void ClearSkippedCharacters()
+    {
+        skippedCharacters.Clear();
     }
 
     public virtual void StartTurn()

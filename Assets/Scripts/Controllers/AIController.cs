@@ -48,8 +48,17 @@ public class AIController : Controller
     /// </summary>
     public override void StartTurn()
     {
+        ClearSkippedCharacters();
+
         foreach (Character c in GetControlledCharacters())
         {
+            if (c.skipTurn == true)
+            {
+                c.skipTurn = false;
+                AddSkippedCharacter(c);
+                continue;
+            }
+
             c.ActivateCharacter();
         }
     }
