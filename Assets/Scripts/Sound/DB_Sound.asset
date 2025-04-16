@@ -12,4 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3046c88daed88f548b13f494b4009c0b, type: 3}
   m_Name: DB_Sound
   m_EditorClassIdentifier: 
-  soundEventDb: []
+  soundEventDb:
+  - key: fireball
+    soundEvent:
+      Guid:
+        Data1: 178211358
+        Data2: 1147575664
+        Data3: 893576638
+        Data4: -2043509332
+      Path: event:/Attacks/Fireball
+  - key: boulderthrow
+    soundEvent:
+      Guid:
+        Data1: -1863315965
+        Data2: 1259558671
+        Data3: 24803515
+        Data4: 573414539
+      Path: event:/Attacks/RockFalling
+  - key: waterselect
+    soundEvent:
+      Guid:
+        Data1: -340424695
+        Data2: 1136798961
+        Data3: -1484705116
+        Data4: -689034264
+      Path: event:/CharSelect/WaterSelect
+  - key: lavatile
+    soundEvent:
+      Guid:
+        Data1: -1694510545
+        Data2: 1172361509
+        Data3: -213252444
+        Data4: 1363717064
+      Path: event:/Tiles/Lava
+  - key: steamtile
+    soundEvent:
+      Guid:
+        Data1: -169254721
+        Data2: 1166041390
+        Data3: 1777738880
+        Data4: -1627664111
+      Path: event:/Tiles/Steam
+  - key: thundertile
+    soundEvent:
+      Guid:
+        Data1: 530495554
+        Data2: 1224035523
+        Data3: 1263008187
+        Data4: 775575612
+      Path: event:/Tiles/Thunder
