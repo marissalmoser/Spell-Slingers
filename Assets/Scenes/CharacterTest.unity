@@ -7812,6 +7812,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bb5c617feecd044b5cf8f23817c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AffectedByFire: {fileID: 0}
+  AffectedByWater: {fileID: 0}
+  AffectedByEarth: {fileID: 0}
+  ComboVFXRefs: []
 --- !u!1 &1957045482
 GameObject:
   m_ObjectHideFlags: 0
