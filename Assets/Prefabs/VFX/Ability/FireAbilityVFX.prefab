@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6169070208723264250}
   - component: {fileID: 6169070208723264253}
   m_Layer: 0
-  m_Name: FireAffectVFX
+  m_Name: FireAbilityVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -307,7 +307,7 @@ public class Character : MonoBehaviour
     {
         if(input.GetTileState() == Tile.TileState.attackable && curAbility != null)
         {
-            Debug.Log("ATTACKING");
+            //Debug.Log("ATTACKING");
             curAbility.TriggerAbility(input, DamageMultiplier);
             DeactivateCharacter();
             PlayerController.instance.DestroyUI();
@@ -380,6 +380,7 @@ public class Character : MonoBehaviour
         else
         {
             affectedAbility = type;
+            Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
         }
     }
 
@@ -391,7 +392,7 @@ public class Character : MonoBehaviour
         if (TryGetComponent(out Combo combo))
         {
             combo.TriggerCombo();
-            Debug.Log("Combo Triggered");
+            //Debug.Log("Combo Triggered");
         }
     }
 

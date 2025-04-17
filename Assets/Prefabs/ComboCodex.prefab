@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bb5c617feecd044b5cf8f23817c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AffectedByFire: {fileID: 21300000, guid: c76e4370b44fcf042acfd2c4e7643d73, type: 3}
-  AffectedByWater: {fileID: 21300000, guid: bf2eb95bb39969e419dae3e29ce9cb7f, type: 3}
-  AffectedByEarth: {fileID: 21300000, guid: f1eb9c664708fa543ab97b0d9cf2bf21, type: 3}
+  AffectedByFirePrefab: {fileID: 1537971033341231097, guid: bd72c8bd395b8fe4492e034083509d8b, type: 3}
+  AffectedByWaterPrefab: {fileID: 3155125002801167478, guid: d12efe7dc545d704e88f33df214c2b02, type: 3}
+  AffectedByEarthPrefab: {fileID: 7570097330636046783, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
   ComboVFXRefs:
   - ComboName: Explosion
     ComboUISprite: {fileID: 21300000, guid: b2a812740ab80e44db1e6de0c912756b, type: 3}

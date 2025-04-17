@@ -6,9 +6,9 @@ public class ComboCodex : MonoBehaviour
 {
     public static ComboCodex Instance;
 
-    public Sprite AffectedByFire;
-    public Sprite AffectedByWater;
-    public Sprite AffectedByEarth;
+    public GameObject AffectedByFirePrefab;
+    public GameObject AffectedByWaterPrefab;
+    public GameObject AffectedByEarthPrefab;
 
     [SerializeField] List<ComboVFX> ComboVFXRefs = new();
 
@@ -136,7 +136,8 @@ public class ComboCodex : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the combo partical effect and spawns the VFX prefab as a child to the target obj
+    /// Sets the combo partical effect, spawns the VFX prefab as a child to the
+    /// target obj, and removes ability vfx on target object.
     /// </summary>
     /// <param name="index"></param>
     /// <param name="target"></param>
@@ -144,5 +145,38 @@ public class ComboCodex : MonoBehaviour
     {
         target.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(0, ComboVFXRefs[index].ComboUISprite);
         Instantiate(ComboVFXRefs[index].VFXPrefab, target.transform);
+
+        //destroy ability vfxs
+        Transform[] children = target.GetComponentsInChildren<Transform>();
+        for (int i = 0; i < children.Length; i++)
+        {
+            if (children[i] != null && children[i].gameObject.name.Contains("AbilityVFX"))
+            {
+                print(children[i].gameObject.name);
+                Destroy(children[i].gameObject);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Returns the correct ability vfx prefab
+    /// </summary>\
+    public GameObject GetAbilityVFX(Ability.AbilityType input)
+    {
+        switch (input)
+        {
+            case Ability.AbilityType.WaterTile:
+                return ComboCodex.Instance.AffectedByWaterPrefab;
+            case Ability.AbilityType.WaterAttack:
+                return ComboCodex.Instance.AffectedByWaterPrefab;
+            case Ability.AbilityType.FireTile:
+                return ComboCodex.Instance.AffectedByFirePrefab;
+            case Ability.AbilityType.FireAttack:
+                return ComboCodex.Instance.AffectedByFirePrefab;
+            case Ability.AbilityType.EarthTile:
+                return ComboCodex.Instance.AffectedByEarthPrefab;
+            default:
+                return ComboCodex.Instance.AffectedByEarthPrefab;
+        }
     }
 }
