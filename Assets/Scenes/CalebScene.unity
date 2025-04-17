@@ -226,7 +226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -502.2696, y: -70.68841}
+  m_AnchoredPosition: {x: -826.253, y: -388.13837}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59457736
@@ -484,16 +484,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293463037}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 8.828247}
-  m_LocalScale: {x: 2.4000003, y: 2.4000003, z: 2.4000003}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 841134996}
-  m_Father: {fileID: 1875930735}
+  m_Father: {fileID: 1110190596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -502.2696, y: -250}
+  m_AnchoredPosition: {x: -289.00003, y: -71.713165}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293463039
@@ -867,6 +867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599850005}
   - component: {fileID: 599850004}
+  - component: {fileID: 599850006}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -951,6 +952,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &599850006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599850003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &622645342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1194,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870197678131280734}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Pause
+        m_MethodName: UnOpenComboList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2488,6 +2512,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 293463038}
   - {fileID: 1461912310}
   - {fileID: 1939623851}
   - {fileID: 2118756419}
@@ -3008,7 +3033,6 @@ Transform:
   - {fileID: 1086054840}
   - {fileID: 431888651}
   - {fileID: 59457735}
-  - {fileID: 293463038}
   m_Father: {fileID: 1110190596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1939623850
@@ -3163,6 +3187,7 @@ MonoBehaviour:
   HowToPlay: {fileID: 1939623850}
   ComboList: {fileID: 2118756418}
   PauseShader: {fileID: 1461912309}
+  ComboListButton: {fileID: 293463037}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

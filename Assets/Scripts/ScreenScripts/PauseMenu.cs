@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject HowToPlay;
     public GameObject ComboList;
     public GameObject PauseShader;
+    public GameObject ComboListButton;
 
     // Start is called before the first frame update
     void Start()
@@ -72,7 +73,13 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenComboList()
     {
-        PauseScreen.SetActive(false);
+        ComboListButton.SetActive(false);
         ComboList.SetActive(true);
+    }
+
+    public void UnOpenComboList()
+    {
+        ComboList.SetActive(false);
+        ComboListButton.SetActive(true);
     }
 }
