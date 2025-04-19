@@ -152,7 +152,6 @@ public class ComboCodex : MonoBehaviour
         {
             if (children[i] != null && children[i].gameObject.name.Contains("AbilityVFX"))
             {
-                print(children[i].gameObject.name);
                 Destroy(children[i].gameObject);
             }
         }
@@ -175,8 +174,10 @@ public class ComboCodex : MonoBehaviour
                 return ComboCodex.Instance.AffectedByFirePrefab;
             case Ability.AbilityType.EarthTile:
                 return ComboCodex.Instance.AffectedByEarthPrefab;
-            default:
+            case Ability.AbilityType.EarthAttack:
                 return ComboCodex.Instance.AffectedByEarthPrefab;
+            default:
+                return null;
         }
     }
 }

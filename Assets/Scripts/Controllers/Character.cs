@@ -380,7 +380,8 @@ public class Character : MonoBehaviour
         else
         {
             affectedAbility = type;
-            Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
+            if (type != Ability.AbilityType.None)
+                Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
         }
     }
 
