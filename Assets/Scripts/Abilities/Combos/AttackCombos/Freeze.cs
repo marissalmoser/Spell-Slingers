@@ -14,7 +14,7 @@ public class Freeze : Combo
 
     public override void TriggerCombo()
     {
-        enemy.Wait();
+        enemy.skipTurn = true;
 
         EndCombo();
     }

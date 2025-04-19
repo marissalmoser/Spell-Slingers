@@ -15,6 +15,7 @@ public class Burn : Combo
     {
         enemy = GetComponent<Character>();
         GameManager.OnEnemyTurnEnd += IncrementCounter;
+        SoundManager.instance.PlayUniversalOneShotSound("fireball");
         TriggerCombo();
     }
 

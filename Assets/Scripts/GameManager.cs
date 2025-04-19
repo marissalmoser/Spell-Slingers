@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         
         counter++;
 
-        if (counter == activeController.GetControlledCharacters().Count)
+        if (counter == activeController.GetControlledCharacters().Count - activeController.GetSkippedCharacters().Count)
         {
             EndTurn();
         }

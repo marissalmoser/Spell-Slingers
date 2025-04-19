@@ -17,6 +17,11 @@ public class Steam : Combo
 {
     Tile tile;
 
+    private void Awake()
+    {
+        SoundManager.instance.PlayUniversalOneShotSound("steamtile");
+    }
+
     public override void TriggerCombo()
     {
         GetComponent<ParticleSystem>().Play();
