@@ -160,7 +160,12 @@ public class Character : MonoBehaviour
     /// </summary>
     public void ActivateCharacter()
     {
-        canAct = true;
+        if(skipTurn == false)
+        {
+            canAct = true;
+        }
+
+        skipTurn = false;
     }
 
     /// <summary>
