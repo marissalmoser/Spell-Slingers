@@ -46,6 +46,7 @@ public class PauseMenu : MonoBehaviour
     {
         HowToPlay.SetActive(false);
         ComboList.SetActive(false);
+        ComboListButton.SetActive(false);
         PauseShader.SetActive(true);
         PauseScreen.SetActive(true);
         isPaused = true;
