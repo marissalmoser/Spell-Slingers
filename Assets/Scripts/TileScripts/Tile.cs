@@ -149,6 +149,8 @@ public class Tile : MonoBehaviour
         else if(type != Ability.AbilityType.None)
         {
             affectedAbility = type;
+            if (type != Ability.AbilityType.None)
+                Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
         }
     }
 
