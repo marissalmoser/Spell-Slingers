@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     private void IncrementCounter()
     {
-        Debug.Log("COUNTER INCREMENTED");
+        //Debug.Log("COUNTER INCREMENTED");
         
         counter++;
 
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
             EndTurn();
         }
 
-        Debug.Log("The Counter is at " + counter);
+        //Debug.Log("The Counter is at " + counter);
 }
 
     /// <summary>
