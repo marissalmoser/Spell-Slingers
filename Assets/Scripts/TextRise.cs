@@ -20,7 +20,7 @@ public class TextRise : MonoBehaviour
         text = GetComponent<TMP_Text>();
         initialY = rt.anchoredPosition.y;
 
-        rt.Rotate(76, -90, 0);
+       // rt.Rotate(76, -90, 0);
 
         if (damage > 0)
         {
