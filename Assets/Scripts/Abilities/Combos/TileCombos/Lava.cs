@@ -23,6 +23,7 @@ public class Lava : Combo
         tile = GetComponent<Tile>();
         TriggerCombo();
 
+        SoundManager.instance.PlayUniversalOneShotSound("lavatile");
         GameManager.OnEnemyTurnEnd += IncrementCounter;
     }
 
