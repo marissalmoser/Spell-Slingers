@@ -52,22 +52,22 @@ MonoBehaviour:
     ComboUISprite: {fileID: 21300000, guid: b2a812740ab80e44db1e6de0c912756b, type: 3}
     VFXPrefab: {fileID: 1000011797152326, guid: a6cb66494138c8b489382d46ee249d23, type: 3}
   - ComboName: Steam
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: db1c485fa1d25974d98f9a66c15dc8ba, type: 3}
     VFXPrefab: {fileID: 5135795666253191983, guid: dfc5e752642b3c343bffe6860ccaf2c0, type: 3}
   - ComboName: Lava
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: 585907650eff2b941933166db79a9d67, type: 3}
     VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
   - ComboName: Stormcloud
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: 7e7b0112780361645a367171c932ee96, type: 3}
     VFXPrefab: {fileID: 1000014264868206, guid: ff37a3ce5125683459787d55384ed113, type: 3}
   - ComboName: MudSlide
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: b2a07d953e1980948a5b9511203d9b5d, type: 3}
     VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
   - ComboName: StoneWall
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: 802703c139e522a4bb62cb1781f631ab, type: 3}
     VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
   - ComboName: Burn
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: 7e7bcca930cd6e14bb8387c428e41406, type: 3}
     VFXPrefab: {fileID: 7569748353520111345, guid: cf6d8198f8672a243803abb3fb115345, type: 3}
   - ComboName: Scald
     ComboUISprite: {fileID: 21300000, guid: fc6f3e2d6689e5145bc8753418f86eec, type: 3}
@@ -76,10 +76,10 @@ MonoBehaviour:
     ComboUISprite: {fileID: 21300000, guid: 07321d84cd83e5f48a84161bc90981bc, type: 3}
     VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
   - ComboName: Freeze
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: 9d5cc6b4c2f39444a81702ddaef8a9fd, type: 3}
     VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
   - ComboName: VampireSeed
-    ComboUISprite: {fileID: 21300000, guid: e8ca24b5ea3633d49aa9dc13295b0bdf, type: 3}
+    ComboUISprite: {fileID: 21300000, guid: c2dceeec0167e1e49b1f131b3d30d47c, type: 3}
     VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
   - ComboName: BoulderThrow
     ComboUISprite: {fileID: 21300000, guid: 67b0c843aade9fc41b9815a932b306f9, type: 3}
