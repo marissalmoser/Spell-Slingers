@@ -7895,6 +7895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundDatabase
       objectReference: {fileID: 0}
+    - target: {fileID: 3544135711858155387, guid: 278110664abce9c43ac21da797a2cc78, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4863301622835405176, guid: 278110664abce9c43ac21da797a2cc78, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1868093
@@ -18360,6 +18364,10 @@ PrefabInstance:
     - target: {fileID: 6793205990462071403, guid: e3493dfba3ea5a74d823c1fe734339a3, type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793205990462071403, guid: e3493dfba3ea5a74d823c1fe734339a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
