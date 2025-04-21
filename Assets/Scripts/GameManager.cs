@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public static Action OnTurnStart;
     public static Action OnTurnEnd;
+    public static Action OnPlayerTurnStart;
+    public static Action OnEnemyTurnStart;
     public static Action OnPlayerTurnEnd;
     public static Action OnEnemyTurnEnd;
 
