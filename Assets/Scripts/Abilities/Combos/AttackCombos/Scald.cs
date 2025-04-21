@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scald : Combo
 {
-    public int Damage;
+    public int Damage = -50;
     
     Character enemy;
 

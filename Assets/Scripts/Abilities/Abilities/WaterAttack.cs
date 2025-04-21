@@ -11,7 +11,7 @@ public class WaterAttack : Ability
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
         {
-            ch.DamageCharacter(-10, AbilityType.WaterAttack);
+            ch.DamageCharacter(-5, AbilityType.WaterAttack);
         }
     }
 
@@ -21,7 +21,7 @@ public class WaterAttack : Ability
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
         {
-            ch.DamageCharacter(-10 * damageMultiplier, AbilityType.WaterAttack);
+            ch.DamageCharacter(-5 * damageMultiplier, AbilityType.WaterAttack);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoulderThrow : Combo
 {
-    public int Damage;
+    public int Damage = -50;
 
     Character enemy;
     //Character ally;
