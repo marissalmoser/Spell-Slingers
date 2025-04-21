@@ -22,6 +22,9 @@ public class Character : MonoBehaviour
     public bool canAct = false;
     public Tile curTile;
     [SerializeField] private bool aiControlled;
+    [SerializeField] private Material transparent;
+    [SerializeField] private Material solid;
+    [SerializeField] private GameObject indicator;
 
     [SerializeField] private Ability[] attacks;
     private Ability curAbility;
@@ -163,6 +166,7 @@ public class Character : MonoBehaviour
         if(skipTurn == false)
         {
             canAct = true;
+            indicator.SetActive(true);
         }
 
         skipTurn = false;
@@ -177,6 +181,8 @@ public class Character : MonoBehaviour
         isSelected = false;
         isTileAttack = false;
 
+        indicator.GetComponent<MeshRenderer>().material = transparent;
+        indicator.SetActive(false);
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
     }
@@ -190,20 +196,28 @@ public class Character : MonoBehaviour
     {
         if (controllerType == controller.player)
         {
-            if(PlayerController.instance.GetSelectedCharacter() != null)
+            if (PlayerController.instance.GetSelectedCharacter() != null)
+            {
                 PlayerController.instance.GetSelectedCharacter().isSelected = false;
+                PlayerController.instance.GetSelectedCharacter().indicator.GetComponent<MeshRenderer>().material = transparent;
+            }
 
             PlayerController.instance.SetSelectedCharacter(this);
         }
         else if (controllerType == controller.ai)
         {
             if (AIController.instance.GetSelectedCharacter() != null)
+            {
                 AIController.instance.GetSelectedCharacter().isSelected = false;
+                AIController.instance.GetSelectedCharacter().indicator.GetComponent<MeshRenderer>().material = transparent;
+            }
 
             AIController.instance.SetSelectedCharacter(this);
         }    
         else
             throw new Exception("No controller assigned to this character.");
+
+        indicator.GetComponent<MeshRenderer>().material = solid;
 
         Tile.ResetTiles?.Invoke();
         OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), startCoordinates);
