@@ -40,6 +40,8 @@ public class Character : MonoBehaviour
     public static Action<int, Vector2Int> OnShouldUpdateTiles;
     public static Action OnCantAct;
     public static Action<int, Vector2Int> OnAttackPressed;
+    public static Action OnShouldDisableColliders;
+    public static Action OnShouldEnableColliders;
 
     public controller ControllerType { get => controllerType; }
 
@@ -59,6 +61,9 @@ public class Character : MonoBehaviour
 
         GameManager.OnTurnStart += TryTriggerCombo;
         GameManager.OnTurnStart += SetStartCoordinates;
+        OnShouldDisableColliders += DisableColliders;
+        OnShouldEnableColliders += EnableColliders;
+
 
         curTile.SetIsOccupied(true);
         curTile.SetOccupyingCharacter(this);
@@ -70,6 +75,8 @@ public class Character : MonoBehaviour
 
         GameManager.OnTurnStart -= TryTriggerCombo;
         GameManager.OnTurnStart -= SetStartCoordinates;
+        OnShouldDisableColliders -= DisableColliders;
+        OnShouldEnableColliders -= EnableColliders;
     }
 
     #endregion
@@ -167,6 +174,7 @@ public class Character : MonoBehaviour
         {
             canAct = true;
             indicator.SetActive(true);
+            GetComponent<SphereCollider>().enabled = true;
         }
 
         skipTurn = false;
@@ -185,6 +193,7 @@ public class Character : MonoBehaviour
         indicator.SetActive(false);
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
+        GetComponent<SphereCollider>().enabled = false;
     }
 
     #endregion
@@ -261,10 +270,12 @@ public class Character : MonoBehaviour
         else if (input.GetTileState() == Tile.TileState.attackable)
         {
             Attack(input);
+            OnShouldEnableColliders?.Invoke();
         }
         else
         {
             AttackTile(input);
+            OnShouldEnableColliders?.Invoke();
         }
 
         Tile.ResetTiles?.Invoke();
@@ -303,6 +314,8 @@ public class Character : MonoBehaviour
     /// </summary>
     public void SelectAttack()
     {
+        OnShouldDisableColliders?.Invoke();
+
         OnAttackPressed?.Invoke(attackRange, curTile.GetCoordinates());
     }
 
@@ -315,6 +328,7 @@ public class Character : MonoBehaviour
         curAbility = null;
         isTileAttack = false;
 
+        OnShouldEnableColliders?.Invoke();
         OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), curTile.GetCoordinates());
         PlayerController.instance.DestroyUI();
     }
@@ -421,9 +435,14 @@ public class Character : MonoBehaviour
         startCoordinates = curTile.GetCoordinates();
     }
 
-    private void OnDestroy()
+    private void DisableColliders()
     {
-        
+        GetComponent<SphereCollider>().enabled = false;
+    }
+
+    private void EnableColliders()
+    {
+        GetComponent<SphereCollider>().enabled = true;
     }
 }
 
