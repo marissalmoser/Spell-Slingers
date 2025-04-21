@@ -13,7 +13,7 @@ using UnityEngine;
 public class Explosion : Combo
 {
     int aoeRange = 3;
-    int damageAmount;
+    int damageAmount = -30;
 
     Tile tile;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VampireSeed : Combo
 {
-    public int Damage;
+    public int Damage = -25;
 
     private int turnDuration = 3;
     private int turnCount = 0;

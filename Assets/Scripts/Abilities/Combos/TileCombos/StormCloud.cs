@@ -15,7 +15,7 @@ public class StormCloud : Combo
     int turnDuration = 3;
     int turnCount = 0;
 
-    int damageAmount = 10;
+    int damageAmount = -20;
 
     Tile tile;
 
