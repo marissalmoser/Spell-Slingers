@@ -394,28 +394,38 @@ public class Character : MonoBehaviour
 
     public void DamageCharacter(int damage, Ability.AbilityType type)
     {
-        var text = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
-        text.GetComponent<TextRise>().StartRise(damage);
-        AddEffect(type);
+        // damage from combo
+        if (type == Ability.AbilityType.None)
+        {
+            TriggerDamageText(damage);
+        }
+
+        // damage from second ability attack, triggers combo
+        if (affectedAbility != Ability.AbilityType.None)
+        {
+            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+            affectedAbility = Ability.AbilityType.None;
+        }
+
+        // damage from first ability attack
+        else
+        {
+            affectedAbility = type;
+            if (type != Ability.AbilityType.None)
+                Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
+            TriggerDamageText(damage);
+        }
     }
 
     /// <summary>
     /// Adds an effect to this character.
     /// </summary>
     /// <param name="type"></param>
-    public void AddEffect(Ability.AbilityType type)
+    private void TriggerDamageText(int damage)
     {
-        if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
-        {
-            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
-            affectedAbility = Ability.AbilityType.None;
-        }
-        else
-        {
-            affectedAbility = type;
-            if (type != Ability.AbilityType.None)
-                Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
-        }
+        Vector3 pos = transform.position + new Vector3(0, 0.5f, 0);
+        var text = Instantiate(damageTextPrefab, pos, Quaternion.identity);
+        text.GetComponent<TextRise>().StartRise(damage);
     }
 
     /// <summary>
