@@ -423,7 +423,8 @@ public class Character : MonoBehaviour
     /// <param name="type"></param>
     private void TriggerDamageText(int damage)
     {
-        var text = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
+        Vector3 pos = transform.position + new Vector3(0, 0.5f, 0);
+        var text = Instantiate(damageTextPrefab, pos, Quaternion.identity);
         text.GetComponent<TextRise>().StartRise(damage);
     }
 
