@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class TextRise : MonoBehaviour
@@ -19,8 +20,6 @@ public class TextRise : MonoBehaviour
         rt = GetComponent<RectTransform>();
         text = GetComponent<TMP_Text>();
         initialY = rt.anchoredPosition.y;
-
-       // rt.Rotate(76, -90, 0);
 
         if (damage > 0)
         {
@@ -52,6 +51,12 @@ public class TextRise : MonoBehaviour
             }
             yield return null;
         }
+
+        GetComponent<Animator>().SetTrigger("Fade");
+    }
+
+    public void DestroyObj()
+    {
         if (destroy)
         {
             Destroy(gameObject);
