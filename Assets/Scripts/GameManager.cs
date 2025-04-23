@@ -22,13 +22,21 @@ public class GameManager : MonoBehaviour
 
     public static Action OnTurnStart;
     public static Action OnTurnEnd;
+    public static Action OnPlayerTurnStart;
+    public static Action OnEnemyTurnStart;
     public static Action OnPlayerTurnEnd;
     public static Action OnEnemyTurnEnd;
+
+    public GameObject PlayerTurn;
+    public GameObject EnemyTurn;
 
     private void Start()
     {
         turnOrder.Enqueue(PlayerController.instance);
         turnOrder.Enqueue(AIController.instance);
+
+        PlayerTurn.SetActive(true);
+        EnemyTurn.SetActive(false);
 
         Character.OnCantAct += IncrementCounter;
     }
@@ -53,10 +61,16 @@ public class GameManager : MonoBehaviour
 
         if(activeController.TryGetComponent<AIController>(out AIController aiCont))
         {
+            PlayerTurn.SetActive(true);
+            EnemyTurn.SetActive(false);
+            StartCoroutine(TurnSwitch());
             OnEnemyTurnEnd?.Invoke();
         }
         else if(activeController.TryGetComponent<PlayerController>(out PlayerController pCont))
         {
+            EnemyTurn.SetActive(true);
+            PlayerTurn.SetActive(false);
+            StartCoroutine(TurnSwitch());
             OnPlayerTurnEnd?.Invoke();
         }
 
@@ -99,5 +113,12 @@ public class GameManager : MonoBehaviour
         StartTurn();
 
         startGameBtn.SetActive(false); //References testing button.
+    }
+
+    IEnumerator TurnSwitch()
+    {
+        yield return new WaitForSeconds(3);
+        PlayerTurn.SetActive(false);
+        EnemyTurn.SetActive(false);
     }
 }

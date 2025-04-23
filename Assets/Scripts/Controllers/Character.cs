@@ -22,6 +22,9 @@ public class Character : MonoBehaviour
     public bool canAct = false;
     public Tile curTile;
     [SerializeField] private bool aiControlled;
+    [SerializeField] private Material transparent;
+    [SerializeField] private Material solid;
+    [SerializeField] private GameObject indicator;
 
     [SerializeField] private Ability[] attacks;
     private Ability curAbility;
@@ -37,6 +40,8 @@ public class Character : MonoBehaviour
     public static Action<int, Vector2Int> OnShouldUpdateTiles;
     public static Action OnCantAct;
     public static Action<int, Vector2Int> OnAttackPressed;
+    public static Action OnShouldDisableColliders;
+    public static Action OnShouldEnableColliders;
 
     public controller ControllerType { get => controllerType; }
 
@@ -56,6 +61,9 @@ public class Character : MonoBehaviour
 
         GameManager.OnTurnStart += TryTriggerCombo;
         GameManager.OnTurnStart += SetStartCoordinates;
+        OnShouldDisableColliders += DisableColliders;
+        OnShouldEnableColliders += EnableColliders;
+
 
         curTile.SetIsOccupied(true);
         curTile.SetOccupyingCharacter(this);
@@ -67,6 +75,8 @@ public class Character : MonoBehaviour
 
         GameManager.OnTurnStart -= TryTriggerCombo;
         GameManager.OnTurnStart -= SetStartCoordinates;
+        OnShouldDisableColliders -= DisableColliders;
+        OnShouldEnableColliders -= EnableColliders;
     }
 
     #endregion
@@ -163,6 +173,8 @@ public class Character : MonoBehaviour
         if(skipTurn == false)
         {
             canAct = true;
+            indicator.SetActive(true);
+            GetComponent<SphereCollider>().enabled = true;
         }
 
         skipTurn = false;
@@ -177,8 +189,11 @@ public class Character : MonoBehaviour
         isSelected = false;
         isTileAttack = false;
 
+        indicator.GetComponent<MeshRenderer>().material = transparent;
+        indicator.SetActive(false);
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
+        GetComponent<SphereCollider>().enabled = false;
     }
 
     #endregion
@@ -190,20 +205,28 @@ public class Character : MonoBehaviour
     {
         if (controllerType == controller.player)
         {
-            if(PlayerController.instance.GetSelectedCharacter() != null)
+            if (PlayerController.instance.GetSelectedCharacter() != null)
+            {
                 PlayerController.instance.GetSelectedCharacter().isSelected = false;
+                PlayerController.instance.GetSelectedCharacter().indicator.GetComponent<MeshRenderer>().material = transparent;
+            }
 
             PlayerController.instance.SetSelectedCharacter(this);
         }
         else if (controllerType == controller.ai)
         {
             if (AIController.instance.GetSelectedCharacter() != null)
+            {
                 AIController.instance.GetSelectedCharacter().isSelected = false;
+                AIController.instance.GetSelectedCharacter().indicator.GetComponent<MeshRenderer>().material = transparent;
+            }
 
             AIController.instance.SetSelectedCharacter(this);
         }    
         else
             throw new Exception("No controller assigned to this character.");
+
+        indicator.GetComponent<MeshRenderer>().material = solid;
 
         Tile.ResetTiles?.Invoke();
         OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), startCoordinates);
@@ -247,10 +270,12 @@ public class Character : MonoBehaviour
         else if (input.GetTileState() == Tile.TileState.attackable)
         {
             Attack(input);
+            OnShouldEnableColliders?.Invoke();
         }
         else
         {
             AttackTile(input);
+            OnShouldEnableColliders?.Invoke();
         }
 
         Tile.ResetTiles?.Invoke();
@@ -289,6 +314,8 @@ public class Character : MonoBehaviour
     /// </summary>
     public void SelectAttack()
     {
+        OnShouldDisableColliders?.Invoke();
+
         OnAttackPressed?.Invoke(attackRange, curTile.GetCoordinates());
     }
 
@@ -301,6 +328,7 @@ public class Character : MonoBehaviour
         curAbility = null;
         isTileAttack = false;
 
+        OnShouldEnableColliders?.Invoke();
         OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), curTile.GetCoordinates());
         PlayerController.instance.DestroyUI();
     }
@@ -366,28 +394,38 @@ public class Character : MonoBehaviour
 
     public void DamageCharacter(int damage, Ability.AbilityType type)
     {
-        var text = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
-        text.GetComponent<TextRise>().StartRise(damage);
-        AddEffect(type);
+        // damage from combo
+        if (type == Ability.AbilityType.None)
+        {
+            TriggerDamageText(damage);
+        }
+
+        // damage from second ability attack, triggers combo
+        if (affectedAbility != Ability.AbilityType.None)
+        {
+            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
+            affectedAbility = Ability.AbilityType.None;
+        }
+
+        // damage from first ability attack
+        else
+        {
+            affectedAbility = type;
+            if (type != Ability.AbilityType.None)
+                Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
+            TriggerDamageText(damage);
+        }
     }
 
     /// <summary>
     /// Adds an effect to this character.
     /// </summary>
     /// <param name="type"></param>
-    public void AddEffect(Ability.AbilityType type)
+    private void TriggerDamageText(int damage)
     {
-        if (affectedAbility != Ability.AbilityType.None && type != Ability.AbilityType.None)
-        {
-            ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
-            affectedAbility = Ability.AbilityType.None;
-        }
-        else
-        {
-            affectedAbility = type;
-            if (type != Ability.AbilityType.None)
-                Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
-        }
+        Vector3 pos = transform.position + new Vector3(0, 0.5f, 0);
+        var text = Instantiate(damageTextPrefab, pos, Quaternion.identity);
+        text.GetComponent<TextRise>().StartRise(damage);
     }
 
     /// <summary>
@@ -407,9 +445,14 @@ public class Character : MonoBehaviour
         startCoordinates = curTile.GetCoordinates();
     }
 
-    private void OnDestroy()
+    private void DisableColliders()
     {
-        
+        GetComponent<SphereCollider>().enabled = false;
+    }
+
+    private void EnableColliders()
+    {
+        GetComponent<SphereCollider>().enabled = true;
     }
 }
 

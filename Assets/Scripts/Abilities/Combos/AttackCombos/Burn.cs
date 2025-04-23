@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Burn : Combo
 {
-    public int Damage;
+    public int Damage = -20;
 
     private int turnDuration = 3;
     private int turnCount = 0;
