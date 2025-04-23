@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{1b5613b1-ec3d-486a-a240-44703e0cd6ee}">
+	<object class="AudioFile" id="{9cbd4ebb-eb4a-43e4-bb95-51e0fff065ad}">
 		<property name="assetPath">
-			<value>Unused&amp;Old/MusicV1.wav</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>Tiles/LavaV2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -14,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>43.565850340136052</value>
+			<value>2.0299999999999998</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{e506247d-460c-48ad-bf91-37a3155a6e40}</destination>
