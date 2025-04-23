@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2d5a2b58-8ead-4ae2-b9a3-71f2c88b58f0}">
+		<property name="assetPath">
+			<value>Tiles/sludgeV2(2).wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.3666666666666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e506247d-460c-48ad-bf91-37a3155a6e40}</destination>
+		</relationship>
+	</object>
+</objects>
