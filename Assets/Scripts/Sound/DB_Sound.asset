@@ -21,6 +21,22 @@ MonoBehaviour:
         Data3: 893576638
         Data4: -2043509332
       Path: event:/Attacks/Fireball
+  - key: freeze
+    soundEvent:
+      Guid:
+        Data1: 1964479704
+        Data2: 1153426591
+        Data3: -1962467665
+        Data4: -1759652701
+      Path: event:/Attacks/Freeze
+  - key: metaltrap
+    soundEvent:
+      Guid:
+        Data1: 19731665
+        Data2: 1169148520
+        Data3: 722385838
+        Data4: 1614011483
+      Path: event:/Attacks/MetalTrap
   - key: boulderthrow
     soundEvent:
       Guid:
@@ -29,6 +45,62 @@ MonoBehaviour:
         Data3: 24803515
         Data4: 573414539
       Path: event:/Attacks/RockFalling
+  - key: scald
+    soundEvent:
+      Guid:
+        Data1: 2026394763
+        Data2: 1231255216
+        Data3: -857476942
+        Data4: -426941999
+      Path: event:/Attacks/Scald
+  - key: vampire
+    soundEvent:
+      Guid:
+        Data1: 1365472140
+        Data2: 1316602036
+        Data3: -1356202853
+        Data4: -453628978
+      Path: event:/Attacks/Vampire
+  - key: bgm
+    soundEvent:
+      Guid:
+        Data1: -22456
+        Data2: 1318149090
+        Data3: -115438412
+        Data4: -122786654
+      Path: event:/BGM/BGM
+  - key: earthselect
+    soundEvent:
+      Guid:
+        Data1: -1263046628
+        Data2: 1236253917
+        Data3: 1647621009
+        Data4: 531702339
+      Path: event:/CharSelect/EarthSelect
+  - key: fireselect
+    soundEvent:
+      Guid:
+        Data1: 890512406
+        Data2: 1275715967
+        Data3: -1422096469
+        Data4: 1032377861
+      Path: event:/CharSelect/FireSelect
+  - key: turnend
+    soundEvent:
+      Guid:
+        Data1: 1313096854
+        Data2: 1250854997
+        Data3: 250190990
+        Data4: 1248694587
+      Path: event:/CharSelect/TurnEnd
+  - key: turnstart
+    soundEvent:
+      Guid:
+        Data1: -1473648716
+        Data2: 1252067878
+        Data3: -1448998516
+        Data4: -1470692566
+      Path: event:/CharSelect/TurnStart
   - key: waterselect
     soundEvent:
       Guid:
@@ -37,6 +109,14 @@ MonoBehaviour:
         Data3: -1484705116
         Data4: -689034264
       Path: event:/CharSelect/WaterSelect
+  - key: explosion
+    soundEvent:
+      Guid:
+        Data1: -1279298071
+        Data2: 1186651300
+        Data3: -1450070890
+        Data4: 1566402646
+      Path: event:/Tiles/Explosion
   - key: lavatile
     soundEvent:
       Guid:
@@ -45,6 +125,14 @@ MonoBehaviour:
         Data3: -213252444
         Data4: 1363717064
       Path: event:/Tiles/Lava
+  - key: mudslide
+    soundEvent:
+      Guid:
+        Data1: -2132461483
+        Data2: 1183530884
+        Data3: 1518153392
+        Data4: 966091835
+      Path: event:/Tiles/Mudslide
   - key: steamtile
     soundEvent:
       Guid:
@@ -53,6 +141,14 @@ MonoBehaviour:
         Data3: 1777738880
         Data4: -1627664111
       Path: event:/Tiles/Steam
+  - key: stonewall
+    soundEvent:
+      Guid:
+        Data1: 507102697
+        Data2: 1313398981
+        Data3: 1517576627
+        Data4: -350526469
+      Path: event:/Tiles/Stonewall
   - key: thundertile
     soundEvent:
       Guid:

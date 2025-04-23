@@ -19,6 +19,14 @@ PrefabInstance:
     - target: {fileID: 258226355484828902, guid: 0c42ff22405207143b4f4a192d6af677, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 2100000, guid: d13669712d3f456409725c6069aef090, type: 2}
+    - target: {fileID: 493163426506436610, guid: 0c42ff22405207143b4f4a192d6af677, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f13718ba10843d14b9081223d62fa0b6, type: 2}
+    - target: {fileID: 3289315502878689321, guid: 0c42ff22405207143b4f4a192d6af677, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 2100000, guid: f13718ba10843d14b9081223d62fa0b6, type: 2}
     - target: {fileID: 3668572470319242942, guid: 0c42ff22405207143b4f4a192d6af677, type: 3}
       propertyPath: m_Name
@@ -64,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849391966202280169, guid: 0c42ff22405207143b4f4a192d6af677, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f13718ba10843d14b9081223d62fa0b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1646813205576826221, guid: 0c42ff22405207143b4f4a192d6af677, type: 3}
@@ -88,7 +100,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1437362350280562706, guid: d12efe7dc545d704e88f33df214c2b02, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2342595103142110924, guid: d12efe7dc545d704e88f33df214c2b02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -136,19 +148,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4695190365771675073, guid: d12efe7dc545d704e88f33df214c2b02, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325964259165190735, guid: d12efe7dc545d704e88f33df214c2b02, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325964259383459005, guid: d12efe7dc545d704e88f33df214c2b02, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325964259762348593, guid: d12efe7dc545d704e88f33df214c2b02, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

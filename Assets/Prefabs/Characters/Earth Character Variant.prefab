@@ -8,13 +8,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2567006631918917212}
     m_Modifications:
+    - target: {fileID: 4606448619938987854, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606448620396464645, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606448621304585465, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4606448621323234720, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4606448621339461018, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606448621439303318, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7081263654661888773, guid: 54c16f610f5e5844b95a51001233356b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,6 +94,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1327138733259949628, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9da0077bfbb12d7499ad81de65679ea0, type: 2}
     - target: {fileID: 1465432972706154574, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: attacks.Array.data[0]
       value: 
@@ -93,11 +113,15 @@ PrefabInstance:
     - target: {fileID: 1668451325155693272, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9da0077bfbb12d7499ad81de65679ea0, type: 2}
+      objectReference: {fileID: 2100000, guid: d13669712d3f456409725c6069aef090, type: 2}
     - target: {fileID: 2763946948050921600, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: m_Name
       value: Earth Character Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4113791036084157975, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9da0077bfbb12d7499ad81de65679ea0, type: 2}
     - target: {fileID: 4801769499301484112, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -114,6 +138,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5016965055359274711, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9da0077bfbb12d7499ad81de65679ea0, type: 2}
     - target: {fileID: 5850452292203722473, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

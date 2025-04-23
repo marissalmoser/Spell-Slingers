@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{52253715-f501-4a35-843a-42fc24ab92aa}">
 		<property name="assetPath">
-			<value>Tiles/LavaV1.wav</value>
+			<value>Unused&amp;Old/LavaV1.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
