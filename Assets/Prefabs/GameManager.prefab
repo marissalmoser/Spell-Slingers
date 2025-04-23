@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4494396208866446726}
   - component: {fileID: 7951742568239342894}
+  - component: {fileID: 2382884494460766653}
+  - component: {fileID: 6000651016273739501}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +46,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e7c21b6304b644a97cb7539a10411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startGameBtn: {fileID: 0}
+  PlayerTurn: {fileID: 0}
+  EnemyTurn: {fileID: 0}
+--- !u!114 &2382884494460766653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455459726541967489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2963fb2e70679244b9071b31a506978d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseScreen: {fileID: 0}
+  isPaused: 0
+  HowToPlay: {fileID: 0}
+  ComboList: {fileID: 0}
+  PauseShader: {fileID: 0}
+  ComboListButton: {fileID: 0}
+--- !u!114 &6000651016273739501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455459726541967489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0538504f22fee4bbfc7cf82924071f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialObj: {fileID: 0}
+  textBox: {fileID: 0}
+  tutorialText:
+  - Choose an Elemental
+  - Move to a tile and/or choose an action
+  - Choose an attack type
+  - Finish your turn
+  - Choose a dummy
+  - Choose a tile
+  - Finish the enemy's turn
