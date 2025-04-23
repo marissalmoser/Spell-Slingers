@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ece5babf-54b2-461e-a95d-98ee84b2ef65}">
+		<property name="assetPath">
+			<value>Tiles/Explosion(2).wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.1099773242630384</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e506247d-460c-48ad-bf91-37a3155a6e40}</destination>
+		</relationship>
+	</object>
+</objects>
