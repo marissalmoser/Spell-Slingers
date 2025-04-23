@@ -69,5 +69,9 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialObj.SetActive(false);
         GameManager.OnEnemyTurnEnd -= EndTutorial;
+        Character.OnPlayerSelected -= CharacterClicked;
+        Character.OnAttacksOpened -= AttackClicked;
+        Character.OnAttackUsed -= AttackUsed;
+        GameManager.OnPlayerTurnEnd -= EnemyTurn;
     }
 }
