@@ -30,8 +30,13 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerTurn;
     public GameObject EnemyTurn;
 
+    private TutorialManager tutorialManager;
+
     private void Start()
     {
+        tutorialManager = GetComponent<TutorialManager>();
+        tutorialManager.Init();
+
         turnOrder.Enqueue(PlayerController.instance);
         turnOrder.Enqueue(AIController.instance);
 
