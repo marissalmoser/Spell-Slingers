@@ -42,6 +42,9 @@ public class Character : MonoBehaviour
     public static Action<int, Vector2Int> OnAttackPressed;
     public static Action OnShouldDisableColliders;
     public static Action OnShouldEnableColliders;
+    public static Action OnAttacksOpened;
+    public static Action OnAttackUsed;
+    public static Action OnCharacterMoved;
 
     public controller ControllerType { get => controllerType; }
 
@@ -231,6 +234,7 @@ public class Character : MonoBehaviour
         Tile.ResetTiles?.Invoke();
         OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), startCoordinates);
         isSelected = true;
+        OnPlayerSelected?.Invoke();
 
         UISetup();
     }
@@ -270,11 +274,13 @@ public class Character : MonoBehaviour
         else if (input.GetTileState() == Tile.TileState.attackable)
         {
             Attack(input);
+            OnAttackUsed?.Invoke();
             OnShouldEnableColliders?.Invoke();
         }
         else
         {
             AttackTile(input);
+            OnAttackUsed?.Invoke();
             OnShouldEnableColliders?.Invoke();
         }
 
@@ -294,6 +300,8 @@ public class Character : MonoBehaviour
         input.SetOccupyingCharacter(this);
         curTile = input;
 
+        OnCharacterMoved?.Invoke();
+
         if (controllerType == controller.ai)
             DeactivateCharacter();
     }
@@ -307,6 +315,7 @@ public class Character : MonoBehaviour
     {
         attacking = true;
         PlayerController.instance.ConstructUI(attacks);
+        OnAttacksOpened?.Invoke();
     }
 
     /// <summary>
@@ -376,6 +385,7 @@ public class Character : MonoBehaviour
     {
         DeactivateCharacter();
         Tile.ResetTiles?.Invoke();
+        OnAttackUsed?.Invoke();
     }
 
     /// <summary>
