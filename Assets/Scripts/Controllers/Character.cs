@@ -53,6 +53,10 @@ public class Character : MonoBehaviour
 
     [SerializeField] private Ability.AbilityType affectedAbility;
 
+    private GameManager gm;
+
+    [SerializeField] private Sprite charImg;
+
     #region OnEnableOnDisable
 
     private void OnEnable()
@@ -100,6 +104,8 @@ public class Character : MonoBehaviour
         {
             Debug.LogWarning("This character has no assigned controller type.");
         }
+
+        gm = FindObjectOfType<GameManager>();
     }
 
     #endregion
@@ -197,6 +203,8 @@ public class Character : MonoBehaviour
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
         GetComponent<SphereCollider>().enabled = false;
+
+        gm.ResetPlayerIcon();
     }
 
     #endregion
@@ -236,6 +244,8 @@ public class Character : MonoBehaviour
         isSelected = true;
         OnPlayerSelected?.Invoke();
 
+        gm.ChangeSelectedPlayerIcon(charImg);
+
         UISetup();
     }
 
@@ -271,7 +281,7 @@ public class Character : MonoBehaviour
             //move actor to tile
             MoveCharacter(input);
         }
-        else if (input.GetTileState() == Tile.TileState.attackable)
+        else if (input.GetTileState() == Tile.TileState.attackable && isTileAttack == false)
         {
             Attack(input);
             OnAttackUsed?.Invoke();

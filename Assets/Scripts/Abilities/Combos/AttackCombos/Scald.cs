@@ -11,7 +11,7 @@ public class Scald : Combo
     void Awake()
     {
         enemy = GetComponent<Character>();
-
+        SoundManager.instance.PlayUniversalOneShotSound("scald");
         TriggerCombo();
     }
 

@@ -123,6 +123,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 9da0077bfbb12d7499ad81de65679ea0, type: 2}
     - target: {fileID: 1465432972706154574, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
+      propertyPath: charImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 752c7c7378492cb4497dba8d95db3cea, type: 3}
+    - target: {fileID: 1465432972706154574, guid: 13e1950af399edb47bcefe429a31d66d, type: 3}
       propertyPath: attacks.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: fe64eeda43449ef4c866167166a8e13a, type: 2}
