@@ -40,10 +40,11 @@ public class VampireSeed : Combo
 
     public override void TriggerCombo()
     {
-        enemy.DamageCharacter(-Damage, Ability.AbilityType.None);
+        GetComponent<ParticleSystem>().Play();
+        enemy.DamageCharacter(Damage, Ability.AbilityType.None);
         for (int i = 0; i < ally.Count; i++)
         {
-            ally[i].DamageCharacter(Damage / 4, Ability.AbilityType.None);
+            ally[i].DamageCharacter(-Damage / 4, Ability.AbilityType.None);
         }
     }
 

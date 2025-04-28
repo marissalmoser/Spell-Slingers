@@ -44,7 +44,16 @@ public class StoneWall : Combo
         //disable affected tiles
         foreach(Tile tile in affectedTiles)
         {
-            tile.gameObject.SetActive(false);
+            Transform[] children = tile.gameObject.GetComponentsInChildren<Transform>(true);
+            foreach (var child in children)
+            {
+                if (child.gameObject.name.Contains("Stonewall"))
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+
+            tile.enabled = false;
         }
 
         //Advance turn
@@ -72,7 +81,16 @@ public class StoneWall : Combo
             //enable affected tiles
             foreach (Tile tile in affectedTiles)
             {
-                tile.gameObject.SetActive(true);
+                Transform[] children = tile.gameObject.GetComponentsInChildren<Transform>();
+                foreach (var child in children)
+                {
+                    if (child.gameObject.name.Contains("Stonewall"))
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
+
+                tile.enabled = true;
             }
 
             EndCombo();
