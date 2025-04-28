@@ -18,7 +18,7 @@ public class RockTrap : Combo
         savedMovementRange = enemy.GetMovementRange();
 
         GameManager.OnEnemyTurnEnd += IncrementCounter;
-
+        SoundManager.instance.PlayUniversalOneShotSound("metaltrap");
         TriggerCombo();
     }
 
