@@ -35,6 +35,8 @@ public class MudSlide : Combo
         GameManager.OnTurnEnd += ResetSpeeds;
         GameManager.OnTurnStart += ApplyDebuffs;
 
+        SoundManager.instance.PlayUniversalOneShotSound("mudslide");
+
         //loop thru tiles and if has an enemy character occupying it, affect it
         foreach (Tile tile in tiles)
         {

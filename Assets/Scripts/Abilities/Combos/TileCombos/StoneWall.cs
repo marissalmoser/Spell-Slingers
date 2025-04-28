@@ -30,6 +30,8 @@ public class StoneWall : Combo
 
         GameManager.OnEnemyTurnEnd += IncrementCounter;
 
+        SoundManager.instance.PlayUniversalOneShotSound("stonewall");
+
         //loop thru tiles in radius
         foreach (Tile tile in tiles)
         {

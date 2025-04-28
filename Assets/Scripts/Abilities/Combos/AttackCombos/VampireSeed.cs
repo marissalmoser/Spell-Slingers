@@ -28,7 +28,7 @@ public class VampireSeed : Combo
                 nextFree++;
             }
         }
-
+        SoundManager.instance.PlayUniversalOneShotSound("vampire");
         GameManager.OnEnemyTurnEnd += IncrementCounter;
         TriggerCombo();
     }

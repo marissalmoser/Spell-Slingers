@@ -8,7 +8,7 @@ public class Freeze : Combo
     void Awake()
     {
         enemy = GetComponent<Character>();
-        
+        SoundManager.instance.PlayUniversalOneShotSound("freeze");
         TriggerCombo();
     }
 
