@@ -12,7 +12,7 @@ public class BoulderThrow : Combo
     private void Awake()
     {
         enemy = GetComponent<Character>();
-
+        SoundManager.instance.PlayUniversalOneShotSound("boulderthrow");
         TriggerCombo();
     }
 
