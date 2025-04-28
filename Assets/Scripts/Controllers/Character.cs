@@ -271,7 +271,7 @@ public class Character : MonoBehaviour
             //move actor to tile
             MoveCharacter(input);
         }
-        else if (input.GetTileState() == Tile.TileState.attackable)
+        else if (input.GetTileState() == Tile.TileState.attackable && isTileAttack == false)
         {
             Attack(input);
             OnAttackUsed?.Invoke();
