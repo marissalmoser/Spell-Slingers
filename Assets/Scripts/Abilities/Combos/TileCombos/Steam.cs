@@ -40,19 +40,19 @@ public class Steam : Combo
         List<Tile> tiles = tile.GetTilesInRadius(1);
 
         //loop thru tiles and check if occupied
-        foreach (Tile tile in tiles)
+        for (int i = 0; i < tiles.Count; i++)
         {
             //if tile is occupied, remove from list of avaliable tiles
             //can check coordinates to make sure its in the immediate range
-            if(tile.GetIsOccupied())
+            if (tiles[i].GetIsOccupied())
             {
-                tiles.Remove(tile);
+                tiles.RemoveAt(i);
             }
         }
 
         //move ai to unoccupied tile
-        int i = Random.Range(0, tiles.Count);
-        ch.MoveCharacter(tiles[i]);
+        int t = Random.Range(0, tiles.Count);
+        ch.MoveCharacter(tiles[t]);
 
         EndCombo();
     }
