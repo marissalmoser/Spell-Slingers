@@ -68,19 +68,19 @@ MonoBehaviour:
     VFXPrefab: {fileID: 7984032400055726183, guid: d096f00862620d041a39ef12f5f0cdfd, type: 3}
   - ComboName: Burn
     ComboUISprite: {fileID: 21300000, guid: 7e7bcca930cd6e14bb8387c428e41406, type: 3}
-    VFXPrefab: {fileID: 7569748353520111345, guid: cf6d8198f8672a243803abb3fb115345, type: 3}
+    VFXPrefab: {fileID: 1000012560919920, guid: 14bfe583f05b0ba438572735cb75ba3d, type: 3}
   - ComboName: Scald
     ComboUISprite: {fileID: 21300000, guid: fc6f3e2d6689e5145bc8753418f86eec, type: 3}
-    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+    VFXPrefab: {fileID: 1000011128802252, guid: cb483fd2892e87e4882720e10a08bf35, type: 3}
   - ComboName: MetalTrap
     ComboUISprite: {fileID: 21300000, guid: 07321d84cd83e5f48a84161bc90981bc, type: 3}
-    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+    VFXPrefab: {fileID: 4534437857571967250, guid: 99d0ad85c8236ec43b49084bc435d4dd, type: 3}
   - ComboName: Freeze
     ComboUISprite: {fileID: 21300000, guid: 9d5cc6b4c2f39444a81702ddaef8a9fd, type: 3}
     VFXPrefab: {fileID: 7984032400055726183, guid: 17ce2a9840dfe1f4da91eb6418a3677e, type: 3}
   - ComboName: VampireSeed
     ComboUISprite: {fileID: 21300000, guid: c2dceeec0167e1e49b1f131b3d30d47c, type: 3}
-    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+    VFXPrefab: {fileID: 1000011396044746, guid: a1dc1052469114c44973ac2b52258656, type: 3}
   - ComboName: BoulderThrow
     ComboUISprite: {fileID: 21300000, guid: 67b0c843aade9fc41b9815a932b306f9, type: 3}
-    VFXPrefab: {fileID: 2872268990946715171, guid: 629e3fee0db9dcc4a953aab6c42dd329, type: 3}
+    VFXPrefab: {fileID: 1000012882023006, guid: 163f38815d8890345b25d86bef009b78, type: 3}
