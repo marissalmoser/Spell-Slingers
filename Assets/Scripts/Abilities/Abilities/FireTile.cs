@@ -8,6 +8,8 @@ public class FireTile : Ability
 {
     public override void TriggerAbility(Tile input)
     {
+        SoundManager.instance.PlayUniversalOneShotSound("fireselect");
+
         input.AddEffect(ThisAbility);
     }
 }

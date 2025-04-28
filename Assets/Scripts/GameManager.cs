@@ -6,7 +6,8 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System.Threading;
 using Unity.VisualScripting;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
     public GameObject EnemyTurn;
 
     private TutorialManager tutorialManager;
+
+    [SerializeField] private Sprite blankCharImg;
+    [SerializeField] private GameObject characterIconHolder;
 
     private void Start()
     {
@@ -125,5 +129,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         PlayerTurn.SetActive(false);
         EnemyTurn.SetActive(false);
+    }
+
+    public void ChangeSelectedPlayerIcon(Sprite img)
+    {
+        characterIconHolder.GetComponent<Image>().sprite = img;
+    }
+
+    public void ResetPlayerIcon()
+    {
+        characterIconHolder.GetComponent<Image>().sprite = blankCharImg;
     }
 }
