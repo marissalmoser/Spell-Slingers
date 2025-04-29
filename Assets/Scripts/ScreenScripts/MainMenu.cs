@@ -27,4 +27,19 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Andrea()
+    {
+        SceneManager.LoadScene("AndreaMap");
+    }
+
+    public void Ray()
+    {
+        SceneManager.LoadScene("RayMap");
+    }
+
+    public void Charlie()
+    {
+        SceneManager.LoadScene("CharlieScene");
+    }
 }
