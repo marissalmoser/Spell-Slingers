@@ -8,6 +8,8 @@ public class EarthTile : Ability
 {
     public override void TriggerAbility(Tile input)
     {
+        SoundManager.instance.PlayUniversalOneShotSound("earthselect");
+
         input.AddEffect(ThisAbility);
     }
 }

@@ -7,6 +7,8 @@ public class EarthAttack : Ability
 {
     public override void TriggerAbility(Tile input)
     {
+        SoundManager.instance.PlayUniversalOneShotSound("earthselect");
+
         base.TriggerAbility(input);
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
@@ -17,6 +19,8 @@ public class EarthAttack : Ability
 
     public override void TriggerAbility(Tile input, int damageMultiplier)
     {
+        SoundManager.instance.PlayUniversalOneShotSound("earthselect");
+
         base.TriggerAbility(input);
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
