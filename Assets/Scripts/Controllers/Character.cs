@@ -421,21 +421,20 @@ public class Character : MonoBehaviour
         }
 
         // damage from second ability attack, triggers combo
-        if (affectedAbility != Ability.AbilityType.None && TryGetComponent(out Combo c) == false)
+        if (affectedAbility != Ability.AbilityType.None)
         {
             ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
             affectedAbility = Ability.AbilityType.None;
         }
 
         // damage from first ability attack
-        else if(TryGetComponent(out Combo c2) == false)
+        else
         {
             affectedAbility = type;
             if (type != Ability.AbilityType.None)
                 Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
+            TriggerDamageText(damage);
         }
-
-        TriggerDamageText(damage);
     }
 
     /// <summary>
