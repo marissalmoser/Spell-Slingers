@@ -9,12 +9,11 @@ public class Freeze : Combo
     {
         enemy = GetComponent<Character>();
         SoundManager.instance.PlayUniversalOneShotSound("freeze");
-        TriggerCombo();
+        enemy.skipTurn = true;
     }
 
     public override void TriggerCombo()
     {
-        enemy.skipTurn = true;
 
         EndCombo();
     }
