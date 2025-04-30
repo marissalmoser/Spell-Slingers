@@ -55,6 +55,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Continue()
     {
+        SoundManager.instance.PlayUniversalOneShotSound("uiclick");
         PauseScreen.SetActive(false);
         PauseShader.SetActive(false);
         isPaused = false;
@@ -68,18 +69,21 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenHowToPlay()
     {
+        SoundManager.instance.PlayUniversalOneShotSound("uiclick");
         PauseScreen.SetActive(false);
         HowToPlay.SetActive(true);
     }
 
     public void OpenComboList()
     {
+        SoundManager.instance.PlayUniversalOneShotSound("uiclick");
         ComboListButton.SetActive(false);
         ComboList.SetActive(true);
     }
 
     public void UnOpenComboList()
     {
+        SoundManager.instance.PlayUniversalOneShotSound("uiclick");
         ComboList.SetActive(false);
         ComboListButton.SetActive(true);
     }

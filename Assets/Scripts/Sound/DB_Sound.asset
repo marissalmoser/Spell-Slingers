@@ -157,3 +157,19 @@ MonoBehaviour:
         Data3: 1263008187
         Data4: 775575612
       Path: event:/Tiles/Thunder
+  - key: uiclick
+    soundEvent:
+      Guid:
+        Data1: 1762348222
+        Data2: 1198362233
+        Data3: 143908520
+        Data4: -1669420009
+      Path: event:/Other/UIClick
+  - key: uihover
+    soundEvent:
+      Guid:
+        Data1: 713830583
+        Data2: 1192790222
+        Data3: 448081341
+        Data4: -1229622869
+      Path: event:/Other/UIHover
