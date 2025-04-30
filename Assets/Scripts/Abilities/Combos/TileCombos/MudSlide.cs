@@ -35,6 +35,8 @@ public class MudSlide : Combo
         GameManager.OnTurnEnd += ResetSpeeds;
         GameManager.OnTurnStart += ApplyDebuffs;
 
+        SoundManager.instance.PlayUniversalOneShotSound("mudslide");
+
         //loop thru tiles and if has an enemy character occupying it, affect it
         foreach (Tile tile in tiles)
         {
@@ -44,6 +46,16 @@ public class MudSlide : Combo
             {
                 ch.RangeMultiplier = 0.5f;
                 affectedCharacters.Add(ch);
+
+                //turn on mud
+                Transform[] children = ch.gameObject.GetComponentsInChildren<Transform>(true);
+                foreach (var child in children)
+                {
+                    if (child.gameObject.name.Contains("TileEffect"))
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+                }
             }
         }
 
@@ -103,6 +115,15 @@ public class MudSlide : Combo
             foreach (Character ch in affectedCharacters)
             {
                 ch.RangeMultiplier = 1;
+                //remove mud
+                Transform[] children = ch.gameObject.GetComponentsInChildren<Transform>();
+                foreach (var child in children)
+                {
+                    if (child.gameObject.name.Contains("TileEffect"))
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
             }
 
             affectedCharacters.Clear();

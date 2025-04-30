@@ -77,7 +77,9 @@ public class PlayerController : Controller
     {
         ClearSkippedCharacters();
 
-        foreach(Character c in GetControlledCharacters())
+        SoundManager.instance.PlayUniversalOneShotSound("turnstart");
+
+        foreach (Character c in GetControlledCharacters())
         {
             if (c.skipTurn == true)
             {
@@ -92,6 +94,8 @@ public class PlayerController : Controller
 
     public override void EndTurn()
     {
+        SoundManager.instance.PlayUniversalOneShotSound("turnend");
+
         foreach (Character c in GetControlledCharacters())
         {
             c.DeactivateCharacter();

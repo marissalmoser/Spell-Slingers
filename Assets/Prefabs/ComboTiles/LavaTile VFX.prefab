@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 5756820044143319089}
   - component: {fileID: 2533184563034927387}
   m_Layer: 0
-  m_Name: LavaTile
+  m_Name: LavaTile VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

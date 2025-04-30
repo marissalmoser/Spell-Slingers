@@ -53,6 +53,10 @@ public class Character : MonoBehaviour
 
     [SerializeField] private Ability.AbilityType affectedAbility;
 
+    private GameManager gm;
+
+    [SerializeField] private Sprite charImg;
+
     #region OnEnableOnDisable
 
     private void OnEnable()
@@ -100,6 +104,8 @@ public class Character : MonoBehaviour
         {
             Debug.LogWarning("This character has no assigned controller type.");
         }
+
+        gm = FindObjectOfType<GameManager>();
     }
 
     #endregion
@@ -197,6 +203,8 @@ public class Character : MonoBehaviour
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
         GetComponent<SphereCollider>().enabled = false;
+
+        gm.ResetPlayerIcon();
     }
 
     #endregion
@@ -235,6 +243,8 @@ public class Character : MonoBehaviour
         OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), startCoordinates);
         isSelected = true;
         OnPlayerSelected?.Invoke();
+
+        gm.ChangeSelectedPlayerIcon(charImg);
 
         UISetup();
     }
@@ -411,20 +421,21 @@ public class Character : MonoBehaviour
         }
 
         // damage from second ability attack, triggers combo
-        if (affectedAbility != Ability.AbilityType.None)
+        if (affectedAbility != Ability.AbilityType.None && TryGetComponent(out Combo c) == false)
         {
             ComboCodex.Instance.AddCombo(affectedAbility, type, gameObject);
             affectedAbility = Ability.AbilityType.None;
         }
 
         // damage from first ability attack
-        else
+        else if(TryGetComponent(out Combo c2) == false)
         {
             affectedAbility = type;
             if (type != Ability.AbilityType.None)
                 Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
-            TriggerDamageText(damage);
         }
+
+        TriggerDamageText(damage);
     }
 
     /// <summary>

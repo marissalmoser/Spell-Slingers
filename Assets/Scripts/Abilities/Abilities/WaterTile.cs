@@ -8,6 +8,8 @@ public class WaterTile : Ability
 {
     public override void TriggerAbility(Tile input)
     {
+        SoundManager.instance.PlayUniversalOneShotSound("waterselect");
+
         input.AddEffect(ThisAbility);
     }
 }

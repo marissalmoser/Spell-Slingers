@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{9cbd4ebb-eb4a-43e4-bb95-51e0fff065ad}">
 		<property name="assetPath">
-			<value>Tiles/LavaV2.wav</value>
+			<value>Unused&amp;Old/LavaV2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
