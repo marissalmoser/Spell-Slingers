@@ -79,6 +79,34 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Plays a looping sound not attached to any object. | HACKER
+    /// </summary>
+    /// <param name="key"></param>
+    public void PlayLoopingSound(string key, out EventInstance soundInstance)
+    {
+        key = key.ToLower();
+
+        if (instanceCounters.TryGetValue(key, out int value) == true)
+        {
+            instanceCounters[key]++;
+        }
+        else
+        {
+            instanceCounters.Add(key, 1);
+
+            UnityEngine.Debug.Log(instanceCounters[key]);
+        }
+
+        EventInstance instance = RuntimeManager.CreateInstance(sounds[key].soundEvent);
+        instance.start();
+
+        activeSoundNames.Add(key + instanceCounters[key]);
+        activeSoundInstances.Add(instance);
+
+        soundInstance = instance;
+    }
+
+    /// <summary>
     /// Stops a looping sound with given key. | BOTH
     /// </summary>
     /// <param name="key"></param>
