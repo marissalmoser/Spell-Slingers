@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RayMap.unity
     guid: fb09eaaca911f66468ae28359e745369
+  - enabled: 1
+    path: Assets/Scenes/NewMartaMap.unity
+    guid: 197b4c3aeab5b04468463e3ec141845b
   m_configObjects: {}

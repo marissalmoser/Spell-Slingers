@@ -78,12 +78,14 @@ public class Character : MonoBehaviour
 
     private void OnDisable()
     {
-        OnPlayerSelected -= SelectCharacter;
+        //OnPlayerSelected -= SelectCharacter;
 
         GameManager.OnTurnStart -= TryTriggerCombo;
         GameManager.OnTurnStart -= SetStartCoordinates;
         OnShouldDisableColliders -= DisableColliders;
         OnShouldEnableColliders -= EnableColliders;
+
+        Tile.TileSelected -= MoveOrAttack;
     }
 
     #endregion
