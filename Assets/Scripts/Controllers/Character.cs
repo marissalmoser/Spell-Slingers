@@ -435,9 +435,9 @@ public class Character : MonoBehaviour
             affectedAbility = type;
             if (type != Ability.AbilityType.None)
                 Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
+            TriggerDamageText(damage);
         }
 
-        TriggerDamageText(damage);
     }
 
     /// <summary>
