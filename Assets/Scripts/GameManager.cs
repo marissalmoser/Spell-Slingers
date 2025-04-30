@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
         activeController.GetComponent<Controller>().StartTurn();
 
         OnTurnStart?.Invoke();
+
+        Character.OnCantAct -= IncrementCounter;
     }
 
     /// <summary>
