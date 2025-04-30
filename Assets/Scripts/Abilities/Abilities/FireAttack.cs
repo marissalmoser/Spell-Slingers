@@ -7,6 +7,8 @@ public class FireAttack : Ability
 {
     public override void TriggerAbility(Tile input)
     {
+        SoundManager.instance.PlayUniversalOneShotSound("fireselect");
+
         base.TriggerAbility(input);
 
         if(input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))
@@ -18,6 +20,8 @@ public class FireAttack : Ability
 
     public override void TriggerAbility(Tile input, int damageMultiplier)
     {
+        SoundManager.instance.PlayUniversalOneShotSound("fireselect");
+
         base.TriggerAbility(input);
 
         if (input.GetOccupyingCharacter().gameObject.TryGetComponent(out Character ch))

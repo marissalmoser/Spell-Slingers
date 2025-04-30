@@ -25,8 +25,10 @@ public class Explosion : Combo
         //find all tiles in range
         List<Tile> tiles = tile.GetTilesInRadius(aoeRange);
 
+        SoundManager.instance.PlayUniversalOneShotSound("explosion");
+
         //loop thru tiles and if has an enemy occupying character on it, damage
-        foreach(Tile tile in tiles)
+        foreach (Tile tile in tiles)
         {
             Character ch = tile.GetOccupyingCharacter();
 

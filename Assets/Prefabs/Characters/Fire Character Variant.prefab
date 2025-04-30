@@ -1224,6 +1224,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: d13669712d3f456409725c6069aef090, type: 2}
     - target: {fileID: 8246993397947834252, guid: a9e41c6d17cffbb44a86ee4e6cf7b9b2, type: 3}
+      propertyPath: charImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 56d63e581889a114caeca24bf8df7dcf, type: 3}
+    - target: {fileID: 8246993397947834252, guid: a9e41c6d17cffbb44a86ee4e6cf7b9b2, type: 3}
       propertyPath: controllerType
       value: 1
       objectReference: {fileID: 0}
