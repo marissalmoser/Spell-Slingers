@@ -78,12 +78,14 @@ public class Character : MonoBehaviour
 
     private void OnDisable()
     {
-        OnPlayerSelected -= SelectCharacter;
+        //OnPlayerSelected -= SelectCharacter;
 
         GameManager.OnTurnStart -= TryTriggerCombo;
         GameManager.OnTurnStart -= SetStartCoordinates;
         OnShouldDisableColliders -= DisableColliders;
         OnShouldEnableColliders -= EnableColliders;
+
+        Tile.TileSelected -= MoveOrAttack;
     }
 
     #endregion
@@ -433,9 +435,9 @@ public class Character : MonoBehaviour
             affectedAbility = type;
             if (type != Ability.AbilityType.None)
                 Instantiate(ComboCodex.Instance.GetAbilityVFX(type), transform);
+            TriggerDamageText(damage);
         }
 
-        TriggerDamageText(damage);
     }
 
     /// <summary>
