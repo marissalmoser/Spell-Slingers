@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BackgroundNew.unity
     guid: 0901145da7ef6b043917eadd3b5c7406
+  - enabled: 1
+    path: Assets/Scenes/AndreaMap.unity
+    guid: d521f092409b8a548884ddf18977c4bf
+  - enabled: 1
+    path: Assets/Scenes/RayMap.unity
+    guid: fb09eaaca911f66468ae28359e745369
   m_configObjects: {}
