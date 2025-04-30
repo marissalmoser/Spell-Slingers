@@ -510,7 +510,7 @@ RectTransform:
   m_GameObject: {fileID: 149065513}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 296.64447}
-  m_LocalScale: {x: 2.7395256, y: 2.7395256, z: 2.7395256}
+  m_LocalScale: {x: 3.5821354, y: 3.5821354, z: 3.5821354}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 568775922}
@@ -518,7 +518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16.385483, y: -757.9384}
+  m_AnchoredPosition: {x: -422, y: -746}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &149065515
@@ -2389,7 +2389,7 @@ RectTransform:
   m_GameObject: {fileID: 658557634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 296.64447}
-  m_LocalScale: {x: 2.7395256, y: 2.7395256, z: 2.7395256}
+  m_LocalScale: {x: 3.4564595, y: 3.4564595, z: 3.4564595}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 686200335}
@@ -3054,7 +3054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &899670081
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3627,7 +3627,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 672.09735, y: -176.75479}
+  m_AnchoredPosition: {x: 597, y: -176.75479}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1112769676
@@ -3652,8 +3652,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Spell Slingers!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 45e34af20a34adc448b681505862cec6, type: 2}
+  m_sharedMaterial: {fileID: 1781064846631553550, guid: 45e34af20a34adc448b681505862cec6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3713,7 +3713,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -52.54312, y: 0, z: 0, w: 0}
+  m_margin: {x: -52.54312, y: 0, z: -44.23204, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3889,7 +3889,7 @@ RectTransform:
   m_GameObject: {fileID: 1282195604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 296.64447}
-  m_LocalScale: {x: 2.7395256, y: 2.7395256, z: 2.7395256}
+  m_LocalScale: {x: 3.3592062, y: 3.3592062, z: 3.3592062}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 554847476}
@@ -3946,7 +3946,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2117335590}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Andrea
+        m_MethodName: Marta
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -42,4 +42,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("CharlieScene");
     }
+
+    public void Marta()
+    {
+        SceneManager.LoadScene("NewMartaMap");
+    }
 }
