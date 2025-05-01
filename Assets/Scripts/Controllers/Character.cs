@@ -205,8 +205,6 @@ public class Character : MonoBehaviour
         PlayerController.instance.GetActionUI().SetActive(false);
         OnCantAct?.Invoke();
         GetComponent<SphereCollider>().enabled = false;
-
-        gm.ResetPlayerIcon();
     }
 
     #endregion
@@ -245,8 +243,6 @@ public class Character : MonoBehaviour
         OnShouldUpdateTiles?.Invoke((int)(moveRange * RangeMultiplier), startCoordinates);
         isSelected = true;
         OnPlayerSelected?.Invoke();
-
-        gm.ChangeSelectedPlayerIcon(charImg);
 
         UISetup();
     }
