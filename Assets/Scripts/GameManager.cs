@@ -33,9 +33,6 @@ public class GameManager : MonoBehaviour
 
     private TutorialManager tutorialManager;
 
-    [SerializeField] private Sprite blankCharImg;
-    [SerializeField] private GameObject characterIconHolder;
-
     private void Start()
     {
         tutorialManager = GetComponent<TutorialManager>();
@@ -131,15 +128,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         PlayerTurn.SetActive(false);
         EnemyTurn.SetActive(false);
-    }
-
-    public void ChangeSelectedPlayerIcon(Sprite img)
-    {
-        characterIconHolder.GetComponent<Image>().sprite = img;
-    }
-
-    public void ResetPlayerIcon()
-    {
-        characterIconHolder.GetComponent<Image>().sprite = blankCharImg;
     }
 }
