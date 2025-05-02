@@ -11370,12 +11370,13 @@ PrefabInstance:
     - target: {fileID: 7951742568239342894, guid: bd5c8915cc2c491489c43dc3a75bde59, type: 3}
       propertyPath: characterIconHolder
       value: 
-      objectReference: {fileID: 1562933548}
+      objectReference: {fileID: 0}
     - target: {fileID: 8455459726541967489, guid: bd5c8915cc2c491489c43dc3a75bde59, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2382884494460766653, guid: bd5c8915cc2c491489c43dc3a75bde59, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11417,6 +11418,9 @@ MonoBehaviour:
   ComboList: {fileID: 1562933556}
   PauseShader: {fileID: 1562933555}
   ComboListButton: {fileID: 1562933537}
+  WaterScreen: {fileID: 37579634}
+  FireScreen: {fileID: 631958330}
+  EarthScreen: {fileID: 1585928964}
 --- !u!1001 &1259020173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14375,11 +14379,6 @@ GameObject:
 --- !u!1 &1562933547 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 900969715554770269, guid: a0530a42008ed5a43bcdf3a3bb40e52f, type: 3}
-  m_PrefabInstance: {fileID: 1562933536}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1562933548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8701727856132748910, guid: a0530a42008ed5a43bcdf3a3bb40e52f, type: 3}
   m_PrefabInstance: {fileID: 1562933536}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1562933549 stripped
