@@ -7195,6 +7195,9 @@ MonoBehaviour:
   ComboList: {fileID: 1664762063}
   PauseShader: {fileID: 1664762062}
   ComboListButton: {fileID: 1664762046}
+  WaterScreen: {fileID: 670602362}
+  FireScreen: {fileID: 1980334496}
+  EarthScreen: {fileID: 1655557095}
 --- !u!1001 &439067223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11114,6 +11117,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3965521506477851975, guid: 173e9928d07e7c843959d01441f9ca6d, type: 3}
   m_PrefabInstance: {fileID: 668044055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &670602362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8999566631412889363, guid: a0530a42008ed5a43bcdf3a3bb40e52f, type: 3}
+  m_PrefabInstance: {fileID: 1664762045}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &670669946
 PrefabInstance:
@@ -31391,6 +31399,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4482437886289408, guid: 1d9cc67243350f643b8c562ed0503c49, type: 3}
   m_PrefabInstance: {fileID: 1654013291}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1655557095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4912744508716327971, guid: a0530a42008ed5a43bcdf3a3bb40e52f, type: 3}
+  m_PrefabInstance: {fileID: 1664762045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1664762045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38342,6 +38355,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4482437886289408, guid: 1d9cc67243350f643b8c562ed0503c49, type: 3}
   m_PrefabInstance: {fileID: 1979124637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1980334496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5053037897302875283, guid: a0530a42008ed5a43bcdf3a3bb40e52f, type: 3}
+  m_PrefabInstance: {fileID: 1664762045}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1984015576
 PrefabInstance:
