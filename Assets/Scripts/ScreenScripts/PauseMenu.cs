@@ -11,6 +11,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject ComboList;
     public GameObject PauseShader;
     public GameObject ComboListButton;
+    public GameObject WaterScreen;
+    public GameObject FireScreen;
+    public GameObject EarthScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,9 @@ public class PauseMenu : MonoBehaviour
         ComboListButton.SetActive(false);
         PauseShader.SetActive(true);
         PauseScreen.SetActive(true);
+        FireScreen.SetActive(false);
+        WaterScreen.SetActive(false);
+        EarthScreen.SetActive(false);
         isPaused = true;
         Time.timeScale = 0;
     }
@@ -59,6 +65,9 @@ public class PauseMenu : MonoBehaviour
         SoundManager.instance.PlayUniversalOneShotSound("uiclick");
         PauseScreen.SetActive(false);
         PauseShader.SetActive(false);
+        ComboListButton.SetActive(true);
+        HowToPlay.SetActive(false);
+        
         isPaused = false;
         Time.timeScale = 1;
     }
