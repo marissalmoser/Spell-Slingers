@@ -258,9 +258,19 @@ public class Character : MonoBehaviour
         PlayerController.instance.GetAttackButton().onClick.RemoveAllListeners();
         PlayerController.instance.GetWaitButton().onClick.RemoveAllListeners();
 
-        PlayerController.instance.GetActionUI().SetActive(true);
-        PlayerController.instance.GetAttackButton().onClick.AddListener(OpenAttackSelection);
-        PlayerController.instance.GetWaitButton().onClick.AddListener(Wait);
+        if(controllerType == controller.player)
+        {
+            PlayerController.instance.GetActionUI().SetActive(true);
+            PlayerController.instance.GetAttackButton().gameObject.SetActive(true);
+            PlayerController.instance.GetAttackButton().onClick.AddListener(OpenAttackSelection);
+            PlayerController.instance.GetWaitButton().onClick.AddListener(Wait);
+        }
+        else
+        {
+            PlayerController.instance.GetActionUI().SetActive(true);
+            PlayerController.instance.GetAttackButton().gameObject.SetActive(false);
+            PlayerController.instance.GetWaitButton().onClick.AddListener(Wait);
+        }
     }
 
     /// <summary>
