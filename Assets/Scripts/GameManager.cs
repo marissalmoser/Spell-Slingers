@@ -127,4 +127,9 @@ public class GameManager : MonoBehaviour
         PlayerTurn.SetActive(false);
         EnemyTurn.SetActive(false);
     }
+
+    private void OnDisable()
+    {
+        Character.OnCantAct -= IncrementCounter;
+    }
 }
