@@ -258,7 +258,9 @@ public class Character : MonoBehaviour
         PlayerController.instance.GetAttackButton().onClick.RemoveAllListeners();
         PlayerController.instance.GetWaitButton().onClick.RemoveAllListeners();
 
-        if(controllerType == controller.player)
+        PlayerController.instance.GetWaitButton().gameObject.SetActive(true);
+
+        if (controllerType == controller.player)
         {
             PlayerController.instance.GetActionUI().SetActive(true);
             PlayerController.instance.GetAttackButton().gameObject.SetActive(true);
